@@ -21,7 +21,7 @@ public class Percorso {
 	private Integer id;
 	
 	@NotNull
-	@NotEmpty(message="Titolo obbligatorio")
+	@NotEmpty(message="Titolo necessario")
 	private String titolo;
 	
 	private String descrizione;

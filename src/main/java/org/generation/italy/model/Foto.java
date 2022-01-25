@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Foto {
@@ -13,9 +15,13 @@ public class Foto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Lob // "large object"
-	private byte[] content;
+	@NotNull
+	@NotEmpty
+	private String titolo;
 	
+	@Lob
+	private byte[] contenuto;
+
 	// getters/setters
 	public Integer getId() {
 		return id;
@@ -23,11 +29,17 @@ public class Foto {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public byte[] getContent() {
-		return content;
+	public String getTitolo() {
+		return titolo;
 	}
-	public void setContent(byte[] content) {
-		this.content = content;
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+	public byte[] getContenuto() {
+		return contenuto;
+	}
+	public void setContenuto(byte[] contenuto) {
+		this.contenuto = contenuto;
 	}
 	
 }

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -17,12 +18,16 @@ public class Prenotazione {
 	private Integer id;
 	
 	@NotNull
-	@NotEmpty(message="Nome è obbligatorio")
+	@NotEmpty(message="Nome necessario")
 	private String nome;
 	
 	@NotNull
-	@NotEmpty(message="Cognome è obbligatorio")
+	@NotEmpty(message="Cognome necessario")
 	private String cognome;
+	
+	@NotNull
+	@Min(value=1)
+	private int quantita;
 	
 	@ManyToOne
 	@JoinColumn(name="visita_id",nullable=false)
@@ -46,6 +51,12 @@ public class Prenotazione {
 	}
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
+	}
+	public int getQuantita() {
+		return quantita;
+	}
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
 	}
 	public Visita getVisita() {
 		return visita;

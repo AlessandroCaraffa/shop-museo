@@ -38,43 +38,36 @@ public class AcquistoProdotto {
 	@JoinColumn(name="acquisto_id", nullable=false)
 	private Acquisto acquisto;
 	
+	// getter/setter
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public int getQuantita() {
 		return quantita;
 	}
-
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
-
 	public BigDecimal getPrezzoAcquisto() {
 		return prezzoAcquisto;
 	}
-
 	public void setPrezzoAcquisto(BigDecimal prezzoAcquisto) {
 		this.prezzoAcquisto = prezzoAcquisto;
 	}
-
 	public Acquisto getAcquisto() {
 		return acquisto;
 	}
-
 	public void setAcquisto(Acquisto acquisto) {
 		this.acquisto = acquisto;
 	}
-
 	public Prodotto getProdotto() {
 		return prodotto;
 	}
-
 	public void setProdotto(Prodotto prodotto) {
 		this.prodotto = prodotto;
 	}
+	
 }

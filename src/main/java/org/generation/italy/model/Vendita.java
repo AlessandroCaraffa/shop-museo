@@ -22,31 +22,25 @@ public class Vendita {
 	
 	@NotNull
 	private BigDecimal totaleVendita;
+	
 	// getters/setters
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public LocalDate getDataVendita() {
 		return dataVendita;
 	}
-
 	public void setDataVendita(LocalDate dataVendita) {
 		this.dataVendita = dataVendita;
 	}
-
 	public BigDecimal getTotaleVendita() {
 		return totaleVendita;
 	}
-
 	public void setTotaleVendita(BigDecimal totaleVendita) {
 		this.totaleVendita = totaleVendita;
 	}
-
-
 
 }

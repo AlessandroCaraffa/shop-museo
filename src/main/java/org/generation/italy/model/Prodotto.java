@@ -15,12 +15,13 @@ import javax.validation.constraints.NotNull;
 public class Prodotto {
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotNull
 	@NotEmpty(message="Nome obbligatorio")
 	private String nome;
+	
 	private String descrizione;
 	
 	@NotNull
@@ -53,6 +54,12 @@ public class Prodotto {
 	}
 	public void setPrezzoVendita(BigDecimal prezzoVendita) {
 		this.prezzoVendita = prezzoVendita;
+	}
+	public List<Foto> getFoto() {
+		return foto;
+	}
+	public void setFoto(List<Foto> foto) {
+		this.foto = foto;
 	}
 	
 }

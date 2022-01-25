@@ -1,12 +1,17 @@
 package org.generation.italy.model;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class FotoForm {
 
 	private Integer id;
 	
-	private MultipartFile content;
+	@NotEmpty(message="Titolo necessario")
+	private String titolo;
+	
+	private MultipartFile contenuto;
 
 	// getters/setters
 	public Integer getId() {
@@ -15,11 +20,17 @@ public class FotoForm {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public MultipartFile getContent() {
-		return content;
+	public String getTitolo() {
+		return titolo;
 	}
-	public void setContent(MultipartFile content) {
-		this.content = content;
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
-	
+	public MultipartFile getContenuto() {
+		return contenuto;
+	}
+	public void setContenuto(MultipartFile contenuto) {
+		this.contenuto = contenuto;
+	}
+
 }

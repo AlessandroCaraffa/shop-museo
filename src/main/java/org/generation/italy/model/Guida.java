@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,9 +20,11 @@ public class Guida {
 	private Integer id;
 	
 	@NotNull
+	@NotEmpty(message="Nome necessario")
 	private String nome;
 	
 	@NotNull
+	@NotEmpty(message="Cognome necessario")
 	private String cognome;
 	
 	@OneToOne
