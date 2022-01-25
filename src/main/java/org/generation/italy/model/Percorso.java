@@ -34,7 +34,7 @@ public class Percorso {
 	@Min(value=0)
 	private int posti_max;
 	
-	@OneToMany(mappedBy="visita")
+	@OneToMany
 	private List<Visita> visite;
 	
 	@ManyToMany

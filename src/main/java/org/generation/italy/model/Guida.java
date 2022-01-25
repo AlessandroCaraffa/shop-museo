@@ -28,7 +28,7 @@ public class Guida {
 	@JoinColumn(name="id_foto", nullable=false)
 	private Foto foto;
 	
-	@OneToMany(mappedBy="visita")
+	@OneToMany
 	private List<Visita> visite;
 
 	// getters/setters
