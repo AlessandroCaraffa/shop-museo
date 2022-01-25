@@ -35,8 +35,7 @@ public class Percorso {
 	@Min(value=0)
 	private int postiMax;
 	
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy="percorso")
 	private List<Visita> visite;
 	
 	@ManyToMany
