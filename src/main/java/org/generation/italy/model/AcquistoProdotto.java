@@ -1,7 +1,9 @@
 package org.generation.italy.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +15,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Vendita_prodotto {
+public class AcquistoProdotto {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,10 +25,15 @@ public class Vendita_prodotto {
 	@Min(value=1)
 	private int quantita;
 	
+	@NotNull
+	@Min(value=0)
+	@Column(name="prezzo_acquisto")
+	private BigDecimal prezzoAcquisto;
+	
 	@OneToMany
 	@NotNull
-	@JoinColumn(name="vendita_id", nullable=false)
-	private List<Vendita> vendite;
+	@JoinColumn(name="acquisto_id", nullable=false)
+	private List<Acquisto> acquisti;
 	
 	@ManyToOne
 	@NotNull

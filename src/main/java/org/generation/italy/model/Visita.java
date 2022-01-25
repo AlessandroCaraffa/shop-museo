@@ -16,16 +16,15 @@ public class Visita {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	private LocalDateTime data_ora_inizio;
+	private LocalDateTime dataOraInizio;
 	
-	private LocalDateTime data_ora_fine;
+	private LocalDateTime dataOraFine;
 	
 	@ManyToOne
 	@JoinColumn(name="id_percorso", nullable=false)
 	private Percorso percorso;
 	
 	@ManyToOne
-	@JoinColumn(name="id_guida", nullable=false)
 	private Guida guida;
 
 	// getters/setters
@@ -35,17 +34,18 @@ public class Visita {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public LocalDateTime getData_ora_inizio() {
-		return data_ora_inizio;
+	
+	public LocalDateTime getDataOraInizio() {
+		return dataOraInizio;
 	}
-	public void setData_ora_inizio(LocalDateTime data_ora_inizio) {
-		this.data_ora_inizio = data_ora_inizio;
+	public void setDataOraInizio(LocalDateTime dataOraInizio) {
+		this.dataOraInizio = dataOraInizio;
 	}
-	public LocalDateTime getData_ora_fine() {
-		return data_ora_fine;
+	public LocalDateTime getDataOraFine() {
+		return dataOraFine;
 	}
-	public void setData_ora_fine(LocalDateTime data_ora_fine) {
-		this.data_ora_fine = data_ora_fine;
+	public void setDataOraFine(LocalDateTime dataOraFine) {
+		this.dataOraFine = dataOraFine;
 	}
 	public Percorso getPercorso() {
 		return percorso;

@@ -21,32 +21,40 @@ public class Prodotto {
 	private String descrizione;
 	
 	@NotNull
-	private BigDecimal prezzo_vendita;
-	
+	private BigDecimal prezzoVendita;
 	// getters/setters
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}
+
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public BigDecimal getPrezzo_vendita() {
-		return prezzo_vendita;
+
+	public BigDecimal getPrezzoVendita() {
+		return prezzoVendita;
 	}
-	public void setPrezzo_vendita(BigDecimal prezzo_vendita) {
-		this.prezzo_vendita = prezzo_vendita;
+
+	public void setPrezzoVendita(BigDecimal prezzoVendita) {
+		this.prezzoVendita = prezzoVendita;
 	}
+	
+
 	
 }

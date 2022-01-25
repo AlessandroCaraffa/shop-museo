@@ -18,29 +18,35 @@ public class Vendita {
 	private Integer id;
 	
 	@Column(nullable=false)
-	private LocalDate data_vendita;
+	private LocalDate dataVendita;
 	
 	@NotNull
-	private BigDecimal totale_vendita;
-
+	private BigDecimal totaleVendita;
 	// getters/setters
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public LocalDate getData_vendita() {
-		return data_vendita;
+
+	public LocalDate getDataVendita() {
+		return dataVendita;
 	}
-	public void setData_vendita(LocalDate data_vendita) {
-		this.data_vendita = data_vendita;
+
+	public void setDataVendita(LocalDate dataVendita) {
+		this.dataVendita = dataVendita;
 	}
-	public BigDecimal getTotale_vendita() {
-		return totale_vendita;
+
+	public BigDecimal getTotaleVendita() {
+		return totaleVendita;
 	}
-	public void setTotale_vendita(BigDecimal totale_vendita) {
-		this.totale_vendita = totale_vendita;
+
+	public void setTotaleVendita(BigDecimal totaleVendita) {
+		this.totaleVendita = totaleVendita;
 	}
-	
+
+
+
 }

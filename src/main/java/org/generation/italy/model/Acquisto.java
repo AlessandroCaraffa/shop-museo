@@ -18,38 +18,46 @@ public class Acquisto {
 	private Integer id;
 	
 	@Column(nullable=false)
-	private LocalDate data_acquisto;
+	private LocalDate dataAcquisto;
 	
 	@NotNull
-	private String nome_fornitore;
+	private String nomeFornitore;
 	
 	@NotNull
-	private BigDecimal totale_acquisto;
-
+	private BigDecimal totaleAcquisto;
 	// getters/setters
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public LocalDate getData_acquisto() {
-		return data_acquisto;
+
+	public LocalDate getDataAcquisto() {
+		return dataAcquisto;
 	}
-	public void setData_acquisto(LocalDate data_acquisto) {
-		this.data_acquisto = data_acquisto;
+
+	public void setDataAcquisto(LocalDate dataAcquisto) {
+		this.dataAcquisto = dataAcquisto;
 	}
-	public String getNome_fornitore() {
-		return nome_fornitore;
+
+	public String getNomeFornitore() {
+		return nomeFornitore;
 	}
-	public void setNome_fornitore(String nome_fornitore) {
-		this.nome_fornitore = nome_fornitore;
+
+	public void setNomeFornitore(String nomeFornitore) {
+		this.nomeFornitore = nomeFornitore;
 	}
-	public BigDecimal getTotale_acquisto() {
-		return totale_acquisto;
+
+	public BigDecimal getTotaleAcquisto() {
+		return totaleAcquisto;
 	}
-	public void setTotale_acquisto(BigDecimal totale_acquisto) {
-		this.totale_acquisto = totale_acquisto;
+
+	public void setTotaleAcquisto(BigDecimal totaleAcquisto) {
+		this.totaleAcquisto = totaleAcquisto;
 	}
+
 	
+
 }
