@@ -21,7 +21,7 @@ public class Visita {
 	private LocalDateTime dataOraFine;
 	
 	@ManyToOne
-	@JoinColumn(name="id_percorso", nullable=false)
+	@JoinColumn(name="percorso_id", nullable=false)
 	private Percorso percorso;
 	
 	@ManyToOne

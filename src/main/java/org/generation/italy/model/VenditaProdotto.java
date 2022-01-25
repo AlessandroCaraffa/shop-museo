@@ -1,6 +1,6 @@
 package org.generation.italy.model;
 
-import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -23,10 +22,10 @@ public class VenditaProdotto {
 	@Min(value=1)
 	private int quantita;
 	
-	@OneToMany
+	@ManyToOne
 	@NotNull
 	@JoinColumn(name="vendita_id", nullable=false)
-	private List<Vendita> vendite;
+	private Vendita vendita;
 	
 	@ManyToOne
 	@NotNull
@@ -49,12 +48,12 @@ public class VenditaProdotto {
 		this.quantita = quantita;
 	}
 
-	public List<Vendita> getVendite() {
-		return vendite;
+	public Vendita getVendita() {
+		return vendita;
 	}
 
-	public void setVendite(List<Vendita> vendite) {
-		this.vendite = vendite;
+	public void setVendita(Vendita vendita) {
+		this.vendita = vendita;
 	}
 
 	public Prodotto getProdotto() {

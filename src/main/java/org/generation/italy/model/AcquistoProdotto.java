@@ -1,7 +1,6 @@
 package org.generation.italy.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -30,14 +28,53 @@ public class AcquistoProdotto {
 	@Column(name="prezzo_acquisto")
 	private BigDecimal prezzoAcquisto;
 	
-	@OneToMany
-	@NotNull
-	@JoinColumn(name="acquisto_id", nullable=false)
-	private List<Acquisto> acquisti;
-	
 	@ManyToOne
 	@NotNull
 	@JoinColumn(name="prodotto_id", nullable=false)
 	private Prodotto prodotto;
 	
+	@ManyToOne
+	@NotNull
+	@JoinColumn(name="acquisto_id", nullable=false)
+	private Acquisto acquisto;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+	public BigDecimal getPrezzoAcquisto() {
+		return prezzoAcquisto;
+	}
+
+	public void setPrezzoAcquisto(BigDecimal prezzoAcquisto) {
+		this.prezzoAcquisto = prezzoAcquisto;
+	}
+
+	public Acquisto getAcquisto() {
+		return acquisto;
+	}
+
+	public void setAcquisto(Acquisto acquisto) {
+		this.acquisto = acquisto;
+	}
+
+	public Prodotto getProdotto() {
+		return prodotto;
+	}
+
+	public void setProdotto(Prodotto prodotto) {
+		this.prodotto = prodotto;
+	}
 }
