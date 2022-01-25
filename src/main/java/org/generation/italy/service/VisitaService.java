@@ -1,4 +1,4 @@
-package org.generation.italy.repository;
+package org.generation.italy.service;
 
 import java.util.List;
 
