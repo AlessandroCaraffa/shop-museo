@@ -1,10 +1,13 @@
 package org.generation.italy.model;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +25,10 @@ public class Prodotto {
 	
 	@NotNull
 	private BigDecimal prezzoVendita;
+	
+	@OneToMany(mappedBy="prodotto")
+	private List<Foto> foto;
+	
 	// getters/setters
 	public Integer getId() {
 		return id;
