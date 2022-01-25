@@ -16,5 +16,21 @@ public class GuidaService {
 	public List<Guida> findAllSortedByNome() {
 		return repository.findAll();
 	}
+	
+	public Guida save(Guida guida) {
+		return repository.save(guida);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Guida getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public Guida update(Guida guida) {
+		return repository.save(guida);
+	}
 
 }

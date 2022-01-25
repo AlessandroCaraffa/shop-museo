@@ -17,4 +17,19 @@ public class VisitaService {
 		return repository.findAll();
 	}
 
+	public Visita save(Visita visita) {
+		return repository.save(visita);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Visita getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public Visita update(Visita visita) {
+		return repository.save(visita);
+	}
 }

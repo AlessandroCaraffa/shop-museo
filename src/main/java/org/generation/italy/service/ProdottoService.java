@@ -16,5 +16,21 @@ public class ProdottoService {
 	public List<Prodotto> findAllSortedByNome(){
 		return repository.findAll();
 	}
+	
+	public Prodotto save(Prodotto prodotto) {
+		return repository.save(prodotto);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Prodotto getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public Prodotto update(Prodotto prodotto) {
+		return repository.save(prodotto);
+	}
 
 }
