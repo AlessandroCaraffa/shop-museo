@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Foto {
@@ -15,7 +16,11 @@ public class Foto {
 	
 	@Lob // "large object"
 	private byte[] content;
-
+	
+	
+	@ManyToOne
+	private Prodotto prodotto;
+	
 	// getters/setters
 	public Integer getId() {
 		return id;
