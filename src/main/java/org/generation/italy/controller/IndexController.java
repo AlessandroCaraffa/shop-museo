@@ -10,7 +10,7 @@ public class IndexController {
 
 	@GetMapping
 	public String index() {
-		return "redirect:/magazzino";
+		return "redirect:/prodotto";
 	}
 	
 }
