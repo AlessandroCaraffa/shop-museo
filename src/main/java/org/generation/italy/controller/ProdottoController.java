@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/magazzino")
 public class ProdottoController {
 	
 	@Autowired
@@ -23,8 +23,8 @@ public class ProdottoController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("list", service.findAllSortedByNome());
-		return "";
+		model.addAttribute("prodotti", service.findAllSortedByNome());
+		return "magazzino.html";
 	}
 	
 	@GetMapping("/create")
