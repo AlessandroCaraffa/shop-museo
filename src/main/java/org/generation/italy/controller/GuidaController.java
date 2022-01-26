@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/4")
+@RequestMapping("/guide")
 public class GuidaController {
 	
 	@Autowired
@@ -23,25 +23,25 @@ public class GuidaController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("list", service.findAllSortedByNome());
-		return "";
+		model.addAttribute("guide", service.findAllSortedByNome());
+		return "guide/guideLista.html";
 	}
 	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("guida", new Guida());
-		return "/edit";
+		return "guide/guidaForm.html";
 	}
 	
 	@PostMapping("/create")
 	public String doCreate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "/edit";
+			return "guide/guidaForm.html";
 		}
 		service.save(formGuida);
-		return "redirect:/";
+		return "redirect:/guide";
 	}
 	
 	@GetMapping("/delete/{id}")
