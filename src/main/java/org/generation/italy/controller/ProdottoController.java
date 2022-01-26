@@ -62,7 +62,7 @@ public class ProdottoController {
 			redirectAttributes.addFlashAttribute("errorMessage", "Unable to save the photo");
 			e.printStackTrace();
 		}
-		return "redirect:/prodotti/create}";
+		return "redirect:/prodotto/create}";
 	}
  	
 	@PostMapping("/create")
