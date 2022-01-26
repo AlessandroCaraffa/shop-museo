@@ -37,7 +37,7 @@ public class ProdottoController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("prodotto", service.findAllSortedByNome());
+		model.addAttribute("prodotti", service.findAllSortedByNome());
 		return "/prodotto/magazzino";
 	}
 	
