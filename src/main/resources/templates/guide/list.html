@@ -35,12 +35,7 @@
 							<a class="me-1" th:href="@{|/guide/edit/${guida.id}|}"><i class="fas fa-edit"></i></a>
 							<a class="me-2" th:href="@{|/guide/delete/${guida.id}|}" onclick="return confirm('Are you sure?')"><i
 									class="fas fa-trash-alt"></i></a>
-							<td class="">
-								<a class="btn btn-primary me-2" th:href="@{|/guide/detail/${guida.id}|}"><i class="fas fa-info"></i></a>
-								<a class="btn btn-primary mb-1 mb-sm-0" th:href="@{|/guide/edit/${guida.id}|}"><i class="fas fa-edit"></i></a>
-								<a class="btn btn-primary" onclick="return confirm('Sei sicuro di voler eliminare questa guida?')"
-									th:href="@{|/guide/delete/${guida.id}|}"><i class="far fa-trash-alt"></i></a>
-							</td>
+							
 							</td>
 					</tr>
 				</tbody>
