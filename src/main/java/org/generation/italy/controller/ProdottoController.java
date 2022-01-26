@@ -23,48 +23,48 @@ public class ProdottoController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("prodotti", service.findAllSortedByNome());
-		return "magazzino.html";
+		model.addAttribute("prodotto", service.findAllSortedByNome());
+		return "magazzino";
 	}
 	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("prodotto", new Prodotto());
-		return "/edit";
+		return "/prodotto/edit";
 	}
 	
 	@PostMapping("/create")
 	public String doCreate(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "/edit";
+			return "/prodotto/edit";
 		}
 		service.save(formProdotto);
-		return "redirect:/";
+		return "redirect:/magazzino";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
-		return "redirect:/";
+		return "redirect:/magazzino";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("prodotto", service.getById(id));
-		return "/edit";
+		return "/prodotto/edit";
 	}
 	
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("pizza") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "/edit";
+			return "/prodotto/edit";
 		}
 		service.save(formProdotto);
-		return "redirect:/";
+		return "redirect:/magazzino";
 	}
 	
 }
