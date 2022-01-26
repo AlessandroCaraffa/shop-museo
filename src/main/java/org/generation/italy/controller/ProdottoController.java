@@ -76,15 +76,6 @@ public class ProdottoController {
 		return "redirect:/prodotto/magazzino";
 
 	}
-	//DA CONTROLLARE 
-	@RequestMapping(value = "/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
-	public ResponseEntity<byte[]> getPhotoContent(@PathVariable Integer id){
-		Foto foto = fotoService.getById(id);
-		byte[] fotoContenuto = foto.getContenuto();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_JPEG);
-		return new ResponseEntity<byte[]>(fotoContenuto, headers, HttpStatus.OK);
-	}
 	
 	
 	@GetMapping("/delete/{id}")
