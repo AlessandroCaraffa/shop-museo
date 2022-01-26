@@ -24,21 +24,23 @@ public class GuidaController {
 	@GetMapping
 	public String list(Model model) {
 		model.addAttribute("guide", service.findAllSortedByNome());
-		return "guide/guideLista.html";
+		return "/guide/list";
 	}
 	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("guida", new Guida());
-		return "guide/guidaForm.html";
+		return "/guide/edit";
 	}
 	
 	@PostMapping("/create")
 	public String doCreate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "guide/guidaForm";
+
+			return "/guide/edit";
+
 		}
 		service.save(formGuida);
 		return "redirect:/guide";
@@ -54,14 +56,14 @@ public class GuidaController {
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("guida", service.getById(id));
-		return "/guide/guidaForm";
+		return "/guide/edit";
 	}
 	
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "/edit";
+			return "/guide/edit";
 		}
 		service.save(formGuida);
 		return "redirect:/guide";
