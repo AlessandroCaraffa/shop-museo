@@ -35,7 +35,7 @@ public class ProdottoController {
 	@Autowired
 	private FotoService fotoService;
 
-	@GetMapping
+	@GetMapping("/magazzino")
 	public String list(Model model) {
 		model.addAttribute("prodotti", service.findAllSortedByNome());
 		return "/prodotto/magazzino";
@@ -72,7 +72,7 @@ public class ProdottoController {
 			return "/prodotto/edit";
 		}
 		service.save(formProdotto);
-		return "redirect:/magazzino";
+		return "redirect:/prodotto/magazzino";
 	}
 	//DA CONTROLLARE 
 	@RequestMapping(value = "/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
@@ -85,10 +85,10 @@ public class ProdottoController {
 	}
 	
 	
-	/*@GetMapping("/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
-		return "redirect:/magazzino";
+		return "redirect:/prodotto/magazzino";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -102,10 +102,10 @@ public class ProdottoController {
 	public String doUpdate(@Valid @ModelAttribute("pizza") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "/prodotto/edit";
+			return "/prodotto/magazzino";
 		}
 		service.save(formProdotto);
-		return "redirect:/magazzino";
+		return "redirect:/prodotto/magazzino";
 	}
-	*/
+	
 }
