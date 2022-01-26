@@ -69,4 +69,10 @@ public class PercorsoController {
 		return "redirect:/percorsi";
 	}
 	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("percorso", service.getById(id));
+		return "/percorsi/detail";
+	}
+	
 }
