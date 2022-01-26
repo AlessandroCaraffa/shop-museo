@@ -47,14 +47,14 @@ public class GuidaController {
 	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
-		return "redirect:/";
+		return "/guide/guidaForm";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("guida", service.getById(id));
-		return "/edit";
+		return "/guide/guidaForm";
 	}
 	
 	@PostMapping("/edit/{id}")
@@ -64,7 +64,7 @@ public class GuidaController {
 			return "/edit";
 		}
 		service.save(formGuida);
-		return "redirect:/";
+		return "redirect:/guide";
 	}
 	
 }

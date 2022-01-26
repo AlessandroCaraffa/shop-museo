@@ -7,7 +7,7 @@
 </head>
 <div class="container">
 		
-		<form id="guida-form" th:object="${guida}" th:action="@{/guide/create}" method="post">
+		<form id="guida-form" th:object="${guida}"th:action="${edit} ? @{/guide/edit/{id}(id=${guida.id})} :  @{/guide/create}" method="post">
 		<ul>
 		<li th:each="err : ${#fields.allErrors()}" th:text = "${err}" class="text-danger"></li   >
 		</ul>
