@@ -31,7 +31,7 @@ public class Percorso {
 	private BigDecimal prezzo;
 	
 	@NotNull
-	@Min(value=0)
+	@Min(value=1)
 	private int postiMax;
 	
 	@OneToMany(mappedBy="percorso")
