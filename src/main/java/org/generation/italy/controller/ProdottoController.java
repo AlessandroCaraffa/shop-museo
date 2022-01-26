@@ -38,7 +38,7 @@ public class ProdottoController {
 	@GetMapping
 	public String list(Model model) {
 		model.addAttribute("prodotti", service.findAllSortedByNome());
-		return "/prodotto/magazzino";
+		return "/prodotto/list";
 	}
 	
 	@GetMapping("/create")
@@ -73,7 +73,7 @@ public class ProdottoController {
 		
 		service.save(formProdotto);
 
-		return "redirect:/prodotto/magazzino";
+		return "redirect:/prodotto";
 
 	}
 	
@@ -81,7 +81,7 @@ public class ProdottoController {
 	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
-		return "redirect:/prodotto/magazzino";
+		return "redirect:/prodotto";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -95,10 +95,10 @@ public class ProdottoController {
 	public String doUpdate(@Valid @ModelAttribute("pizza") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "/prodotto/magazzino";
+			return "/prodotto/edit";
 		}
 		service.save(formProdotto);
-		return "redirect:/prodotto/magazzino";
+		return "redirect:/prodotto";
 	}
 	
 }
