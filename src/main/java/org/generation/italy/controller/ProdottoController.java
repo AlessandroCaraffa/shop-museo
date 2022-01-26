@@ -35,7 +35,7 @@ public class ProdottoController {
 	@Autowired
 	private FotoService fotoService;
 
-	@GetMapping("/magazzino")
+	@GetMapping
 	public String list(Model model) {
 		model.addAttribute("prodotti", service.findAllSortedByNome());
 		return "/prodotto/magazzino";
