@@ -42,13 +42,21 @@ public class ProdottoController {
 	}
 	
 	@GetMapping("/create")
-	public String create(@Valid @ModelAttribute("foto") FotoForm foto, 
-			BindingResult bindingResult, 
-			RedirectAttributes redirectAttributes,Model model) {
+	public String create(Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("prodotto", new Prodotto());
 		model.addAttribute("foto",new Foto());
 		model.addAttribute("fotoList", fotoService.findAll());
+		return "/prodotto/edit";
+	}
+ 	
+	@PostMapping("/create")
+	public String doCreate(@Valid @ModelAttribute("prodotto") Prodotto formProdotto,@ModelAttribute("foto") FotoForm foto,
+			RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("edit", false);
+			return "/prodotto/edit";
+		}
 		if(foto.getContenuto() == null || foto.getContenuto().isEmpty()) {
 			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
 		}
@@ -62,17 +70,9 @@ public class ProdottoController {
 			redirectAttributes.addFlashAttribute("errorMessage", "Unable to save the photo");
 			e.printStackTrace();
 		}
-		return "redirect:/prodotto/create}";
-	}
- 	
-	@PostMapping("/create")
-	public String doCreate(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
-			return "/prodotto/edit";
-		}
+		
 		service.save(formProdotto);
-		return "redirect:/magazzino";
+		return "redirect:/prodotto/magazzino}";
 	}
 	//DA CONTROLLARE 
 	@RequestMapping(value = "/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
