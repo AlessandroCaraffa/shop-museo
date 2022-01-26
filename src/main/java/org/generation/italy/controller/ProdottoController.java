@@ -38,6 +38,8 @@ public class ProdottoController {
 	@GetMapping
 	public String list(Model model) {
 		model.addAttribute("prodotti", service.findAllSortedByNome());
+		model.addAttribute("foto",new Foto());
+		model.addAttribute("fotoList", fotoService.findAll());
 		return "/prodotto/magazzino";
 	}
 	
@@ -73,7 +75,7 @@ public class ProdottoController {
 		
 		service.save(formProdotto);
 
-		return "redirect:/prodotto/magazzino";
+		return "redirect:/prodotto";
 
 	}
 	
