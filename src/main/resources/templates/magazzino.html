@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragments/utility :: head"></div>
+		<title>magazzino</title>
+	</head>
+	<body>
+	<div class="container">
+		
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th class ="text-secondary  fs-3 "scope="col">Nome</th >
+					<th class ="text-secondary ms-2 fs-3"scope="col">Descrizione</th >
+					<th class ="text-secondary  fs-3"scope="col">prezzo</th >
+					<th></th>
+					
+					
+				</tr>
+				
+			</thead>
+			<tbody>
+				<!--soluzione semplice,per aggiungere un colore quando sta per finire e un altro quando è esaurito non va bene -->
+				<!-- prodotto.prezzoVendita è da sostituire con la quantità -->
+				<tr th:classappend= "(${prodotto.prezzoVendita <= 10} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" th:each="prodotto : ${prodotti}">
+					<td  class=" "th:text= ${prodotto.nome}></td > 
+					<td  class=" "th:text= ${prodotto.descrizione}></td > 
+					<td  class=" "th:text= ${prodotto.prezzoVendita}></td > 
+					
+				</tr >
+			</tbody>
+		</table>
+		
+	
+		<div class="col-3 ms-auto text-end">
+			<a class="btn btn-primary "  href =#><i class="fas fa-plus"></i>Nuovo prodotto</a>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>
