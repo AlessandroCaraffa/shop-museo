@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title>Percorsi</title>
+	</head>
+	<body>		
+		<!-- container -->
+		<div class="container">
+		
+			<!-- titolo -->
+			<h1>Percorsi</h1>
+						
+			<!-- add button -->
+			<div>
+				<a class="btn btn-primary" th:href="@{/percorsi/create}"><i class="fas fa-plus"></i>Nuovo percorso</a>
+			</div>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Titolo</th>
+						<th>Prezzo</th>
+						<th>Posti max</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${list}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.titolo}"></td>
+						<td th:text="${item.prezzo}"></td>
+						<td th:text="${item.postiMax}"></td>
+						<td>
+							<a class="me-2" th:href="@{|/percorsi/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/percorsi/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-2" th:href="@{|/percorsi/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

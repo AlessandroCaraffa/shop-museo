@@ -16,5 +16,21 @@ public class PercorsoService {
 	public List<Percorso> findAll(){
 		return repository.findAll();
 	}
+	
+	public Percorso save(Percorso percorso) {
+		return repository.save(percorso);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Percorso getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public Percorso update(Percorso percorso) {
+		return repository.save(percorso);
+	}
 
 }

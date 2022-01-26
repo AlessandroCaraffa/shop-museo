@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title th:text="${book.title}"></title> 
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar('books')"></nav>
+		
+		<!-- general container -->
+		<div class="container" th:object="${book}"> <!-- definire l'oggetto nel contenitore ti permette di richiamarlo con * (non è necessario, solo più breve) -->
+			
+			<!-- title V2 -->
+			<div class="row">
+				<div class="col-auto me-auto">
+					<h1><a th:href="@{/}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="*{title}"></span></h1>
+					<h2 class="text-muted" th:text="|By *{authors}|"></h2>
+				</div >
+				<div class="col-auto d-flex align-items-end">
+					<a class="me-1" th:href="@{|/books/edit/${book.id}|}"><i class="fas fa-edit"></i></a>
+					<a class="me-2" th:href="@{|/books/delete/${book.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+				</div>
+			</div>
+			<hr/>
+			
+			<!-- container -->
+			<div class="row">
+			
+				<!-- main details -->
+				<div class="col-8">
+					<dl>
+						<dt>Publisher</dt>
+						<dd th:text="*{publisher}"></dd>
+						<dt>Year</dt>
+						<dd th:text="*{year}"></dd>
+						<dt>Copies</dt>
+						<dd>
+							<span th:text="*{numberOfCopies}"></span>
+							<span th:text="|(*{availableCopies} available)|"></span>
+						</dd>
+						
+						<!-- synopsis -->
+						<th:block th:unless=${#strings.isEmpty(book.synopsis)}> <!-- mostra solo se non vuoto -->
+							<dt>Synopsis</dt>
+							<dd th:text="*{synopsis}"></dd>
+						</th:block>
+					</dl>
+				</div>
+				
+				<!-- categories -->
+				<div class="col-4">
+					<h3>Categories</h3>
+					<ul>
+						<li th:each="cat : *{categories}" th:text="${cat.category}"></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- borrowings -->
+			<div class="row">
+				<div class="col-12">
+					
+					<!-- title + add -->
+					<h3>Borrowings
+					<a class="btn btn-primary" th:classAppend="${book.availableCopies == 0} ? 'disabled' : ''"
+					th:href="@{/books/borrow/{id}(id=${book.id})}"><i class="fas fa-plus"></i> Add</a>
+					</h3>
+
+					<table class="table" th:if="${book.borrowings.size() > 0}"> <!-- mostra solo se non è vuota -->
+						<thead>
+							<tr>
+								<th>Registration</th>
+								<th>Borrowing Date</th>
+								<th>Return Date</th>
+								<th>Note</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="borrow : ${book.borrowings}">
+								<td th:text="${borrow.getRegistration().fiscalCode}"></td>
+								<td th:text="${borrow.borrowingDate}"></td>
+								<td th:text="${borrow.returnDate}"></td>
+								<td th:text="${borrow.note}"></td>
+								<td>
+									<a class="me-1" th:href="@{|/borrowings/edit/${borrow.id}|}"><i class="fas fa-edit"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!-- alert borrowings -->
+					<div th:unless="${book.borrowings.size() > 0}">
+						<div class="alert alert-primary">
+							There are no borrowings for this book.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/resources :: scripts"></div>
+	</body>
+</html>
