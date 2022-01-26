@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/utility :: headTags"></div>
+	<title>Edit Prodotto</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Prodotto</h1>
+		<form id="form-prodotto" th:object="${prodotto}"
+			th:action="${edit} ? @{/prodotti/edit/{id}(id=${prodotto.id})} : @{/prodotti/create}" method="post">
+			<div class="row gy-2">
+				<div class="col-8">
+					<label class="form-label" for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" th:field="*{nome}">
+				</div>
+				<div class="col-4">
+					<label class="form-label" for="prezzoVendita">Prezzo</label>
+					<input type="text" class="form-control" id="prezzoVendita" th:field="*{prezzoVendita}">
+				</div>
+				<div class="col-12">
+					<label class="form-label" for="descrizione">Descrizione</label>
+					<input type="text" class="form-control" id="descrizione" th:field="*{descrizione}">
+				</div>
+				
+						<div class="col-12">
+							<label class="form-label" for="foto">Foto</label>
+							<input type="file" class="form-control" id="foto" th:field="*{foto}">
+						</div>
+						//QUA è DA METTERE LA FORM FOTO'--------------------------------------
+				<div class="col-12">
+					<button class="btn btn-primary" type="submit">Save</button>
+				</div>
+		</form>
+		<div th:replace="fragments/utility :: scripts"></div>
+	</div>
+
+</body>
+</html>
