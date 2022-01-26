@@ -38,7 +38,7 @@ public class GuidaController {
 	public String doCreate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "guide/guidaForm.html";
+			return "guide/guidaForm";
 		}
 		service.save(formGuida);
 		return "redirect:/guide";
@@ -47,7 +47,7 @@ public class GuidaController {
 	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
-		return "/guide/guidaForm";
+		return "redirect:/guide";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -66,5 +66,11 @@ public class GuidaController {
 		service.save(formGuida);
 		return "redirect:/guide";
 	}
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("guida", service.getById(id));
+		return "/guide/detail";
+	}
+	
 	
 }

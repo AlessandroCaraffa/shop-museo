@@ -28,7 +28,7 @@ public class Guida {
 	private String cognome;
 	
 	@OneToOne
-	@JoinColumn(name="foto_id", nullable=false)
+	@JoinColumn(name="foto_id")
 	private Foto foto;
 	
 	@OneToMany(mappedBy="guida")
