@@ -31,7 +31,7 @@ public class PercorsoController {
 	public String create(Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("percorso", new Percorso());
-		return "percorsi/edit";
+		return "/percorsi/edit";
 	}
 	
 	@PostMapping("/create")
@@ -39,7 +39,7 @@ public class PercorsoController {
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			return "percorsi/edit";
+			return "/percorsi/edit";
 		}
 		service.save(formPercorso);
 		return "redirect:/percorsi";
