@@ -23,12 +23,12 @@
 			<tbody>
 				<!--soluzione semplice,per aggiungere un colore quando sta per finire e un altro quando è esaurito non va bene -->
 				<!-- prodotto.prezzoVendita è da sostituire con la quantità -->
-				<tr th:classappend= "(${prodotto.prezzoVendita <= 10} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" th:each="prodotto : ${prodotti}">
-					<td  class=" "th:text= ${prodotto.nome}></td > 
-					<td  class=" "th:text= ${prodotto.descrizione}></td > 
-					<td  class=" "th:text= ${prodotto.prezzoVendita}></td > 
+				<tr th:each="prodotto : ${prodotti}"> <!-- th:classappend= "(${prodotto.prezzoVendita <= 10} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
+					<td  class=" "th:text= "${prodotto.nome}"></td > 
+					<td  class=" "th:text= "${prodotto.descrizione}"></td > 
+					<td  class=" "th:text= "${prodotto.prezzoVendita}"></td > 
 					
-				</tr >
+				</tr  >
 			</tbody>
 		</table>
 		
