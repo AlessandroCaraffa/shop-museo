@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.generation.italy.model.Foto;
 import org.generation.italy.model.FotoForm;
 import org.generation.italy.model.Prodotto;
+import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,27 +46,26 @@ public class ProdottoController {
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
-		model.addAttribute("prodotto", new Prodotto());
-		model.addAttribute("foto",new Foto());
+		model.addAttribute("prodottoForm", new ProdottoForm());
 		model.addAttribute("fotoList", fotoService.findAll());
 		return "/prodotto/edit";
 	}
  	
 	@PostMapping("/create")
-	public String doCreate(@Valid @ModelAttribute("prodotto") Prodotto formProdotto,@ModelAttribute("foto") FotoForm foto,
-			RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
+	public String doCreate(@Valid @ModelAttribute("prodottoForm") ProdottoForm formProdotto,BindingResult bindingResult,
+			RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 			return "/prodotto/edit";
 		}
-		if(foto.getContenuto() == null || foto.getContenuto().isEmpty()) {
+		if(service.getContenuto() == null || service.getContenuto().isEmpty()) {
 			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
 		}
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("fotoList", fotoService.findAll());
 			return "/prodotto/edit";
 		}try {
-			fotoService.create(foto);
+			fotoService.create(service);
 			redirectAttributes.addFlashAttribute("successMessage", "Photo added!");
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Unable to save the photo");
