@@ -34,9 +34,9 @@
 				<div class="row">
 				
 					<!-- colonna sx -->
-					<div class="col-6">
+					<div class="col-3">
 						<div class="row gy-2">
-							<div class="col-3">
+							<div class="col-12">
 								<label class="form-label" for="data">Data</label>
 								<input type="text" class="form-control" id="data" th:field="*{data}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
@@ -45,7 +45,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-2">
+							<div class="col-6">
 								<label class="form-label" for="oraInizio">Ora inizio</label>
 								<input type="text" class="form-control" id="oraInizio" th:field="*{oraInizio}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('oraInizio')}" class="invalid-feedback">
@@ -54,7 +54,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-2">
+							<div class="col-6">
 								<label class="form-label" for="oraFine">Ora fine</label>
 								<input type="text" class="form-control" id="oraFine" th:field="*{oraFine}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('oraFine')}" class="invalid-feedback">
@@ -64,24 +64,20 @@
 								</div>
 							</div>
 							
-							
-							<!-- TODO fai una row apposita -->
-							<!-- percorso -->
-							<div class="col-6">
-								<span>Percorso</span>
-								<div class="form-check" th:each="item : ${percorsiList}">
-								  <input class="form-check-input" type="radio" th:id="|percorso_${item.id}|" th:value="${item.id}" th:field="*{percorso}">
-								  <label class="form-check-label" th:for="|percorso_${item.id}|" th:text="${item.titolo}"></label>
-								</div>
+							<!-- dropdown select -->
+							<div class="col-12">
+								<label class="form-label" for="">Percorso</label>
+								<select name="percorso" class="form-select">
+									<option selected>Selezionare guida</option>
+									<option th:each="item : ${percorsiList}" th:value="${item.id}" th:field="*{percorso}" th:text="${item.titolo}"></option>
+								</select>
 							</div>
-							
-							<!-- guida -->
-							<div class="col-6">
-								<span>Guida</span>
-								<div class="form-check" th:each="item : ${guideList}">
-								  <input class="form-check-input" type="radio" th:id="|guida_${item.id}|" th:value="${item.id}" th:field="*{guida}">
-								  <label class="form-check-label" th:for="|guida_${item.id}|" th:text="|${item.nome} ${item.cognome}|"></label>
-								</div>
+							<div class="col-12">
+								<label class="form-label" for="">Guida</label>
+								<select name="guida" class="form-select">
+									<option selected>Selezionare guida</option>
+									<option th:each="item : ${guideList}" th:value="${item.id}" th:field="*{guida}" th:text="|${item.nome} ${item.cognome}|"></option>
+								</select>
 							</div>
 							
 							<!-- buttons -->
@@ -94,7 +90,6 @@
 				</div>
 			</form>
 		</div> 
-		
 		<!-- scripts -->
 		<div th:replace="fragments/utility :: scripts"></div>
 	</body>
