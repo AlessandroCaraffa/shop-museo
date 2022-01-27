@@ -44,14 +44,14 @@ public class ProdottoService {
 	
 	
 	public Foto create(ProdottoForm newFoto) throws IOException{
-		Foto photo = new Foto();
-		photo.setTitolo(newFoto.getTitolo());
-		if(newFoto.getContenuto() != null) {
-			byte[] contentSerialized = newFoto.getContenuto().getBytes();
-			photo.setContenuto(contentSerialized);
+		Foto foto = new Foto();
+		foto.setTitolo(newFoto.getTitolo());
+		if(newFoto.getConteuntoProdotto() != null) {
+			byte[] contentSerialized = newFoto.getConteuntoProdotto().getBytes();
+			foto.setContenuto(contentSerialized);
 		}
 		
-		return fotoRepo.save(photo);
+		return fotoRepo.save(foto);
 	};
 	
 	public List<Foto> findAll(){
