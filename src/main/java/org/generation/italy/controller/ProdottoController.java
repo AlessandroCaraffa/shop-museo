@@ -39,6 +39,7 @@ public class ProdottoController {
 	public String list(Model model) {
 		model.addAttribute("prodotti", service.findAllSortedByNome());
 		return "/prodotto/list";
+
 	}
 	
 	@GetMapping("/create")
