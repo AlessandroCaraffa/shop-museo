@@ -16,5 +16,21 @@ public class VenditaService {
 	public List<Vendita> findAll(){
 		return repository.findAll();
 	}
+	
+	public Vendita save(Vendita vendita) {
+		return repository.save(vendita);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Vendita getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public Vendita update(Vendita vendita) {
+		return repository.save(vendita);
+	}
 
 }
