@@ -62,7 +62,7 @@ public class GuidaController {
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
+			model.addAttribute("edit", true);
 			return "/guide/edit";
 		}
 		service.save(formGuida);
