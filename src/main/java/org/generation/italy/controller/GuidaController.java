@@ -23,8 +23,14 @@ public class GuidaController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("guide", service.findAllSortedByNome());
+		model.addAttribute("guide", service.findAllSortByCognome());
 		return "/guide/list";
+	}
+	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("guida", service.getById(id));
+		return "/guide/detail";
 	}
 	
 	@GetMapping("/create")
@@ -68,11 +74,5 @@ public class GuidaController {
 		service.save(formGuida);
 		return "redirect:/guide";
 	}
-	@GetMapping("/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("guida", service.getById(id));
-		return "/guide/detail";
-	}
-	
 	
 }

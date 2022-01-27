@@ -27,6 +27,12 @@ public class PercorsoController {
 		return "/percorsi/list";
 	}
 	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("percorso", service.getById(id));
+		return "/percorsi/detail";
+	}
+	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
@@ -67,12 +73,6 @@ public class PercorsoController {
 		}
 		service.update(formPercorso);
 		return "redirect:/percorsi";
-	}
-	
-	@GetMapping("/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("percorso", service.getById(id));
-		return "/percorsi/detail";
 	}
 	
 }
