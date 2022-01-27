@@ -91,7 +91,7 @@ public class ProdottoController {
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("pizza") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
+			model.addAttribute("edit", true);
 			return "/prodotto/edit";
 		}
 		service.save(formProdotto);

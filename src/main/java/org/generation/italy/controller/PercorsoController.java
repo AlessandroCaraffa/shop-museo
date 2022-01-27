@@ -62,7 +62,7 @@ public class PercorsoController {
 	public String doUpdate(@Valid @ModelAttribute("percorso") Percorso formPercorso,
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
+			model.addAttribute("edit", true);
 			return "/percorsi/edit";
 		}
 		service.update(formPercorso);
