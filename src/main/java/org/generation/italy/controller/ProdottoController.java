@@ -101,5 +101,9 @@ public class ProdottoController {
 		service.save(formProdotto);
 		return "redirect:/prodotto";
 	}
-	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("prodotto", service.getById(id));
+		return "/prodotto/detail";
+	}
 }
