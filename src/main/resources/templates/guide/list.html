@@ -13,7 +13,7 @@
 						
 			<!-- add button -->
 			<div>
-				<a class="btn btn-primary" th:href="@{/guide/create}"><i class="fas fa-plus"></i>Nuovo percorso</a>
+				<a class="btn btn-primary" th:href="@{/guide/create}"><i class="fas fa-plus"></i> Nuova Guida</a>
 			</div>
 			<hr/>
 			
@@ -33,11 +33,9 @@
 						<td>
 							<a class="me-2" th:href="@{|/guide/detail/${guida.id}|}"><i class="fas fa-info"></i></a>
 							<a class="me-1" th:href="@{|/guide/edit/${guida.id}|}"><i class="fas fa-edit"></i></a>
-							<a class="me-2" th:href="@{|/guide/delete/${guida.id}|}" onclick="return confirm('Are you sure?')"><i
-									class="fas fa-trash-alt"></i></a>
-							
-							</td>
-					</tr>
+							<a class="me-2" th:href="@{|/guide/delete/${guida.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					 </tr>
 				</tbody>
 			</table>
 		</div>

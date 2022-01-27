@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -27,9 +25,10 @@ public class Guida {
 	@NotEmpty(message="Cognome necessario")
 	private String cognome;
 	
-	@OneToOne
-	@JoinColumn(name="foto_id")
-	private Foto foto;
+//	TODO ripristinare
+//	@OneToOne
+//	@JoinColumn(name="foto_id")
+//	private Foto foto;
 	
 	@OneToMany(mappedBy="guida")
 	private List<Visita> visite;
@@ -53,12 +52,13 @@ public class Guida {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-	public Foto getFoto() {
-		return foto;
-	}
-	public void setFoto(Foto foto) {
-		this.foto = foto;
-	}
+//	TODO ripristinare
+//	public Foto getFoto() {
+//		return foto;
+//	}
+//	public void setFoto(Foto foto) {
+//		this.foto = foto;
+//	}
 	public List<Visita> getVisite() {
 		return visite;
 	}

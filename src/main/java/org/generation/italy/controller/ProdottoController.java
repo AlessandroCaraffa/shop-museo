@@ -11,10 +11,6 @@ import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -95,11 +91,15 @@ public class ProdottoController {
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("pizza") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
+			model.addAttribute("edit", true);
 			return "/prodotto/edit";
 		}
 		service.save(formProdotto);
 		return "redirect:/prodotto";
 	}
-	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("prodotto", service.getById(id));
+		return "/prodotto/detail";
+	}
 }

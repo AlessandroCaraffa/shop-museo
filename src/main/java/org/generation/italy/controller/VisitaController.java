@@ -60,7 +60,7 @@ public class VisitaController {
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("guida") Visita formVisita, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
+			model.addAttribute("edit", true);
 			return "/edit";
 		}
 		service.save(formVisita);
