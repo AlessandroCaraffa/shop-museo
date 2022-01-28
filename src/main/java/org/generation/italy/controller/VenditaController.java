@@ -1,7 +1,10 @@
 package org.generation.italy.controller;
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 import org.generation.italy.model.Vendita;
+import org.generation.italy.model.VenditaForm;
 import org.generation.italy.service.ProdottoService;
 import org.generation.italy.service.VenditaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +29,21 @@ public class VenditaController {
 	@GetMapping
 	public String list(Model model) {
 		model.addAttribute("list", service.findAll());
-		return "/vendite/list";
+		return "vendite/list";
 	}
 	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
-		model.addAttribute("vendite", new Vendita());
-		return "/vendite/new";
+		model.addAttribute("vendita", new Vendita());
+		return "vendite/new";
 	}
 	
 	@PostMapping("/create")
-	public String doCreate(BindingResult bindingResult, Model model) {
+
+	public String doCreate(@Valid @ModelAttribute("vendita") VenditaForm formVendita,
+			BindingResult bindingResult, Model model) {
+
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 			return "/vendite/new";
@@ -53,6 +59,7 @@ public class VenditaController {
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
 		return "redirect:/vendite";
+
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -62,6 +69,7 @@ public class VenditaController {
 		return "/vendite/edit";
 	}
 	
+
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("percorso") Vendita formVendita,
 			BindingResult bindingResult, Model model) {
@@ -72,5 +80,6 @@ public class VenditaController {
 		service.update(formVendita);
 		return "redirect:/vendite";
 	}
+
 }
 

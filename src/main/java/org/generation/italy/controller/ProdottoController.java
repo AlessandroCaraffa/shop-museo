@@ -60,14 +60,15 @@ public class ProdottoController {
 			model.addAttribute("fotoList", service.findAll());
 			return "/prodotto/edit";
 		}try {
+
 			
 			service.createProdottoForm(formProdotto);
+
 			redirectAttributes.addFlashAttribute("successMessage", "Prodotto Aggiunto!");
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Prodotto!");
 			e.printStackTrace();
 		}
-		
 		
 		
 		return "redirect:/prodotto";

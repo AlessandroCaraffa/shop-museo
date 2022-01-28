@@ -71,6 +71,7 @@ public class ProdottoService {
 	
 	
 	public Foto createFoto(ProdottoForm newFoto) throws IOException{
+
 		Foto foto = new Foto();
 		foto.setTitolo(newFoto.getTitolo());
 		if(newFoto.getConteuntoProdotto() != null) {

@@ -18,11 +18,12 @@
 			
 			<!-- form -->
 			<form id="percorso-form"
+
 				th:object="${percorsoForm}"
 				th:action="${edit} ? @{/percorsi/edit/{id}(id=${percorso.id})} : @{/percorsi/create}"
 				method="post"
-				enctype="multipart/form-data"
-				>
+				enctype="multipart/form-data">
+
 				
 				<!-- validazione -->
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
@@ -39,16 +40,20 @@
 					<div class="col-6">
 						<div class="row gy-2">
 							<div class="col-8">
+
 								<label class="form-label" for="nomePercorso">Nome Percorso</label>
 								<input type="text" class="form-control" id="nomePercorso" th:field="*{nomePercorso}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('nomePercorso')}" class="invalid-feedback">
 									<ul>
 										<li th:each="err : ${#fields.errors('nomePercorso')}" th:text="${err}"></li>
+
 									</ul>
 								</div>
 							</div>
 							<div class="col-2">
+
 								<label class="form-label" for="prezzo">Prezzo</label>
+
 								<input type="text" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
 									<ul>
@@ -57,7 +62,9 @@
 								</div>
 							</div>
 							<div class="col-2">
+
 								<label class="form-label" for="postiMax">Posti max</label>
+
 								<input type="text" class="form-control" id="postiMax" th:field="*{postiMax}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('postiMax')}" class="invalid-feedback">
 									<ul>
@@ -69,6 +76,7 @@
 								<label class="form-label" for="descrizione">Descrizione</label>
 								<textarea class="form-control" id="descrizione" th:field="*{descrizione}" rows="6"></textarea>
 							</div>
+
 							<div class="col-3"> 
 					<label for="titolo" class="form-label">Title</label>
 					<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
@@ -77,6 +85,7 @@
 							<label class="form-label" for="contenuto">Foto</label>
 							<input type="file" class="form-control" id="contenuto" th:field="*{contenutoPercorso}">
 				</div>
+
 							<!-- buttons -->
 							<div class="col-12">
 								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>

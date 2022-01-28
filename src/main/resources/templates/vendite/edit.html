@@ -18,16 +18,16 @@
 			
 			<!-- form -->
 			<form
-				id="venditaForm"
-				th:object="${vendita}"
-				th:action=" @{/vendite/edit/{id}(id=${vendita.id})}"
+				id="vendita-prodotto"
+				th:object="${venditaProdotto}"
+				th:action="@{|/vendite/${venditaId}|}"
 				method="POST"> 
 				
 				<!-- validazione -->
+				
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
 					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
 					<ul class="mb-1">
-						<!-- itera su tutti errori form -->
 						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
 					</ul>
 				</div>
@@ -35,18 +35,18 @@
 				<!-- campi form -->
 				<div class="row">
 				
-					<!-- collonna sx -->
+
 					<div class="col-6">
 						<div class="row gy-2">
 							<div class="col-8">
-								<label for="prodotto">Selezionare prodotto</label>
-								<select id="prodotto" name="listaProdotti" form="venditaForm" th:errorClass="is-invalid">
-								  <option th:each="prodotto : ${prodotti}"value="${prodotto.nome}" th:text="${prodotto.nome}"></option >
+								<label class="form-label" for="prodotto">Selezionare prodotto</label >
+								<select class="form-select" id="prodotto" name="prodotto" form="vendita-prodotto" th:field="*{prodottoId}" th:errorClass="is-invalid">
+								  <option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}" th:text="${prodotto.nome}"></option >
 								  
-								</select> th:errorClass="is-invalid">
-								<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+								</select >								
+								<div th:if="${#fields.hasErrors('prodottoId')}" class="invalid-feedback">
 									<ul>
-										<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+										<li th:each="err : ${#fields.errors('prodottoId')}" th:text="${err}"></li>
 									</ul>
 								</div>
 							</div>
@@ -55,7 +55,7 @@
 								<input type="text" class="form-control" id="quantita" th:field="*{quantita}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
 									<ul>
-										<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
+										<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}"></li>
 									</ul>
 								</div>
 							</div>
