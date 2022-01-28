@@ -1,88 +1,95 @@
 package org.generation.italy.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity
-public class Percorso {
+import org.springframework.web.multipart.MultipartFile;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class PercorsoForm {
+
 	private Integer id;
-	
-	@NotNull
-	@NotEmpty(message="Nome Percorso necessario")
-	private String nomePercorso;
-	
-	private String descrizione;
-	
-	@NotNull
-	@Min(value=0)
-	private BigDecimal prezzo;
-	
-	@NotNull
-	@Min(value=1)
-	private int postiMax;
-	
-	@OneToMany(mappedBy="percorso")
-	private List<Visita> visite;
-	
-	@ManyToMany
-	private List<Foto> foto;
 
-	// getters/setters
+	// PERCORSO
+	@NotNull
+	@NotEmpty(message = "Nome Percorso necessario")
+	private String nomePercorso;
+
+	private String descrizione;
+
+	@NotNull
+	@Min(value = 0)
+	private BigDecimal prezzo;
+
+	@NotNull
+	@Min(value = 1)
+	private int postiMax;
+
+    //FOTOFORM
+	@NotEmpty(message = "Titolo necessario")
+	private String titolo;
+
+	private MultipartFile contenutoPercorso;
+
+	//getter/setter
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getNomePercorso() {
 		return nomePercorso;
 	}
+
 	public void setNomePercorso(String nomePercorso) {
 		this.nomePercorso = nomePercorso;
 	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}
+
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
 	public BigDecimal getPrezzo() {
 		return prezzo;
 	}
+
 	public void setPrezzo(BigDecimal prezzo) {
 		this.prezzo = prezzo;
 	}
+
 	public int getPostiMax() {
 		return postiMax;
 	}
+
 	public void setPostiMax(int postiMax) {
 		this.postiMax = postiMax;
 	}
-	public List<Visita> getVisite() {
-		return visite;
+
+	public String getTitolo() {
+		return titolo;
 	}
-	public void setVisite(List<Visita> visite) {
-		this.visite = visite;
+
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
-	public List<Foto> getFoto() {
-		return foto;
+
+	public MultipartFile getContenutoPercorso() {
+		return contenutoPercorso;
 	}
-	public void setFoto(List<Foto> foto) {
-		this.foto = foto;
+
+	public void setContenutoPercorso(MultipartFile contenutoPercorso) {
+		this.contenutoPercorso = contenutoPercorso;
 	}
 	
+	
+
 }

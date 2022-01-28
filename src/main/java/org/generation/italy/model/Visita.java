@@ -1,6 +1,7 @@
 package org.generation.italy.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,15 +19,19 @@ public class Visita {
 	private Integer id;
 	
 	@NotNull
-	private LocalDateTime dataOraInizio;
+	private LocalDate data;
 	
 	@NotNull
-	private LocalDateTime dataOraFine;
+	private LocalTime oraInizio;
+	
+	@NotNull
+	private LocalTime oraFine;
 	
 	@ManyToOne
 	@JoinColumn(name="percorso_id", nullable=false)
 	private Percorso percorso;
 	
+	@NotNull
 	@ManyToOne
 	private Guida guida;
 
@@ -37,17 +42,23 @@ public class Visita {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public LocalDateTime getDataOraInizio() {
-		return dataOraInizio;
+	public LocalDate getData() {
+		return data;
 	}
-	public void setDataOraInizio(LocalDateTime dataOraInizio) {
-		this.dataOraInizio = dataOraInizio;
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
-	public LocalDateTime getDataOraFine() {
-		return dataOraFine;
+	public LocalTime getOraInizio() {
+		return oraInizio;
 	}
-	public void setDataOraFine(LocalDateTime dataOraFine) {
-		this.dataOraFine = dataOraFine;
+	public void setOraInizio(LocalTime oraInizio) {
+		this.oraInizio = oraInizio;
+	}
+	public LocalTime getOraFine() {
+		return oraFine;
+	}
+	public void setOraFine(LocalTime oraFine) {
+		this.oraFine = oraFine;
 	}
 	public Percorso getPercorso() {
 		return percorso;

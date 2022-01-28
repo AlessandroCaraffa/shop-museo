@@ -13,7 +13,7 @@ public class GuidaService {
 	@Autowired
 	private GuidaRepository repository;
 	
-	public List<Guida> findAllSortedByNome() {
+	public List<Guida> findAllSortByCognome() {
 		return repository.findAll();
 	}
 	

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+		<title th:text="${visita.percorso.titolo}"></title> 
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		
+		<!-- general container -->
+		<div class="container" th:object="${visita}"> <!-- definire l'oggetto nel contenitore ti permette di richiamarlo con * (non è necessario, solo più breve) -->
+			
+			<!-- title V2 -->
+			<div class="row">
+				<div class="col-auto me-auto">
+					<h1><a th:href="@{/visite}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="|Visita percorso *{percorso.titolo}|"></span></h1>
+				</div>
+				<div class="col-auto d-flex algn-items-end">
+					<a class="me-1" th:href="@{|/visite/edit/${visita.id}|}"><i class="fas fa-edit"></i></a>
+					<a class="me-2" th:href="@{|/visite/delete/${visita.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+				</div>
+			</div>
+			<hr/>
+			
+			<!-- container -->
+			<div class="row">
+			
+				<!-- main details -->
+				<div class="col-3">
+					<dl>
+						<dt>Data</dt>
+						<dd th:text="*{data}"></dd>
+						<dt>Ore</dt>
+						<dd th:text="|*{oraInizio} - *{oraFine}|"></dd>
+					</dl>
+				</div>
+				<div class="col-3">
+					<dl>
+						<dt>Prezzo</dt>
+						<dd th:text="|*{percorso.prezzo}€|"></dd>
+						<dt>Posti</dt>
+						<dd th:text="*{percorso.postiMax}"></dd>
+					</dl>
+				</div>
+				
+				<div class="col-12">
+					<dl>
+						<dt>Guida</dt>
+						<dd th:text="|*{guida.nome} *{guida.cognome}|"></dd>
+						
+						<!-- mostra solo se non vuoto -->
+						<th:block th:unless=${#strings.isEmpty(visita.percorso.descrizione)}>
+							<dt>Descrizione</dt>
+							<dd th:text="*{percorso.descrizione}"></dd>
+						</th:block>
+					</dl>
+				</div>
+				
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

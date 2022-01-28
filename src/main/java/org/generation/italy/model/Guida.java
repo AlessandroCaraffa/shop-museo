@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -24,6 +25,9 @@ public class Guida {
 	@NotNull
 	@NotEmpty(message="Cognome necessario")
 	private String cognome;
+	
+	@Lob
+	private String bio;
 	
 //	TODO ripristinare
 //	@OneToOne
@@ -52,7 +56,13 @@ public class Guida {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-//	TODO ripristinare
+	public String getBio() {
+		return bio;
+	}
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	//	TODO ripristinare
 //	public Foto getFoto() {
 //		return foto;
 //	}

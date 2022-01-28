@@ -1,10 +1,11 @@
 package org.generation.italy.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.generation.italy.model.Foto;
-import org.generation.italy.model.FotoForm;
+
 import org.generation.italy.model.Prodotto;
 import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.repository.FotoRepository;
@@ -26,8 +27,34 @@ public class ProdottoService {
 		return repository.findAll();
 	}
 	
-	public Prodotto save(Prodotto prodotto) {
+	public Prodotto create(Prodotto prodotto) {
 		return repository.save(prodotto);
+	}
+	public Prodotto createProdottoForm(ProdottoForm prodotto) throws IOException {
+		Prodotto newProdotto=new Prodotto();
+		
+		Foto newFotoProdotto= createFoto(prodotto); 
+		
+		//1-crea una lista vuoto di Foto
+		List<Foto> listaFoto=new ArrayList<>();
+		//2-aggiungo la mia newFoto alla lista
+		listaFoto.add(newFotoProdotto);
+		
+		//3-set quest lista coem attributo foto del prodotto
+		newProdotto.setFoto(listaFoto);
+		//4-proseguo a slavare prodotto
+		
+		
+		
+		newProdotto.setNome(prodotto.getNome());
+		newProdotto.setPrezzoVendita(prodotto.getPrezzoVendita());
+		newProdotto.setDescrizione(prodotto.getDescrizione());
+		Prodotto prodottoSave=repository.save(newProdotto);
+		
+		
+		
+		
+		return prodottoSave;
 	}
 	
 	public void deleteById(Integer id) {
@@ -43,7 +70,7 @@ public class ProdottoService {
 	}
 	
 	
-	public Foto create(ProdottoForm newFoto) throws IOException{
+	public Foto createFoto(ProdottoForm newFoto) throws IOException{
 		Foto foto = new Foto();
 		foto.setTitolo(newFoto.getTitolo());
 		if(newFoto.getConteuntoProdotto() != null) {

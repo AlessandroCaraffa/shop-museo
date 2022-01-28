@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title>Visite</title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+		<div class="container">
+			<h1>Visite</h1>
+						
+			<!-- add button -->
+			<div>
+				<a class="btn btn-primary" th:href="@{/visite/create}"><i class="fas fa-plus"></i> Nuova visita</a>
+			</div>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Percorso</th>
+						<th>Guida</th>
+						<th>Data</th>
+						<th>Orari</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${list}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.percorso.titolo}"></td>
+						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
+						<td th:text="${item.data}"></td>
+						<td th:text="|${item.oraInizio} - ${item.oraFine}|"></td>
+						<td>
+							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-2" th:href="@{|/visite/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html >
