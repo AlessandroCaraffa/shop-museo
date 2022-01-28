@@ -20,7 +20,7 @@ public class Vendita {
 	@Column(nullable=false)
 	private LocalDate dataVendita;
 	
-	@NotNull
+
 	private BigDecimal totaleVendita;
 	
 	// getters/setters
