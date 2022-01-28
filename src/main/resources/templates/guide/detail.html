@@ -26,10 +26,13 @@
 			
 			<!-- container -->
 			<div class="row">
-			
 				<!-- main details -->
 				<div class="col-8">
-					
+					<!-- bio -->
+					<th:block th:unless=${#strings.isEmpty(guida.bio)}> <!-- mostra solo se non vuoto -->
+						<dt>Bio</dt>
+						<dd th:text="*{bio}"></dd>
+					</th:block>
 				</div>
 
 		<!-- scripts -->
