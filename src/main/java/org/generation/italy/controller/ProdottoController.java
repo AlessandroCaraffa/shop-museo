@@ -60,7 +60,8 @@ public class ProdottoController {
 			model.addAttribute("fotoList", service.findAll());
 			return "/prodotto/edit";
 		}try {
-			service.create(formProdotto);
+			
+			service.createProdottoForm(formProdotto);
 			redirectAttributes.addFlashAttribute("successMessage", "Prodotto Aggiunto!");
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Prodotto!");
@@ -68,7 +69,7 @@ public class ProdottoController {
 		}
 		
 		
-
+		
 		return "redirect:/prodotto";
 
 	}
@@ -88,12 +89,12 @@ public class ProdottoController {
 	}
 	
 	@PostMapping("/edit/{id}")
-	public String doUpdate(@Valid @ModelAttribute("pizza") Prodotto formProdotto, BindingResult bindingResult, Model model) {
+	public String doUpdate(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
 			return "/prodotto/edit";
 		}
-		service.save(formProdotto);
+		service.update(formProdotto);
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/detail/{id}")
