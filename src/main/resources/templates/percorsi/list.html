@@ -29,9 +29,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="item : ${list}">
-						<td th:text="${item.id}"></td>
-						<td th:text="${item.titolo}"></td>
+					<tr th:each="item : ${percorsi}">
+					<!--	<td th:text="${item.id}"></td>-->
+						<td th:text="${item.nomePercorso}"></td>
 						<td th:text="${item.prezzo}"></td>
 						<td th:text="${item.postiMax}"></td>
 						<td>

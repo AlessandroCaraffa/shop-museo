@@ -33,12 +33,12 @@ public class ProdottoService {
 	public Prodotto createProdottoForm(ProdottoForm prodotto) throws IOException {
 		Prodotto newProdotto=new Prodotto();
 		
-		Foto newFoto= createFoto(prodotto); 
+		Foto newFotoProdotto= createFoto(prodotto); 
 		
 		//1-crea una lista vuoto di Foto
 		List<Foto> listaFoto=new ArrayList<>();
 		//2-aggiungo la mia newFoto alla lista
-		listaFoto.add(newFoto);
+		listaFoto.add(newFotoProdotto);
 		
 		//3-set quest lista coem attributo foto del prodotto
 		newProdotto.setFoto(listaFoto);
