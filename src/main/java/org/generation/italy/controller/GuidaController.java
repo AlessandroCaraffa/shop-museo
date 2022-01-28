@@ -44,9 +44,7 @@ public class GuidaController {
 	public String doCreate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-
 			return "/guide/edit";
-
 		}
 		service.save(formGuida);
 		return "redirect:/guide";
