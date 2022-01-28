@@ -41,7 +41,7 @@ public class ProdottoService {
 		listaFoto.add(newFotoProdotto);
 		
 		//3-set quest lista coem attributo foto del prodotto
-		newProdotto.setFoto(listaFoto);
+		newProdotto.setFoto(listaFoto);;
 		//4-proseguo a slavare prodotto
 		
 		

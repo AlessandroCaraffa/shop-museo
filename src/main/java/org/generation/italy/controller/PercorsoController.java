@@ -63,9 +63,9 @@ public class PercorsoController {
 		}try {
 			
 			service.createPercorsoForm(formPercorso);
-			redirectAttributes.addFlashAttribute("successMessage", "Prodotto Aggiunto!");
+			redirectAttributes.addFlashAttribute("successMessage", "Percorso Aggiunto!");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Prodotto!");
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Percorso!");
 			e.printStackTrace();
 		}
 		

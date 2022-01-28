@@ -18,9 +18,10 @@
 			
 			<!-- form -->
 			<form id="guida-form"
-				th:object="${guida}"
+				th:object="${guidaForm}"
 				th:action="${edit} ? @{/guide/edit/{id}(id=${guida.id})} : @{/guide/create}"
-				method="POST">
+				method="post"
+				enctype="multipart/form-data">
 			
 				<!-- validazione -->
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
@@ -58,6 +59,15 @@
 								<label class="form-label" for="bio">Bio</label>
 								<textarea class="form-control" id="bio" th:field="*{bio}" rows="6"></textarea>
 							</div>
+							
+							<div class="col-3"> 
+					<label for="titolo" class="form-label">Title</label>
+					<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
+				</div>
+				<div class="col-3">
+							<label class="form-label" for="contenuto">Foto</label>
+							<input type="file" class="form-control" id="contenuto" th:field="*{contenutoGuida}">
+				</div>
 							
 							<!-- buttons -->
 							<div class="col-12">
