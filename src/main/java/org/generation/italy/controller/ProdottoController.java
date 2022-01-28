@@ -29,8 +29,7 @@ public class ProdottoController {
 	@Autowired
 	private ProdottoService service;
 	
-	@Autowired
-	private FotoService fotoService;
+	
 
 	@GetMapping
 	public String list(Model model) {
@@ -43,7 +42,7 @@ public class ProdottoController {
 	public String create(Model model) {
 		model.addAttribute("edit", false);
 		model.addAttribute("prodottoForm", new ProdottoForm());
-		model.addAttribute("fotoList", fotoService.findAll());
+		model.addAttribute("fotoList", service.findAll());
 		return "/prodotto/edit";
 	}
  	
@@ -54,21 +53,21 @@ public class ProdottoController {
 			model.addAttribute("edit", false);
 			return "/prodotto/edit";
 		}
-		if(service.getContenuto() == null || service.getContenuto().isEmpty()) {
+		if(formProdotto.getConteuntoProdotto() == null || formProdotto.getConteuntoProdotto().isEmpty()) {
 			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
 		}
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("fotoList", fotoService.findAll());
+			model.addAttribute("fotoList", service.findAll());
 			return "/prodotto/edit";
 		}try {
-			fotoService.create(service);
-			redirectAttributes.addFlashAttribute("successMessage", "Photo added!");
+			service.create(formProdotto);
+			redirectAttributes.addFlashAttribute("successMessage", "Prodotto Aggiunto!");
 		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Unable to save the photo");
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Prodotto!");
 			e.printStackTrace();
 		}
 		
-		service.save(formProdotto);
+		
 
 		return "redirect:/prodotto";
 

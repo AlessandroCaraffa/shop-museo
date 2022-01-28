@@ -16,8 +16,7 @@
 				<div class="col-auto me-auto">
 					<h1><a th:href="@{/guide}"><i class="fas fa-arrow-circle-left"></i></a>
 					<span th:text="|*{nome} *{cognome}|"></span></h1>
-					
-				</div >
+				</div>
 				<div class="col-auto d-flex algn-items-end">
 					<a class="me-1" th:href="@{|/guide/edit/*{id}|}"><i class="fas fa-edit"></i></a>
 					<a class="me-2" th:href="@{|/guide/delete/*{id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
@@ -32,12 +31,8 @@
 				<div class="col-8">
 					
 				</div>
-				
-			
-			
-		
-		
+
 		<!-- scripts -->
 		<div th:replace="fragments/utility :: scripts"></div>
 	</body>
-</html >
+</html>

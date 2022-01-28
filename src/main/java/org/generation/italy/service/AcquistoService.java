@@ -16,5 +16,21 @@ public class AcquistoService {
 	public List<Acquisto> findAll() {
 		return repository.findAll();
 	}
+	
+	public Acquisto save(Acquisto acquisto) {
+		return repository.save(acquisto);
+	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+	
+	public Acquisto getById(Integer id) {
+		return repository.getById(id);
+	}
+	
+	public Acquisto update(Acquisto acquisto) {
+		return repository.save(acquisto);
+	}
 
 }

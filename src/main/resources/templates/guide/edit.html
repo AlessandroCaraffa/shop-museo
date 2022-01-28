@@ -17,7 +17,10 @@
 			<hr/>
 			
 			<!-- form -->
-			<form id="guida-form" th:object="${guida}"th:action="${edit} ? @{/guide/edit/{id}(id=${guida.id})} : @{/guide/create}" method="post">
+			<form id="guida-form"
+				th:object="${guida}"
+				th:action="${edit} ? @{/guide/edit/{id}(id=${guida.id})} : @{/guide/create}"
+				method="POST">
 			
 				<!-- validazione -->
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
@@ -30,7 +33,7 @@
 				<!-- campi form -->
 				<div class="row">
 				
-					<!-- collonna sx -->
+					<!-- colonna sx -->
 					<div class="col-6">
 						<div class="row gy-2">
 							<div class="col-6">
