@@ -61,6 +61,14 @@ public class ProdottoService {
 		repository.deleteById(id);
 	}
 	
+	public Prodotto getByIdProdottoForm(Integer id) {
+		fotoRepo.getById(id);
+		
+		
+		return repository.getById(id);
+	}
+	
+	
 	public Prodotto getById(Integer id) {
 		return repository.getById(id);
 	}

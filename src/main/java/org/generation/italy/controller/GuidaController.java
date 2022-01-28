@@ -82,7 +82,7 @@ public class GuidaController {
 	@GetMapping("/edit/{id}")
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
-		model.addAttribute("guida", service.getById(id));
+		model.addAttribute("guidaForm", service.getById(id));
 		return "/guide/edit";
 	}
 	

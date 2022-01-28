@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.generation.italy.model.Foto;
 import org.generation.italy.model.FotoForm;
 import org.generation.italy.model.Prodotto;
@@ -11,6 +12,7 @@ import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,8 @@ public class ProdottoController {
 	@Autowired
 	private ProdottoService service;
 	
+	@Autowired
+	private FotoService fotoRepo;
 	
 
 	@GetMapping
@@ -85,7 +89,7 @@ public class ProdottoController {
 	@GetMapping("/edit/{id}")
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
-		model.addAttribute("prodotto", service.getById(id));
+		model.addAttribute("prodottoForm", service.getById(id));
 		return "/prodotto/edit";
 	}
 	
@@ -103,4 +107,5 @@ public class ProdottoController {
 		model.addAttribute("prodotto", service.getById(id));
 		return "/prodotto/detail";
 	}
+
 }

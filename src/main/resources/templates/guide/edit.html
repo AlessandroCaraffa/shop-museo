@@ -19,7 +19,7 @@
 			<!-- form -->
 			<form id="guida-form"
 				th:object="${guidaForm}"
-				th:action="${edit} ? @{/guide/edit/{id}(id=${guida.id})} : @{/guide/create}"
+				th:action="${edit} ? @{/guide/edit/{id}(id=${guidaForm.id})} : @{/guide/create}"
 				method="post"
 				enctype="multipart/form-data">
 			
