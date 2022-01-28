@@ -37,12 +37,13 @@ public class VenditaProdottoController {
 	}
 	
 	@GetMapping("/vendite/{id}")
-	public String create(@PathVariable("id") Integer id,Model model) {
+	public String create(@PathVariable("id") Integer venditaId,Model model) {
 		model.addAttribute("edit", false);
 		VenditaProdottoForm venditaProdottoForm = new VenditaProdottoForm();
-		venditaProdottoForm.setVendita(venditaService.getById(id));
+		
 		model.addAttribute("venditaProdotto", venditaProdottoForm);
 		model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
+		model.addAttribute("venditaId", venditaId);
 		
 		
 		
@@ -50,17 +51,20 @@ public class VenditaProdottoController {
 	}
 	
 	@PostMapping("/vendite/{id}")
-	public String doCreate(@Valid @ModelAttribute("vendita") VenditaForm formVendita,
-			@Valid @ModelAttribute("venditaId") Integer venditaId,
-			BindingResult bindingResult, Model model) {
+	public String doCreate(@Valid @ModelAttribute("venditaProdotto") VenditaProdottoForm formVendita,
+			BindingResult bindingResult, Model model,
+			@PathVariable("id") Integer venditaId
+			) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 			return "/vendite/edit";
 		}
-		model.addAttribute(null, model);
+		
+		model.addAttribute("venditaId", venditaId);
 
-		service.save(formVendita);
-		return "redirect:/vendite/create";
+		service.save(formVendita,venditaId);
+		String url = "redirect:/vendite/" + venditaId.toString();
+		return url;
 	}
 	
 }

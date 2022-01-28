@@ -17,17 +17,19 @@ public class VenditaProdottoService {
 	@Autowired
 	private VenditaProdottoRepository repository;
 	@Autowired
-	private VenditaRepository venditaRepository;
+	private VenditaService venditaService;
+	@Autowired
+	private ProdottoService prodottoService;
 	
 	public List<VenditaProdotto> findAll(){
 		return repository.findAll();
 	}
 	
-	public VenditaProdotto save(VenditaProdottoForm venditaProdottoForm) {
+	public VenditaProdotto save(VenditaProdottoForm venditaProdottoForm,Integer venditaId) {
 		VenditaProdotto newVenditaProdotto = new VenditaProdotto();
-		newVenditaProdotto.setProdotto(venditaProdottoForm.getProdotto());
+		newVenditaProdotto.setProdotto(prodottoService.getById(venditaProdottoForm.getProdottoId()));
 		newVenditaProdotto.setQuantita(venditaProdottoForm.getQuantita());
-		newVenditaProdotto.setVendita(venditaProdottoForm.getVendita());
+		newVenditaProdotto.setVendita(venditaService.getById(venditaId));
 		
 		
 		return repository.save(newVenditaProdotto);
