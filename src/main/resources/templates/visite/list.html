@@ -25,17 +25,17 @@
 						<th>Percorso</th>
 						<th>Guida</th>
 						<th>Data</th>
-						<th>Orari</th>
+						<th>Orario</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="item : ${list}">
 						<td th:text="${item.id}"></td>
-						<td th:text="${item.percorso.titolo}"></td>
+						<td th:text="${item.percorso.nomePercorso}"></td>
 						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
-						<td th:text="${item.data}"></td>
-						<td th:text="|${item.oraInizio} - ${item.oraFine}|"></td>
+						<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td> <!-- formattazione personalizzata -->
+						<td th:text="${item.orario}"></td>
 						<td>
 							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
 							<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>

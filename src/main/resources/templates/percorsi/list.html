@@ -21,19 +21,19 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Titolo</th>
+						<th>Nome percorso</th>
 						<th>Prezzo</th>
 						<th>Posti max</th>
+						<th>Durata</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="item : ${percorsi}">
-					<!--	<td th:text="${item.id}"></td>-->
 						<td th:text="${item.nomePercorso}"></td>
-						<td th:text="${item.prezzo}"></td>
+						<td th:text="|${item.prezzo}€|"></td>
 						<td th:text="${item.postiMax}"></td>
+						<td th:text="${#temporals.format(item.durata, 'H:mm')}"></td> <!-- formattazione personalizzata -->
 						<td>
 							<a class="me-2" th:href="@{|/percorsi/detail/${item.id}|}"><i class="fas fa-info"></i></a>
 							<a class="me-1" th:href="@{|/percorsi/edit/${item.id}|}"><i class="fas fa-edit"></i></a>

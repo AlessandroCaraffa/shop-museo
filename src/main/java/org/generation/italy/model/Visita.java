@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Visita {
 
@@ -19,13 +21,12 @@ public class Visita {
 	private Integer id;
 	
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	
 	@NotNull
-	private LocalTime oraInizio;
-	
-	@NotNull
-	private LocalTime oraFine;
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime orario;
 	
 	@ManyToOne
 	@JoinColumn(name="percorso_id", nullable=false)
@@ -48,17 +49,11 @@ public class Visita {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	public LocalTime getOraInizio() {
-		return oraInizio;
+	public LocalTime getOrario() {
+		return orario;
 	}
-	public void setOraInizio(LocalTime oraInizio) {
-		this.oraInizio = oraInizio;
-	}
-	public LocalTime getOraFine() {
-		return oraFine;
-	}
-	public void setOraFine(LocalTime oraFine) {
-		this.oraFine = oraFine;
+	public void setOrario(LocalTime orario) {
+		this.orario = orario;
 	}
 	public Percorso getPercorso() {
 		return percorso;

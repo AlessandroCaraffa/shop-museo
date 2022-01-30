@@ -1,6 +1,7 @@
 package org.generation.italy.model;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,6 +35,9 @@ public class Percorso {
 	@Min(value=1)
 	private int postiMax;
 	
+	@NotNull
+	private LocalTime durata;
+	
 	@OneToMany(mappedBy="percorso")
 	private List<Visita> visite;
 	
@@ -47,7 +51,6 @@ public class Percorso {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	public String getNomePercorso() {
 		return nomePercorso;
 	}
@@ -71,6 +74,12 @@ public class Percorso {
 	}
 	public void setPostiMax(int postiMax) {
 		this.postiMax = postiMax;
+	}
+	public LocalTime getDurata() {
+		return durata;
+	}
+	public void setDurata(LocalTime durata) {
+		this.durata = durata;
 	}
 	public List<Visita> getVisite() {
 		return visite;

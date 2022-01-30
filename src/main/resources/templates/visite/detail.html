@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<div th:replace="fragments/utility :: headTags"></div>
-		<title th:text="${visita.percorso.titolo}"></title> 
+		<title th:text="${visita.percorso.nomePercorso}"></title> 
 	</head>
 	<body>
 		<!-- navbar -->
@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-auto me-auto">
 					<h1><a th:href="@{/visite}"><i class="fas fa-arrow-circle-left"></i></a>
-					<span th:text="|Visita percorso *{percorso.titolo}|"></span></h1>
+					<span th:text="|Visita percorso *{percorso.nomePercorso}|"></span></h1>
 				</div>
 				<div class="col-auto d-flex algn-items-end">
 					<a class="me-1" th:href="@{|/visite/edit/${visita.id}|}"><i class="fas fa-edit"></i></a>
