@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.generation.italy.model.Vendita;
 import org.generation.italy.model.VenditaForm;
 import org.generation.italy.service.ProdottoService;
+import org.generation.italy.service.VenditaProdottoService;
 import org.generation.italy.service.VenditaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,14 @@ public class VenditaController {
 	@Autowired
 	private VenditaService service;
 	
+	@Autowired
+	private VenditaProdottoService venditaProdottoService;
+	
 	@Autowired ProdottoService prodottoService;
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("list", service.findAll());
+		model.addAttribute("venditaProdotti", venditaProdottoService.findAll());
 		return "vendite/list";
 	}
 	
