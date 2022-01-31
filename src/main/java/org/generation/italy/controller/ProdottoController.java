@@ -89,20 +89,38 @@ public class ProdottoController {
 		return "redirect:/prodotto";
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String edit (@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("edit", true);
-		model.addAttribute("prodottoForm", service.getById(id));
-		return "/prodotto/edit";
+	@GetMapping("/editProdotto/{id}")
+	public String editProdotto (@PathVariable("id") Integer id, Model model) {
+		//model.addAttribute("edit", true);
+		model.addAttribute("prodotto", service.getById(id));
+		
+		return "/prodotto/editProdotto";
 	}
 	
-	@PostMapping("/edit/{id}")
-	public String doUpdate(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, Model model) {
+	@PostMapping("/editProdotto/{id}")
+	public String doUpdateProdotto(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", true);
-			return "/prodotto/edit";
+			
+			return "/prodotto/editProdotto";
 		}
 		service.update(formProdotto);
+		return "redirect:/prodotto";
+	}
+	@GetMapping("/editFoto/{id}")
+	public String editFoto (@PathVariable("id") Integer id, Model model) {
+		//model.addAttribute("edit", true);
+		model.addAttribute("foto", fotoRepo.getById(id));
+		
+		return "/prodotto/editFoto";
+	}
+	
+	@PostMapping("/editFoto/{id}")
+	public String doUpdateFoto(@Valid @ModelAttribute("Foto") Foto formFoto, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			
+			return "/prodotto/editFoto";
+		}
+		fotoRepo.update(formFoto);
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/detail/{id}")

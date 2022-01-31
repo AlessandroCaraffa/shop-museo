@@ -69,7 +69,9 @@ public class ProdottoService {
 		return repository.getById(id);
 	}
 	
-	
+	public Foto getByIdFoto(Integer id) {
+		return fotoRepo.getById(id);
+	}
 	public Prodotto getById(Integer id) {
 		return repository.getById(id);
 	}

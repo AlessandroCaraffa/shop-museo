@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-auto me-auto">
 					<h1><a th:href="@{/percorsi}"><i class="fas fa-arrow-circle-left"></i></a>
-					<span th:text="*{titolo}"></span></h1>
+					<span th:text="*{nomePercorso}"></span></h1>
 				</div>
 				<div class="col-auto d-flex algn-items-end">
 					<a class="me-1" th:href="@{|/percorsi/edit/${percorso.id}|}"><i class="fas fa-edit"></i></a>
@@ -41,6 +41,8 @@
 						</th:block>
 					</dl>
 				</div>
+			</div>
+		</div>
 		
 		<!-- scripts -->
 		<div th:replace="fragments/utility :: scripts"></div>
