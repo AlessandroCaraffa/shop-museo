@@ -14,6 +14,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Percorso {
 
@@ -36,6 +38,7 @@ public class Percorso {
 	private int postiMax;
 	
 	@NotNull
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime durata;
 	
 	@OneToMany(mappedBy="percorso")

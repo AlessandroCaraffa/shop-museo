@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PercorsoForm {
@@ -29,6 +30,7 @@ public class PercorsoForm {
 	private int postiMax;
 	
 	@NotNull
+	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime durata;
 
     //FOTOFORM
