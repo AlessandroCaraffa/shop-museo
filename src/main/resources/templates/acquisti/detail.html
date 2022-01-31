@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+	</head>
+	<body>
+		<div class="container" th:object="${acquisto}">
+			<div class="row">
+				<div class="col-8">
+					<dl>
+						<dt>Nome Fornitore</dt>
+						<dd th:text="*{nomeFornitore}"></dd>
+						<dt>Data Acquisto</dt>
+						<dd th:text="*{dataAcquisto}"></dd>
+						<dt>Totale Acquisto</dt>
+						<dd th:text="*{totaleAcquisto}"></dd>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<h3>Prodotti acquisiti</h3>
+					<div class="mb-2">
+						<a 
+							class="btn btn-primary" 
+							th:href="@{/acquisto/{id}/aProdotto(id=${acquisto.id})}"
+						>Acquisti</a>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Prezzo acquisto</th>
+								<th>Prodotto</th>
+								<th>Quantità</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${acquistoProdotto}">
+								<td th:text="${item.prezzoAcquisto}"></td>
+								<td th:text="${item.getProdotto()}"></td>
+								<td th:text="${item.quantita}"></td>
+								<td>
+									<a class="btn btn-primary" th:href="@{|/aProdotto/${aProdotto.id}/edit|}"><i class="fas fa-edit"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>
