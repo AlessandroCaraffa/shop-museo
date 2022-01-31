@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 
-	// TODO work in progress
+	// TODO work in progress [wip]
 	List<Visita> findByPercorsoId(Integer id);
 
 }

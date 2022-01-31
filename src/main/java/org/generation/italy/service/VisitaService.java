@@ -33,7 +33,7 @@ public class VisitaService {
 		return repository.save(visita);
 	}
 	
-	// TODO work in progress
+	// TODO work in progress [wip]
 	public List<Visita> findByPercorsoId(Integer id) {
 		return repository.findByPercorsoId(id);
 	}
