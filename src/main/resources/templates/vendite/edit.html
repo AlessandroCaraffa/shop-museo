@@ -16,22 +16,7 @@
 			<span th:text="'Vendita prodotto'"></span></h1>
 			<hr/>
 			
-			<table class="table">
-			<thead>
-				<tr>
-					<th class ="text-secondary  fs-3 "scope="col">Prodotto</th >
-					<th class ="text-secondary ms-2 fs-3"scope="col">Quantità</th >				
-				</tr>				
-			</thead>
-			<tbody>
-				<tr th:each="venditaProdotto : ${venditaProdotti}">
-					<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
-					<td class=" " th:text="${venditaProdotto.quantita}"></td>
-					<td>
-						<a class="me-2" th:href="@{|/vendite/delete/${venditaId}/${venditaProdotto.id}|}"><i class="fas fa-trash-alt"></i></a>
-					</td>
-				</tr>
-			</tbody>
+			
 			<!-- form -->
 			<form
 				id="vendita-prodotto"
@@ -86,6 +71,23 @@
 					</div>
 				</div>
 			</form>
+			<table class="table"   th:if="${venditaProdotti.size() > 0}">
+			<thead>
+				<tr>
+					<th class ="text-secondary  fs-3 "scope="col">Prodotto</th >
+					<th class ="text-secondary ms-2 fs-3"scope="col">Quantità</th >				
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="venditaProdotto : ${venditaProdotti}">
+					<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
+					<td class=" " th:text="${venditaProdotto.quantita}"></td>
+					<td>
+						<a class="me-2" th:href="@{|/vendite/delete/${venditaId}/${venditaProdotto.id}|}"><i class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+			</tbody>
+			</table>
 		</div>
 		
 		<!-- scripts -->
