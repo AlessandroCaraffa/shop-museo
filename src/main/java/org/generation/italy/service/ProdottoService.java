@@ -45,7 +45,8 @@ public class ProdottoService {
 		//4-proseguo a slavare prodotto
 		
 		
-		
+		newProdotto.setQuantitaAcquistata(0);
+		newProdotto.setQuantitaVenduta(0);
 		newProdotto.setNome(prodotto.getNome());
 		newProdotto.setPrezzoVendita(prodotto.getPrezzoVendita());
 		newProdotto.setDescrizione(prodotto.getDescrizione());
@@ -56,6 +57,8 @@ public class ProdottoService {
 		
 		return prodottoSave;
 	}
+	
+
 	
 	public void deleteById(Integer id) {
 		repository.deleteById(id);

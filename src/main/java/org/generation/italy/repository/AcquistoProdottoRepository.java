@@ -11,4 +11,6 @@ public interface AcquistoProdottoRepository extends JpaRepository<AcquistoProdot
 
 	List<AcquistoProdotto> findByAcquistoId(Integer acquistoId);
 
+	List<AcquistoProdotto> findByProdottoId(Integer prodottoId);
+
 }

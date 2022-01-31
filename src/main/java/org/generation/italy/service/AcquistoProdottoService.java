@@ -35,6 +35,9 @@ public class AcquistoProdottoService {
 		return repository.save(newAProdotto);
 	}
 	
+	public List<AcquistoProdotto> findByProdottoId (Integer prodottoId){
+		return repository.findByProdottoId(prodottoId);
+	}
 	public List<AcquistoProdotto> findByAcquistoId (Integer acquistoId){
 		return repository.findByAcquistoId(acquistoId);
 	}

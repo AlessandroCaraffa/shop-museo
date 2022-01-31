@@ -11,6 +11,9 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Formula;
+import org.springframework.data.jpa.repository.Query;
+
 @Entity
 public class Prodotto {
 	
@@ -29,6 +32,17 @@ public class Prodotto {
 	
 	@ManyToMany
 	private List<Foto> foto;
+
+	@Formula("(select sum(ap.quantita)\r\n"
+			+ "from acquisto_prodotto ap\r\n"
+			+ "where ap.prodotto_id = id)")
+	private Integer quantitaAcquistata;
+	
+	@Formula("(select sum(vp.quantita)\r\n"
+			+ "from vendita_prodotto vp\r\n"
+			+ "where vp.prodotto_id = id)")
+	private Integer quantitaVenduta;
+	
 	
 	// getters/setters
 	public Integer getId() {
@@ -61,5 +75,20 @@ public class Prodotto {
 	public void setFoto(List<Foto> foto) {
 		this.foto = foto;
 	}
+	public Integer getQuantitaAcquistata() {
+		return quantitaAcquistata;
+	}
+	
+	public Integer getQuantitaVenduta() {
+		return quantitaVenduta;
+	}
+	public void setQuantitaAcquistata(Integer quantitaAcquistata) {
+		this.quantitaAcquistata = quantitaAcquistata;
+	}
+	public void setQuantitaVenduta(Integer quantitaVenduta) {
+		this.quantitaVenduta = quantitaVenduta;
+	}
+	
+	
 	
 }
