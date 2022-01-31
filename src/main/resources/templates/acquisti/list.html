@@ -29,7 +29,7 @@
 					<tr th:each="acquisto : ${acquisti}">
 						<td th:text="${acquisto.dataAcquisto}"></td> 
 						<td th:text="${acquisto.nomeFornitore}"></td>
-						<td th:text="${acquisto.totaleAcquisto}"></td>
+						<!--<td th:text="${acquisto.totaleAcquisto}"></td> da aggiungere totale calcolato,fare metodo findByAcquistoId su service e repository di Acquisto e poi fare una query sum(prezzoAcquisto)-->
 						<td>
 							<a class="me-2" th:href="@{|/acquisti/detail/${acquisto.id}|}"><i class="fas fa-info"></i></a>
 							<a class="me-1" th:href="@{|/acquisti/edit/${acquisto.id}|}"><i class="fas fa-edit"></i></a>

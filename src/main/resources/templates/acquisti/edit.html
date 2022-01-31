@@ -26,16 +26,11 @@
 								<label class="form-label" for="nomeFornitore">Nome fornitore</label>
 								<input type="text" class="form-control" id="nomeFornitore" th:field="*{nomeFornitore}">
 							</div>
-							<div class="col-4">
-								<label class="form-label" for="totaleAcquisto">Totale acquisto</label>
-								<input type="number" class="form-control" id="totaleAcquisto" th:field="*{totaleAcquisto}">
-								
-							</div>
 							
 							<!-- buttons -->
 							<div class="col-12">
 								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
-								<a class="btn btn-primary" th:href="@{/guide}"><i class="fas fa-times"></i> Cancel</a>
+								<a class="btn btn-primary" th:href="@{/acquisti}"><i class="fas fa-times"></i> Cancel</a>
 							</div>
 						</div>
 					</div>

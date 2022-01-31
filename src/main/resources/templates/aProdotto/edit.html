@@ -10,7 +10,7 @@
 			
 			<form 
 				id="aProdotto-form"
-				th:action="@{|/acquisti/${id}/aProdotto|}"
+				th:action="@{|/acquisti/${id}|}"
 				method="post"
 				th:object="${aProdotto}"
 			>
@@ -28,17 +28,17 @@
 				<div class="row">
 				
 
-					<div class="col-6">
+					<div class="col-8">
 						<div class="row gy-2">
-							<div class="col-8">
+							<div class="col-6">
 								<label class="form-label" for="prodotto">Selezionare prodotto</label >
-								<select class="form-select" id="prodotto" name="prodotto" form="aProdotto-form" th:field="*{prodotto}" th:errorClass="is-invalid">
+								<select class="form-select" id="prodottoId" name="prodottoId" form="aProdotto-form" th:field="*{prodottoId}" th:errorClass="is-invalid">
 								  <option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}" th:text="${prodotto.nome}"></option >
 								  
 								</select >								
-								<div th:if="${#fields.hasErrors('prodotto')}" class="invalid-feedback">
+								<div th:if="${#fields.hasErrors('prodottoId')}" class="invalid-feedback">
 									<ul>
-										<li th:each="err : ${#fields.errors('prodotto')}" th:text="${err}"></li>
+										<li th:each="err : ${#fields.errors('prodottoId')}" th:text="${err}"></li>
 									</ul>
 								</div>
 							</div>
@@ -48,6 +48,15 @@
 								<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
 									<ul>
 										<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="prezzoAcquisto">Prezzo di acquisto</label>
+								<input type="number" class="form-control" id="prezzoAcquisto" th:field="*{prezzoAcquisto}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('prezzoAcquisto')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('prezzoAcquisto')}" th:text="${err}"></li>
 									</ul>
 								</div>
 							</div>

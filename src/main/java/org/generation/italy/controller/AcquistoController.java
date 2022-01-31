@@ -5,6 +5,8 @@ import javax.validation.Valid;
 
 import org.generation.italy.model.Acquisto;
 import org.generation.italy.model.AcquistoProdotto;
+import org.generation.italy.model.AcquistoProdottoForm;
+import org.generation.italy.service.AcquistoProdottoService;
 import org.generation.italy.service.AcquistoService;
 import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class AcquistoController {
 	
 	@Autowired
 	private ProdottoService prodottoService;
+	
+	@Autowired
+	private AcquistoProdottoService acquistoProdottoService;
 
 	@GetMapping
 	public String list(Model model) {
@@ -36,6 +41,7 @@ public class AcquistoController {
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("acquisto", service.getById(id));
+		model.addAttribute("acquistiProdotto", acquistoProdottoService.findByAcquisto(id) );
 		return "/acquisti/detail";
 	}
 	
@@ -82,10 +88,9 @@ public class AcquistoController {
 		return "redirect:/acquisti";
 	}
 	
-	@GetMapping("/{id}/aProdotto")
+	@GetMapping("/{id}")
 	public String aProdotto(@PathVariable("id") Integer id, Model model) {
-		AcquistoProdotto aProdotto = new AcquistoProdotto();
-		aProdotto.setAcquisto(service.getById(id));
+		AcquistoProdottoForm aProdotto = new AcquistoProdottoForm();
 		model.addAttribute("aProdotto", aProdotto);
 		model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
 		return "/aProdotto/edit";

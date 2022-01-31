@@ -3,6 +3,7 @@ package org.generation.italy.controller;
 import javax.validation.Valid;
 
 import org.generation.italy.model.AcquistoProdotto;
+import org.generation.italy.model.AcquistoProdottoForm;
 import org.generation.italy.service.AcquistoProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,20 +15,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/aProdotto")
+@RequestMapping
 public class AcquistoProdottoController {
 	
 	@Autowired
 	private AcquistoProdottoService service;
 
-	@PostMapping("/{id}/aProdotto")
-	public String doAcquisto(@Valid @ModelAttribute("aProdotto") AcquistoProdotto aProdotto,
+	@PostMapping("acquisti/{id}")
+	public String doAcquisto(@Valid @ModelAttribute("aProdotto") AcquistoProdottoForm aProdotto,
 			BindingResult bindingResult, @PathVariable("id") Integer id, Model model) {
 		if(bindingResult.hasErrors()) {
 			return "/aProdotto/edit";
 		}
 		service.save(aProdotto, id);
-		return "redirect:/acquisti/detail/" + aProdotto.getProdotto().getId();
+		String url = "redirect:/acquisti/" + aProdotto.getProdottoId().toString();
+		return url;
 	}
 	
 }

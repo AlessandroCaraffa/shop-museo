@@ -1,78 +1,100 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<div th:replace="fragments/utility :: head"></div>
-		<title th:text="'Vendita prodotto'"></title>
-	</head>
-	<body>
-		<!-- navbar -->
-		<nav th:replace="fragments/navbar :: navbar"></nav>
-		
-		<!-- container -->
-		<div class="container">
-		
-			<!-- title V2 -->
-			<h1><a th:href="@{/vendite}"><i class="fas fa-arrow-circle-left"></i></a>
-			<span th:text="'Vendita prodotto'"></span></h1>
-			<hr/>
-			
-			<!-- form -->
-			<form
-				id="vendita-prodotto"
-				th:object="${venditaProdotto}"
-				th:action="@{|/vendite/${venditaId}|}"
-				method="POST"> 
-				
-				<!-- validazione -->
-				
-				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
-					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
-					<ul class="mb-1">
-						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
-					</ul>
-				</div>
-				
-				<!-- campi form -->
-				<div class="row">
-				
 
-					<div class="col-6">
-						<div class="row gy-2">
-							<div class="col-8">
-								<label class="form-label" for="prodotto">Selezionare prodotto</label >
-								<select class="form-select" id="prodotto" name="prodotto" form="vendita-prodotto" th:field="*{prodottoId}" th:errorClass="is-invalid">
-								  <option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}" th:text="${prodotto.nome}"></option >
-								  
-								</select >								
-								<div th:if="${#fields.hasErrors('prodottoId')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('prodottoId')}" th:text="${err}"></li>
-									</ul>
-								</div>
+<head>
+	<div th:replace="fragments/utility :: head"></div>
+	<title th:text="'Vendita prodotto'"></title>
+</head>
+
+<body>
+	<!-- navbar -->
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+
+	<!-- container -->
+	<div class="container">
+
+		<!-- title V2 -->
+		<h1><a th:href="@{/vendite}"><i class="fas fa-arrow-circle-left"></i></a>
+			<span th:text="'Vendita prodotto'"></span>
+		</h1>
+		<hr />
+
+		<!-- form -->
+		<form id="vendita-prodotto" th:object="${venditaProdotto}" th:action="@{|/vendite/${venditaId}|}" method="POST">
+
+			<!-- validazione -->
+
+			<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
+				<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
+				<ul class="mb-1">
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+				</ul>
+			</div>
+
+			<!-- campi form -->
+			<div class="row">
+
+
+				<div class="col-6">
+					<div class="row gy-2">
+						<div class="col-8">
+							<label class="form-label" for="prodotto">Selezionare prodotto</label>
+							<select class="form-select" id="prodotto" name="prodotto" form="vendita-prodotto"
+								th:field="*{prodottoId}" th:errorClass="is-invalid">
+								<option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}"
+									th:text="${prodotto.nome}"></option>
+
+							</select>
+							<div th:if="${#fields.hasErrors('prodottoId')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('prodottoId')}" th:text="${err}"></li>
+								</ul>
 							</div>
-							<div class="col-2">
-								<label class="form-label" for="quantita">Quantità</label>
-								<input type="text" class="form-control" id="quantita" th:field="*{quantita}" th:errorClass="is-invalid">
-								<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}"></li>
-									</ul>
-								</div>
+						</div>
+						<div class="col-2">
+							<label class="form-label" for="quantita">Quantità</label>
+							<input type="text" class="form-control" id="quantita" th:field="*{quantita}"
+								th:errorClass="is-invalid">
+							<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}"></li>
+								</ul>
 							</div>
-							
-							
-							<!-- buttons -->
-							<div class="col-12">
-								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
-								<a class="btn btn-primary" th:href="@{/vendite}"><i class="fas fa-times"></i> Cancel</a>
-							</div>
+						</div>
+
+
+						<!-- buttons -->
+						<div class="col-12">
+							<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
+							<a class="btn btn-primary" th:href="@{/vendite}"><i class="fas fa-times"></i> Cancel</a>
 						</div>
 					</div>
 				</div>
-			</form>
-		</div>
-		
-		<!-- scripts -->
-		<div th:replace="fragments/utility :: scripts"></div>
-	</body>
+			</div>
+		</form>
+
+		<table class="table" th:if="${venditaProdotti.size() > 0}">
+			<thead>
+				<tr>
+					<th class="text-secondary  fs-3 " scope="col">Prodotto</th>
+					<th class="text-secondary ms-2 fs-3" scope="col">Quantità</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="venditaProdotto : ${venditaProdotti}">
+					<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
+					<td class=" " th:text="${venditaProdotto.quantita}"></td>
+					<td>
+						<a class="me-2" th:href="@{|/vendite/delete/${venditaId}/${venditaProdotto.id}|}"><i
+								class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- scripts -->
+	<div th:replace="fragments/utility :: scripts"></div>
+</body>
+
 </html>
