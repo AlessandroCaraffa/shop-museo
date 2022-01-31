@@ -83,6 +83,16 @@ public class GuidaController {
 		return "redirect:/guide";
 	}
 	//
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Integer id,Model model) {
+		model.addAttribute("edit", true);
+		GuidaForm guida=new GuidaForm();
+		
+		
+		model.addAttribute("guidaForm", new GuidaForm());
+		return "guide/edit";
+	}
+	//
 	@GetMapping("/editGuida/{id}")
 	public String editGuida (@PathVariable("id") Integer id, Model model) {
 		//model.addAttribute("edit", true);

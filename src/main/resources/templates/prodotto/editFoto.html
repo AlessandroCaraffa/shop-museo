@@ -35,6 +35,8 @@
 				<div class="card">
 					<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top">
 				</div>
+				<a class="" th:href="@{|/prodotto/deleteFoto/${item.getId()}|}" onclick="return confirm('Are you sure?')"> <i
+								class="fas fa-trash-alt"></i></a>
 
 			</div>
 

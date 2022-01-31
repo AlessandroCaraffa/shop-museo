@@ -87,6 +87,12 @@ public class ProdottoController {
 		fotoRepo.deleteById(id);
 		return "redirect:/prodotto";
 	}
+	@GetMapping("/deleteFoto/{id}")
+	public String doDeleteFoto(Model model, @PathVariable("id") Integer id) {
+		fotoRepo.deleteById(id);
+		
+		return "redirect:/prodotto";
+	}
 	
 	@GetMapping("/editProdotto/{id}")
 	public String editProdotto (@PathVariable("id") Integer id, Model model) {
