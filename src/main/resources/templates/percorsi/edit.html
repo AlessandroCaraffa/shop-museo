@@ -90,6 +90,11 @@
 							<div class="col-3">
 								<label class="form-label" for="contenuto">Foto</label>
 								<input type="file" class="form-control" id="contenuto" th:field="*{contenutoPercorso}">
+								<div th:if="${#fields.hasErrors('contenutoPercorso')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('contenutoPercorso')}" th:text="${err}"></li>
+									</ul>
+								</div>
 							</div>
 
 							<!-- buttons -->

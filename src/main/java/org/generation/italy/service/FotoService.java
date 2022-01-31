@@ -27,6 +27,9 @@ public class FotoService {
 		return repository.save(photo);
 	};
 	
+	public List<Foto> findAllById(Integer id){
+		return repository.findAllById(id);
+	}
 	public List<Foto> findAll(){
 		return repository.findAll();
 	}

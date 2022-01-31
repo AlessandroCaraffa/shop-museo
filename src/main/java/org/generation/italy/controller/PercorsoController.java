@@ -57,11 +57,9 @@ public class PercorsoController {
 		}
 		if(formPercorso.getContenutoPercorso() == null || formPercorso.getContenutoPercorso().isEmpty()) {
 			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
+			return "/percorsi/edit";
 		}
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("fotoList", service.findAll());
-			return "/prodotto/edit";
-		}try {
+		try {
 			
 			service.createPercorsoForm(formPercorso);
 			redirectAttributes.addFlashAttribute("successMessage", "Percorso Aggiunto!");

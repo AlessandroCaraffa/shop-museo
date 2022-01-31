@@ -3,10 +3,13 @@ package org.generation.italy.model;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.NotFound;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,18 +31,21 @@ public class PercorsoForm {
 	@NotNull
 	@Min(value = 1)
 	private int postiMax;
-	
+
 	@NotNull
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime durata;
 
-    //FOTOFORM
+	// FOTOFORM
+	@NotNull
 	@NotEmpty(message = "Titolo necessario")
 	private String titolo;
-
+	
+	@Lob
+	@NotNull
 	private MultipartFile contenutoPercorso;
 
-	//getter/setter
+	// getter/setter
 	public Integer getId() {
 		return id;
 	}
@@ -103,7 +109,5 @@ public class PercorsoForm {
 	public void setDurata(LocalTime durata) {
 		this.durata = durata;
 	}
-	
-	
 
 }
