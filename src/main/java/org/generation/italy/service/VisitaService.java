@@ -32,4 +32,10 @@ public class VisitaService {
 	public Visita update(Visita visita) {
 		return repository.save(visita);
 	}
+	
+	// TODO work in progress
+	public List<Visita> findByPercorsoId(Integer id) {
+		return repository.findByPercorsoId(id);
+	}
+	
 }

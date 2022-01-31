@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title>Percorsi</title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+		<div class="container">
+			<h1>Percorsi</h1>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome percorso</th>
+						<th>Prezzo</th>
+						<th>Posti max</th>
+						<th>Durata</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${percorsi}">
+						<td th:text="${item.nomePercorso}"></td>
+						<td th:text="|${item.prezzo}€|"></td>
+						<td th:text="${item.postiMax}"></td>
+						<td th:text="${#temporals.format(item.durata, 'H:mm')}"></td> <!-- formattazione personalizzata -->
+						<td>
+							<a class="me-2" th:href="@{|/percorsi/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

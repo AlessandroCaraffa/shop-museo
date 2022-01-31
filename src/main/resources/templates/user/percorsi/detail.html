@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+		<title th:text="${percorso.nomePercorso}"></title> 
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		
+		<!-- DETTAGLIO PERCORSO USER -->
+		
+		<!-- general container -->
+		<div class="container" th:object="${percorso}">
+			
+			<!-- title V2 -->
+			<div class="row">
+				<div class="col-auto me-auto">
+					<h1><a th:href="@{/user/percorsi}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="*{nomePercorso}"></span></h1>
+				</div>
+			</div>
+			<hr/>
+			
+			<!-- container -->
+			<div class="row">
+			
+				<!-- main details -->
+				<div class="col-8">
+					<dl>
+						<dt>Posti max</dt>
+						<dd th:text="*{postiMax}"></dd>
+						<dt>Prezzo</dt>
+						<dd th:text="*{prezzo}"></dd>
+						
+						<!-- mostra solo se non vuoto -->
+						<th:block th:unless=${#strings.isEmpty(percorso.descrizione)}>
+							<dt>Descrizione</dt>
+							<dd th:text="*{descrizione}"></dd>
+						</th:block>
+					</dl>
+				</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>
