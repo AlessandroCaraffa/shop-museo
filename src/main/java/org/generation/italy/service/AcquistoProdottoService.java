@@ -13,11 +13,15 @@ public class AcquistoProdottoService {
 	@Autowired
 	private AcquistoProdottoRepository repository;
 	
+	@Autowired
+	private AcquistoService serviceAcquisto;
+	
 	public List<AcquistoProdotto> findAll(){
 		return repository.findAll();
 	}
 	
-	public AcquistoProdotto save(AcquistoProdotto aProdotto) {
+	public AcquistoProdotto save(AcquistoProdotto aProdotto, Integer acquistoId) {
+		aProdotto.setAcquisto(serviceAcquisto.getById(acquistoId));
 		return repository.save(aProdotto);
 	}
 	

@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.generation.italy.model.Acquisto;
 import org.generation.italy.model.AcquistoProdotto;
 import org.generation.italy.service.AcquistoService;
+import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class AcquistoController {
 	
 	@Autowired
 	private AcquistoService service;
+	
+	@Autowired
+	private ProdottoService prodottoService;
 
 	@GetMapping
 	public String list(Model model) {
@@ -49,8 +53,9 @@ public class AcquistoController {
 			model.addAttribute("edit", false);
 			return "/acquisti/edit";
 		}
-		service.save(formAcquisto);
-		return "redirect:/acquisti";
+		Integer acquistoId =service.save(formAcquisto).getId();
+		String url = "redirect:/acquisti/" + acquistoId.toString();
+		return url;
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -82,6 +87,7 @@ public class AcquistoController {
 		AcquistoProdotto aProdotto = new AcquistoProdotto();
 		aProdotto.setAcquisto(service.getById(id));
 		model.addAttribute("aProdotto", aProdotto);
+		model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
 		return "/aProdotto/edit";
 	}
 	
