@@ -50,22 +50,7 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="row mt-5" th:if="${fotoList.size() > 0}">
-			<div th:each="item : ${fotoList}" class="col-3">
-				<div class="card">
-					<img th:src="|/prodotti/${item.id}/foto|" class="card-img-top" th:alt="${item.titolo}">
-					<div class="card-body">
-						<div class="h5 card-title" th:text="${item.titolo}"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div th:unless="${fotoList.size() > 0}">
-			<div class="alert alert-info">The galleria is empty</div>
-		</div>
 
-	</div>
 
 
 
