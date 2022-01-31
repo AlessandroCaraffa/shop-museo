@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<div th:replace="fragments/utility :: head"></div>
-		<title>Visite</title>
+		<title th:text="|Visite percorso ${percorso.nomePercorso}|"></title>
 	</head>
 	<body>
 		<!-- navbar -->
@@ -11,7 +11,12 @@
 		<!-- LISTA VISITE USER -->
 	
 		<div class="container">
-			<h1>Visite</h1>
+		
+			<!-- title -->
+			<div>
+				<h1><a th:href="@{|/user/percorsi|}"><i class="fas fa-arrow-circle-left"></i></a>
+				<span th:text="|Visite percorso ${percorso.nomePercorso}|"></span></h1>
+			</div>
 			<hr/>
 			
 			<!-- table -->
@@ -34,7 +39,8 @@
 						<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td>
 						<td th:text="${item.orario}"></td>
 						<td>
-							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.percorso.id}/visite/${item.id}/detail|}"><i class="fas fa-info"></i></a>
+							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.percorso.id}/visite/${item.id}/prenotazioni/create|}"><i class="far fa-calendar-alt"></i> Prenota</a>
 						</td>
 					</tr>
 				</tbody>
