@@ -132,7 +132,12 @@ public class ProdottoController {
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("prodotto", service.getById(id));
 		
-		//model.addAttribute("fotoList", fotoRepo.findAllById(id));
+		
+			//Prodotto prodottoFotoId=service.getById(id);
+			//prodottoFotoId.getFoto();
+		
+		
+		model.addAttribute("fotoList", fotoRepo.findAll());
 		return "/prodotto/detail";
 	}
 	
