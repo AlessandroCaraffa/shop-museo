@@ -22,8 +22,6 @@ public class Acquisto {
 	@NotEmpty(message="Nome fornitore necessario")
 	private String nomeFornitore;
 	
-	@NotNull
-	private BigDecimal totaleAcquisto;
 	
 	// getters/setters
 	public Integer getId() {
@@ -44,11 +42,5 @@ public class Acquisto {
 	public void setNomeFornitore(String nomeFornitore) {
 		this.nomeFornitore = nomeFornitore;
 	}
-	public BigDecimal getTotaleAcquisto() {
-		return totaleAcquisto;
-	}
-	public void setTotaleAcquisto(BigDecimal totaleAcquisto) {
-		this.totaleAcquisto = totaleAcquisto;
-	}
-
+	
 }

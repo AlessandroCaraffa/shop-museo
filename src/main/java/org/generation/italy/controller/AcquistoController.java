@@ -5,7 +5,10 @@ import javax.validation.Valid;
 
 import org.generation.italy.model.Acquisto;
 import org.generation.italy.model.AcquistoProdotto;
+import org.generation.italy.model.AcquistoProdottoForm;
+import org.generation.italy.service.AcquistoProdottoService;
 import org.generation.italy.service.AcquistoService;
+import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +25,12 @@ public class AcquistoController {
 	
 	@Autowired
 	private AcquistoService service;
+	
+	@Autowired
+	private ProdottoService prodottoService;
+	
+	@Autowired
+	private AcquistoProdottoService acquistoProdottoService;
 
 	@GetMapping
 	public String list(Model model) {
@@ -32,6 +41,7 @@ public class AcquistoController {
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("acquisto", service.getById(id));
+		model.addAttribute("acquistiProdotto", acquistoProdottoService.findByAcquistoId(id) );
 		return "/acquisti/detail";
 	}
 	
@@ -49,8 +59,9 @@ public class AcquistoController {
 			model.addAttribute("edit", false);
 			return "/acquisti/edit";
 		}
-		service.save(formAcquisto);
-		return "redirect:/acquisti";
+		
+		String url = "redirect:/acquisti/" + service.save(formAcquisto).getId().toString();
+		return url;
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -77,11 +88,13 @@ public class AcquistoController {
 		return "redirect:/acquisti";
 	}
 	
-	@GetMapping("/{id}/aProdotto")
+	@GetMapping("/{id}")
 	public String aProdotto(@PathVariable("id") Integer id, Model model) {
-		AcquistoProdotto aProdotto = new AcquistoProdotto();
-		aProdotto.setAcquisto(service.getById(id));
+		AcquistoProdottoForm aProdotto = new AcquistoProdottoForm();
 		model.addAttribute("aProdotto", aProdotto);
+		model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
+		model.addAttribute("id", id);
+		model.addAttribute("acquistoProdotti", acquistoProdottoService.findByAcquistoId(id));
 		return "/aProdotto/edit";
 	}
 	

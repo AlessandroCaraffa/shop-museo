@@ -12,8 +12,7 @@
 						<dd th:text="*{nomeFornitore}"></dd>
 						<dt>Data Acquisto</dt>
 						<dd th:text="*{dataAcquisto}"></dd>
-						<dt>Totale Acquisto</dt>
-						<dd th:text="*{totaleAcquisto}"></dd>
+
 				</div>
 			</div>
 			<div class="row">
@@ -22,7 +21,7 @@
 					<div class="mb-2">
 						<a 
 							class="btn btn-primary" 
-							th:href="@{/acquisto/{id}/aProdotto(id=${acquisto.id})}"
+							th:href="@{/acquisti/{id}/aProdotto(id=${acquisto.id})}"
 						>Acquisti</a>
 					</div>
 					<table class="table">
@@ -35,12 +34,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="item : ${acquistoProdotto}">
+							<tr th:each="item : ${acquistiProdotto}">
 								<td th:text="${item.prezzoAcquisto}"></td>
-								<td th:text="${item.getProdotto()}"></td>
+								<td th:text="${item.prodotto.nome}"></td>
 								<td th:text="${item.quantita}"></td>
 								<td>
-									<a class="btn btn-primary" th:href="@{|/aProdotto/${aProdotto.id}/edit|}"><i class="fas fa-edit"></i></a>
+									<!-- da rivedere -->
+									<!-- <a class="btn btn-primary" th:href="@{|/aProdotto/${aProdotto.id}/edit|}"><i class="fas fa-edit"></i></a>-->
 								</td>
 							</tr>
 						</tbody>
