@@ -109,23 +109,30 @@ public class ProdottoController {
 	public String editFoto (@PathVariable("id") Integer id, Model model) {
 		//model.addAttribute("edit", true);
 		model.addAttribute("foto", fotoRepo.getById(id));
+		model.addAttribute("fotoList", fotoRepo.findAllById(id));
 		
 		return "/prodotto/editFoto";
 	}
 	
 	@PostMapping("/editFoto/{id}")
-	public String doUpdateFoto(@Valid @ModelAttribute("foto") Foto formFoto, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
-			
-			return "/prodotto/editFoto";
+	public String doUpdateFoto(@Valid @ModelAttribute("foto") FotoForm formFoto, @PathVariable("id") Integer id,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) {
+	
+		try {
+		Foto addFoto= fotoRepo.create(formFoto);
+		Prodotto prodotto=service.getById(id);
+		prodotto.getFoto().add(addFoto);
+		service.update(prodotto);
 		}
-		fotoRepo.update(formFoto);
+		catch(IOException e){
+			
+		}
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("prodotto", service.getById(id));
-		model.addAttribute("fotoList", fotoRepo.findAllById(id));
+		
+		//model.addAttribute("fotoList", fotoRepo.findAllById(id));
 		return "/prodotto/detail";
 	}
 	
