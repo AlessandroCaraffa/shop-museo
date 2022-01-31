@@ -25,7 +25,7 @@ public class AcquistoController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("list", service.findAll());
+		model.addAttribute("acquisti", service.findAll());
 		return "/acquisti/list";
 	}
 	
