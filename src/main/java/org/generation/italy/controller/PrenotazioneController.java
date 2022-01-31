@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.generation.italy.model.Prenotazione;
 import org.generation.italy.service.PrenotazioneService;
+import org.generation.italy.service.VisitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class PrenotazioneController {
 	
 	@Autowired
 	private PrenotazioneService service;
+	
+	@Autowired
+	private VisitaService visitaService;
 
 	@GetMapping
 	public String list(Model model) {
@@ -27,10 +31,17 @@ public class PrenotazioneController {
 		return "/prenotazioni/list";
 	}
 	
+	@GetMapping("/detail/{id}")
+	public String detail(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("prenotazione", service.getById(id));
+		return "/prenotazioni/detail";
+	}
+	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
-		model.addAttribute("prenotazioni", new Prenotazione());
+		model.addAttribute("prenotazione", new Prenotazione());
+		model.addAttribute("visiteList", visitaService.findAll()); // TODO selez. non tutte ma a partire da percorso
 		return "/prenotazioni/edit";
 	}
 	
@@ -39,22 +50,18 @@ public class PrenotazioneController {
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
+			model.addAttribute("visiteList", visitaService.findAll()); // TODO selez. non tutte ma a partire da percorso
 			return "/prenotazioni/edit";
 		}
 		service.save(formPrenotazione);
 		return "redirect:/prenotazioni";
 	}
 	
-	@GetMapping("/delete/{id}")
-	public String doDelete(Model model, @PathVariable("id") Integer id) {
-		service.deleteById(id);
-		return "redirect:/prenotazioni";
-	}
-	
 	@GetMapping("/edit/{id}")
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
-		model.addAttribute("prenotazioni", service.getById(id));
+		model.addAttribute("prenotazione", service.getById(id));
+		model.addAttribute("visiteList", visitaService.findAll()); // TODO selez. non tutte ma a partire da percorso
 		return "/prenotazioni/edit";
 	}
 	
@@ -63,9 +70,16 @@ public class PrenotazioneController {
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
+			model.addAttribute("visiteList", visitaService.findAll()); // TODO selez. non tutte ma a partire da percorso
 			return "/prenotazioni/edit";
 		}
 		service.update(formPrenotazione);
+		return "redirect:/prenotazioni";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String doDelete(Model model, @PathVariable("id") Integer id) {
+		service.deleteById(id);
 		return "redirect:/prenotazioni";
 	}
 	
