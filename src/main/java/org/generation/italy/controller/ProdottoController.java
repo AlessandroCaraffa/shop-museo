@@ -12,6 +12,8 @@ import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,6 +85,7 @@ public class ProdottoController {
 	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
 		service.deleteById(id);
+		fotoRepo.deleteById(id);
 		return "redirect:/prodotto";
 	}
 	
@@ -106,6 +109,15 @@ public class ProdottoController {
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("prodotto", service.getById(id));
 		return "/prodotto/detail";
+	}
+	
+	@RequestMapping(value = "/{id}/foto", produces = org.springframework.http.MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getFotoContenuto(@PathVariable Integer id){
+		Foto foto = fotoRepo.getById(id);
+		byte[] photoContent = foto.getContenuto();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(org.springframework.http.MediaType.IMAGE_JPEG);
+		return new ResponseEntity<byte[]>(photoContent, headers, HttpStatus.OK);
 	}
 
 }
