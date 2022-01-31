@@ -36,4 +36,8 @@ public class FotoService {
 		return repository.getById(id);
 	}
 
+
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
 }
