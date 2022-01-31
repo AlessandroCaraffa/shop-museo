@@ -35,6 +35,13 @@ public class VenditaProdottoService {
 		return repository.save(newVenditaProdotto);
 	}
 	
-	
+	public List<VenditaProdotto> findByVenditaId(Integer id) {
+		return repository.findByVenditaId(id);
+	}
+
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		repository.deleteById(id);
+	}
 
 }

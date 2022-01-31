@@ -44,7 +44,7 @@ public class VenditaProdottoController {
 		model.addAttribute("venditaProdotto", venditaProdottoForm);
 		model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
 		model.addAttribute("venditaId", venditaId);
-		
+		model.addAttribute("venditaProdotti", service.findByVenditaId(venditaId));
 		
 		
 		return "/vendite/edit";
@@ -61,10 +61,16 @@ public class VenditaProdottoController {
 		}
 		
 		model.addAttribute("venditaId", venditaId);
-
+		
 		service.save(formVendita,venditaId);
 		String url = "redirect:/vendite/" + venditaId.toString();
 		return url;
+	}
+	@GetMapping("vendite/delete/{venditaId}/{venditaProdottoId}")
+	public String doDelete(Model model, @PathVariable("venditaId") Integer venditaId,@PathVariable("venditaProdottoId") Integer venditaProdottoId) {
+		service.deleteById(venditaProdottoId);
+		return "redirect:/vendite/{venditaId}";
+
 	}
 	
 }
