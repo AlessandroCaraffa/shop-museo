@@ -9,7 +9,7 @@
 	<nav th:replace="fragments/navbar :: navbar"></nav>
 	<div class="container">
 		<h1>Prodotto</h1>
-		<form id="form-foto" th:object="${foto}" th:action="@{/prodotto/editFoto/{id}(id=${foto.id})}" method="post"
+		<form id="form-foto" th:object="${foto}" th:action="@{/guide/editFoto/{id}(id=${foto.id})}" method="post"
 			enctype="multipart/form-data">
 			<div class="row gy-2">
 
@@ -30,10 +30,10 @@
 
 	</div>
 	<div class="container">
-		<div th:each="item : ${prodotto.getFoto()}" class="row mt-5">
+		<div th:each="item : ${guida.getFoto()}" class="row mt-5">
 			<div class="col-3">
 				<div class="card">
-					<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top">
+					<img th:src="|/guide/${item.getId()}/foto|" class="card-img-top">
 				</div>
 
 			</div>

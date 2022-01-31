@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import org.generation.italy.model.Foto;
+import org.generation.italy.model.FotoForm;
 import org.generation.italy.model.Percorso;
 import org.generation.italy.model.PercorsoForm;
 import org.generation.italy.model.Prodotto;
@@ -103,6 +104,31 @@ public class PercorsoController {
 		service.update(formPercorso);
 		return "redirect:/percorsi";
 	}
+	@GetMapping("/editFoto/{id}")
+	public String editFoto (@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("edit", true);
+		model.addAttribute("percorso", service.getById(id));
+		model.addAttribute("foto", fotoService.getById(id));
+		model.addAttribute("fotoList", fotoService.findAllById(id));
+		
+		return "/percorsi/editFoto";
+	}
+	
+	@PostMapping("/editFoto/{id}")
+	public String doUpdateFoto(@Valid @ModelAttribute("foto") FotoForm formFoto, @PathVariable("id") Integer id,BindingResult bindingResult, Model model) {
+	
+
+	try {
+	Foto addFoto= fotoService.create(formFoto);
+	Percorso percorso=service.getById(id);
+	percorso.getFoto().add(addFoto);
+	service.update(percorso);
+	}
+	catch(IOException e){
+		
+	}
+	return "redirect:/percorsi";
+}
 	
 	@RequestMapping(value = "/{id}/foto", produces = org.springframework.http.MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getFotoContenuto(@PathVariable Integer id){

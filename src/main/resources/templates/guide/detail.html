@@ -34,6 +34,20 @@
 						<dd th:text="*{bio}"></dd>
 					</th:block>
 				</div>
+			</div>
+		</div>
+		<div class="container">
+		<div th:each="item : ${guida.getFoto()}" class="row mt-5">
+			<div class="col-3">
+				<div class="card">
+					<img th:src="|/guide/${item.getId()}/foto|" class="card-img-top">
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
 
 		<!-- scripts -->
 		<div th:replace="fragments/utility :: scripts"></div>

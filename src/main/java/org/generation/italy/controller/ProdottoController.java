@@ -108,6 +108,7 @@ public class ProdottoController {
 	@GetMapping("/editFoto/{id}")
 	public String editFoto (@PathVariable("id") Integer id, Model model) {
 		//model.addAttribute("edit", true);
+		model.addAttribute("prodotto", service.getById(id));
 		model.addAttribute("foto", fotoRepo.getById(id));
 		model.addAttribute("fotoList", fotoRepo.findAllById(id));
 		
@@ -137,7 +138,7 @@ public class ProdottoController {
 			//prodottoFotoId.getFoto();
 		
 		
-		model.addAttribute("fotoList", fotoRepo.findAll());
+		//model.addAttribute("fotoList", fotoRepo.findAll());
 		return "/prodotto/detail";
 	}
 	
