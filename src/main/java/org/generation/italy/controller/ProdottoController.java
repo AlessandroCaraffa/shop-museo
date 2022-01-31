@@ -62,11 +62,9 @@ public class ProdottoController {
 		}
 		if(formProdotto.getConteuntoProdotto() == null || formProdotto.getConteuntoProdotto().isEmpty()) {
 			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
-		}
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("fotoList", service.findAll());
 			return "/prodotto/edit";
-		}try {
+		}
+		try {
 
 			
 			service.createProdottoForm(formProdotto);
@@ -127,6 +125,7 @@ public class ProdottoController {
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("prodotto", service.getById(id));
+		model.addAttribute("fotoList", fotoRepo.findAllById(id));
 		return "/prodotto/detail";
 	}
 	

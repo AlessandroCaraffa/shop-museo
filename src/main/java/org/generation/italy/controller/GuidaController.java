@@ -57,11 +57,9 @@ public class GuidaController {
 		}
 		if(formGuida.getContenutoGuida() == null || formGuida.getContenutoGuida().isEmpty()) {
 			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
-		}
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("fotoList", service.findAll());
 			return "/guide/edit";
-		}try {
+		}
+		try {
 			
 			service.createGuidaForm(formGuida);
 			redirectAttributes.addFlashAttribute("successMessage", "Dati della Guida Aggiunto!");
