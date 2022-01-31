@@ -1,6 +1,5 @@
 package org.generation.italy.controller;
 
-import java.time.LocalDate;
 
 import javax.validation.Valid;
 
@@ -28,6 +27,12 @@ public class AcquistoController {
 	public String list(Model model) {
 		model.addAttribute("list", service.findAll());
 		return "/acquisti/list";
+	}
+	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("acquisto", service.getById(id));
+		return "/acquisti/detail";
 	}
 	
 	@GetMapping("/create")
