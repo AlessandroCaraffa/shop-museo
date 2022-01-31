@@ -1,8 +1,10 @@
 package org.generation.italy.controller;
 
+
 import javax.validation.Valid;
 
 import org.generation.italy.model.Acquisto;
+import org.generation.italy.model.AcquistoProdotto;
 import org.generation.italy.service.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,14 +25,20 @@ public class AcquistoController {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("list", service.findAll());
+		model.addAttribute("acquisti", service.findAll());
 		return "/acquisti/list";
+	}
+	
+	@GetMapping("/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("acquisto", service.getById(id));
+		return "/acquisti/detail";
 	}
 	
 	@GetMapping("/create")
 	public String create(Model model) {
 		model.addAttribute("edit", false);
-		model.addAttribute("acquisti", new Acquisto());
+		model.addAttribute("acquisto", new Acquisto());
 		return "/acquisti/edit";
 	}
 	
@@ -59,7 +67,7 @@ public class AcquistoController {
 	}
 	
 	@PostMapping("/edit/{id}")
-	public String doUpdate(@Valid @ModelAttribute("percorso") Acquisto formAcquisto,
+	public String doUpdate(@Valid @ModelAttribute("acquisto") Acquisto formAcquisto,
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
@@ -67,6 +75,14 @@ public class AcquistoController {
 		}
 		service.update(formAcquisto);
 		return "redirect:/acquisti";
+	}
+	
+	@GetMapping("/{id}/aProdotto")
+	public String aProdotto(@PathVariable("id") Integer id, Model model) {
+		AcquistoProdotto aProdotto = new AcquistoProdotto();
+		aProdotto.setAcquisto(service.getById(id));
+		model.addAttribute("aProdotto", aProdotto);
+		return "/aProdotto/edit";
 	}
 	
 }

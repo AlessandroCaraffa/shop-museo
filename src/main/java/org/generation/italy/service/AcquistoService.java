@@ -1,5 +1,6 @@
 package org.generation.italy.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.generation.italy.model.Acquisto;
@@ -18,6 +19,7 @@ public class AcquistoService {
 	}
 	
 	public Acquisto save(Acquisto acquisto) {
+		acquisto.setDataAcquisto(LocalDate.now());
 		return repository.save(acquisto);
 	}
 	
@@ -30,6 +32,7 @@ public class AcquistoService {
 	}
 	
 	public Acquisto update(Acquisto acquisto) {
+		acquisto.setDataAcquisto(LocalDate.now());
 		return repository.save(acquisto);
 	}
 

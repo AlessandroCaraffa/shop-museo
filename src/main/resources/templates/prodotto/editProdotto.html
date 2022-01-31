@@ -9,8 +9,8 @@
 	<nav th:replace="fragments/navbar :: navbar"></nav>
 	<div class="container">
 		<h1>Prodotto</h1>
-		<form id="form-prodotto" th:object="${prodottoForm}"
-			th:action="${edit} ? @{/prodotto/edit/{id}(id=${prodottoForm.id})} : @{/prodotto/create}" method="post"
+		<form id="form-prodotto" th:object="${prodotto}"
+			th:action="@{/prodotto/editProdotto/{id}(id=${prodotto.id})}" method="post"
 			enctype="multipart/form-data">
 			<div class="row gy-2">
 				<div class="col-8">
@@ -24,15 +24,6 @@
 				<div class="col-6">
 					<label class="form-label" for="descrizione">Descrizione</label>
 					<input type="text" class="form-control" id="descrizione" th:field="*{descrizione}">
-				</div>
-
-				<div class="col-3"> 
-					<label for="titolo" class="form-label">Title</label>
-					<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
-				</div>
-				<div class="col-3">
-							<label class="form-label" for="contenuto">Foto</label>
-							<input type="file" class="form-control" id="contenuto" th:field="*{conteuntoProdotto}">
 				</div>
 
 				<div class="col-12">

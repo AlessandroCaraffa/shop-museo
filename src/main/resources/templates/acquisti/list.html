@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-	<div th:replace="fragments/utility :: head"></div>
+	<div th:replace="fragments/utility :: headTags"></div>
 		<title>Rifornimenti</title>
 	</head>
 	<body>
@@ -31,6 +31,7 @@
 						<td th:text="${acquisto.nomeFornitore}"></td>
 						<td th:text="${acquisto.totaleAcquisto}"></td>
 						<td>
+							<a class="me-2" th:href="@{|/acquisti/detail/${acquisto.id}|}"><i class="fas fa-info"></i></a>
 							<a class="me-1" th:href="@{|/acquisti/edit/${acquisto.id}|}"><i class="fas fa-edit"></i></a>
 							<a class="me-2" th:href="@{|/acquisti/delete/${acquisto.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
 						</td>

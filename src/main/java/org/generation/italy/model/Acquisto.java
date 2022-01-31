@@ -2,8 +2,6 @@ package org.generation.italy.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +16,6 @@ public class Acquisto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull
 	private LocalDate dataAcquisto;
 	
 	@NotNull

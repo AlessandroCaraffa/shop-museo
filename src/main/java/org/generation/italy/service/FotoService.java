@@ -40,4 +40,7 @@ public class FotoService {
 	public void deleteById(Integer id) {
 		repository.deleteById(id);
 	}
+	public Foto update(Foto foto) {
+		return repository.save(foto);
+	}
 }
