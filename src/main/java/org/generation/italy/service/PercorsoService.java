@@ -47,6 +47,7 @@ public class PercorsoService {
 		newPercorso.setDescrizione(percorso.getDescrizione());
 		newPercorso.setPrezzo(percorso.getPrezzo());
 		newPercorso.setPostiMax(percorso.getPostiMax());
+		newPercorso.setDurata(percorso.getDurata());
 		Percorso percorsoSave=repository.save(newPercorso);
 		return percorsoSave;
 	}

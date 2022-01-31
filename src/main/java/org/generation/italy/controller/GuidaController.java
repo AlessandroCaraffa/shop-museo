@@ -79,18 +79,18 @@ public class GuidaController {
 		return "redirect:/guide";
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/editGuida/{id}")
 	public String edit (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
-		model.addAttribute("guidaForm", service.getById(id));
-		return "/guide/edit";
+		model.addAttribute("guida", service.getById(id));
+		return "/guide/editGuida";
 	}
 	
-	@PostMapping("/edit/{id}")
+	@PostMapping("/editGuida/{id}")
 	public String doUpdate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-			return "/guide/edit";
+			return "/guide/editGuida";
 		}
 		service.save(formGuida);
 		return "redirect:/guide";

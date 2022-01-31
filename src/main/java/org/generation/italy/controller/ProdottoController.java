@@ -40,6 +40,7 @@ public class ProdottoController {
 	@GetMapping
 	public String list(Model model) {
 		model.addAttribute("prodotti", service.findAllSortedByNome());
+		model.addAttribute("foto",fotoRepo.findAll());
 		return "/prodotto/list";
 
 	}
@@ -115,7 +116,7 @@ public class ProdottoController {
 	}
 	
 	@PostMapping("/editFoto/{id}")
-	public String doUpdateFoto(@Valid @ModelAttribute("Foto") Foto formFoto, BindingResult bindingResult, Model model) {
+	public String doUpdateFoto(@Valid @ModelAttribute("foto") Foto formFoto, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			
 			return "/prodotto/editFoto";

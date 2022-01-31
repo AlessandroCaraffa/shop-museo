@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+		<title th:text="|Prenotazione n° ${prenotazione.id}|"></title> 
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		
+		<!-- general container -->
+		<div class="container" th:object="${prenotazione}">
+			
+			<!-- title V2 -->
+			<div class="row">
+				<div class="col-auto me-auto">
+					<h1><a th:href="@{/prenotazioni}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="|Prenotazione n° ${prenotazione.id}|"></span></h1>
+				</div>
+				<div class="col-auto d-flex algn-items-end">
+					<a class="me-1" th:href="@{|/prenotazioni/edit/${prenotazione.id}|}"><i class="fas fa-edit"></i></a>
+					<a class="me-2" th:href="@{|/prenotazioni/delete/${prenotazione.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+				</div>
+			</div>
+			<hr/>
+			
+			<!-- container -->
+			<div class="row">
+			
+				<!-- main details -->
+				<div class="col-2">
+					<dl>
+						<dt>Nome e cognome</dt>
+						<dd th:text="|*{nome} *{cognome}|"></dd>
+						<dt>Percorso</dt>
+						<dd th:text="*{visita.percorso.nomePercorso}"></dd>
+					</dl>
+				</div>
+				<div class="col-2">
+					<dl>
+						<dt>N° posti</dt>
+						<dd th:text="*{quantita}"></dd>
+						<dt>Data e ora</dt>
+						<dd th:text="|${#temporals.format(prenotazione.visita.data, 'dd/MM/yyyy')} - *{visita.orario}"></dd>
+					</dl>
+				</div>
+
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

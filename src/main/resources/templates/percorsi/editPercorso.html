@@ -18,18 +18,18 @@
 			
 			<!-- form -->
 			<form id="percorso-form"
-				th:object="${percorsoForm}"
-				th:action="${edit} ? @{/percorsi/edit/{id}(id=${percorso.id})} : @{/percorsi/create}"
+				th:object="${percorso}"
+				th:action="@{/percorsi/editPercorso/{id}(id=${percorso.id})}"
 				method="POST"
 				enctype="multipart/form-data">
 				
 				<!-- validazione -->
-				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
+				<!--<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
 					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
 					<ul class="mb-1">
 						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
 					</ul>
-				</div>
+				</div>-->
 				
 				<!-- campi form -->
 				<div class="row">
@@ -77,20 +77,8 @@
 									</ul>
 								</div>
 							</div>
-							<!-- inserimento foto -->
-							<div class="col-3"> 
-								<label for="titolo" class="form-label">Titolo</label>
-								<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
-								<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-3">
-								<label class="form-label" for="contenuto">Foto</label>
-								<input type="file" class="form-control" id="contenuto" th:field="*{contenutoPercorso}">
-							</div>
+							
+							
 
 							<!-- buttons -->
 							<div class="col-12">

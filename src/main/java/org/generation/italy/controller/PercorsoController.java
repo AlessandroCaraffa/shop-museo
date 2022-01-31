@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.generation.italy.model.Percorso;
 import org.generation.italy.model.PercorsoForm;
+import org.generation.italy.model.Prodotto;
 import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.service.PercorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,19 +81,19 @@ public class PercorsoController {
 		return "redirect:/percorsi";
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String edit (@PathVariable("id") Integer id, Model model) {
+	@GetMapping("/editPercorso/{id}")
+	public String editPercorso (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("percorso", service.getById(id));
-		return "/percorsi/edit";
+		
+		return "/percorsi/editPercorso";
 	}
 	
-	@PostMapping("/edit/{id}")
-	public String doUpdate(@Valid @ModelAttribute("percorso") Percorso formPercorso,
-			BindingResult bindingResult, Model model) {
+	@PostMapping("/editPercorso/{id}")
+	public String doUpdatePercorso(@Valid @ModelAttribute("percorso") Percorso formPercorso, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", true);
-			return "/percorsi/edit";
+			
+			return "/percorsi/editPercorso";
 		}
 		service.update(formPercorso);
 		return "redirect:/percorsi";

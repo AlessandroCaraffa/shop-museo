@@ -1,6 +1,7 @@
 package org.generation.italy.model;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -26,6 +27,9 @@ public class PercorsoForm {
 	@NotNull
 	@Min(value = 1)
 	private int postiMax;
+	
+	@NotNull
+	private LocalTime durata;
 
     //FOTOFORM
 	@NotEmpty(message = "Titolo necessario")
@@ -88,6 +92,14 @@ public class PercorsoForm {
 
 	public void setContenutoPercorso(MultipartFile contenutoPercorso) {
 		this.contenutoPercorso = contenutoPercorso;
+	}
+
+	public LocalTime getDurata() {
+		return durata;
+	}
+
+	public void setDurata(LocalTime durata) {
+		this.durata = durata;
 	}
 	
 	
