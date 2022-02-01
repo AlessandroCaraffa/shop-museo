@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -35,6 +36,11 @@ public class Visita {
 	@NotNull
 	@ManyToOne
 	private Guida guida;
+	
+	@Formula("(SELECT SUM(p.quantita)\r\n"
+			+ "FROM prenotazione p\r\n"
+			+ "WHERE p.visita_id = id)")
+	private Integer postiPrenotati;
 
 	// getters/setters
 	public Integer getId() {
@@ -66,6 +72,12 @@ public class Visita {
 	}
 	public void setGuida(Guida guida) {
 		this.guida = guida;
+	}
+	public Integer getPostiPrenotati() {
+		return postiPrenotati;
+	}
+	public void setPostiPrenotati(Integer postiPrenotati) {
+		this.postiPrenotati = postiPrenotati;
 	}
 	
 }

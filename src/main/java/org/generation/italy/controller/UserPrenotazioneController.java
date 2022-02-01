@@ -49,6 +49,8 @@ public class UserPrenotazioneController {
 	// user/percorsi/id/visite
 	@GetMapping("/{idPer}/visite") // lista delle visite selezionate per id percorso
 	public String visiteList(Model model, @PathVariable("idPer") Integer idPer) {
+		System.out.println(visitaService.findByPercorsoId(idPer)); // CHEAT
+		System.out.println(visitaService.getVisitaNotLessThen2h(idPer)); // check
 		model.addAttribute("visite", visitaService.getVisitaNotLessThen2h(idPer));
 		model.addAttribute("percorso", percorsoService.getById(idPer)); // agg. per titolo
 		return "/user/visite/list";

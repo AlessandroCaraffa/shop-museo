@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 
-	List<Visita> findByPercorsoId(Integer id);
-
+	public List<Visita> findByPercorsoId(Integer id);
+	
 	@Query(value = "SELECT * FROM visita v\r\n"
 			+ "WHERE v.percorso_id = :id\r\n"
 			+ "AND (`data` = CURDATE()\r\n"
@@ -21,6 +21,6 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 			+ "AND `data` > CURDATE()\r\n"
 			+ "ORDER BY `data`, orario;",
 			nativeQuery = true)
-	List<Visita> getVisitaNotLessThen2h(@Param("id") Integer id);
+	public List<Visita> getVisitaNotLessThen2h(@Param("id") Integer id);
 	
 }
