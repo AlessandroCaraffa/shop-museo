@@ -23,7 +23,8 @@ public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Inte
 			+ "join  percorso p \r\n"
 			+ "on v.percorso_id = p.id \r\n"
 			+ "join prenotazione p2 \r\n"
-			+ "on p2.visita_id =v.id ", 
+			+ "on p2.visita_id =v.id \r\n"
+			+ "where MONTH(v.`data`) = MONTH(now())  and YEAR(v.`data`) = YEAR(now())", 
 			  nativeQuery = true)
 	public  Integer getTotalePrenotazioni();
 
