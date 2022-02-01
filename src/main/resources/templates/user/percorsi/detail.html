@@ -31,7 +31,9 @@
 						<dt>Posti max</dt>
 						<dd th:text="*{postiMax}"></dd>
 						<dt>Prezzo</dt>
-						<dd th:text="*{prezzo}"></dd>
+						<dd th:text="|*{prezzo}€|"></dd>
+						<dt>Durata</dt>
+						<dd th:text="*{durata}"></dd>
 						
 						<!-- mostra solo se non vuoto -->
 						<th:block th:unless=${#strings.isEmpty(percorso.descrizione)}>

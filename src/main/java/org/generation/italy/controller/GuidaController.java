@@ -4,9 +4,13 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
+import org.generation.italy.model.Foto;
+import org.generation.italy.model.FotoForm;
 import org.generation.italy.model.Guida;
 import org.generation.italy.model.GuidaForm;
+import org.generation.italy.model.Prodotto;
 import org.generation.italy.model.ProdottoForm;
+import org.generation.italy.service.FotoService;
 import org.generation.italy.service.GuidaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +30,8 @@ public class GuidaController {
 	
 	@Autowired
 	private GuidaService service;
+	@Autowired
+	private FotoService fotoService;
 
 	@GetMapping
 	public String list(Model model) {
@@ -76,21 +82,51 @@ public class GuidaController {
 		service.deleteById(id);
 		return "redirect:/guide";
 	}
-	
-	@GetMapping("/editGuida/{id}")
-	public String edit (@PathVariable("id") Integer id, Model model) {
+	//
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Integer id,Model model) {
 		model.addAttribute("edit", true);
+		GuidaForm guida=new GuidaForm();
+		
+		
+		model.addAttribute("guidaForm", new GuidaForm());
+		return "guide/edit";
+	}
+	//
+	@GetMapping("/editGuida/{id}")
+	public String editGuida (@PathVariable("id") Integer id, Model model) {
+		//model.addAttribute("edit", true);
 		model.addAttribute("guida", service.getById(id));
+		
 		return "/guide/editGuida";
 	}
 	
 	@PostMapping("/editGuida/{id}")
-	public String doUpdate(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
+	public String doUpdateGuida(@Valid @ModelAttribute("guida") Guida formGuida, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", true);
+			
 			return "/guide/editGuida";
 		}
-		service.save(formGuida);
+		service.update(formGuida);
+		return "redirect:/guide";
+	}
+	@GetMapping("/editFoto/{id}")
+	public String editFoto (@PathVariable("id") Integer id, Model model) {
+		//model.addAttribute("edit", true);
+		model.addAttribute("guida", service.getById(id));
+		model.addAttribute("foto", fotoService.getById(id));
+		model.addAttribute("fotoList", fotoService.findAllById(id));
+		
+		return "/guide/editFoto";
+	}
+	
+	@PostMapping("/editFoto/{id}")
+	public String doUpdateFoto(@Valid @ModelAttribute("foto") Foto formFoto, @PathVariable("id") Integer id,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) {
+if(bindingResult.hasErrors()) {
+			
+			return "/guide/editGuida";
+		}
+		fotoService.update(formFoto);
 		return "redirect:/guide";
 	}
 	
