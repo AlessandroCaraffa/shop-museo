@@ -77,7 +77,7 @@ public class PercorsoController {
 		}
 		
 		
-		
+		redirectAttributes.addFlashAttribute("successMessage", "Percorso Aggiunto!");
 		return "redirect:/percorsi";
 	}
 	
@@ -109,12 +109,13 @@ public class PercorsoController {
 	}
 	
 	@PostMapping("/editPercorso/{id}")
-	public String doUpdatePercorso(@Valid @ModelAttribute("percorso") Percorso formPercorso, BindingResult bindingResult, Model model) {
+	public String doUpdatePercorso(@Valid @ModelAttribute("percorso") Percorso formPercorso, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			
 			return "/percorsi/editPercorso";
 		}
 		service.update(formPercorso);
+		redirectAttributes.addFlashAttribute("successMessage", "Percorso Modificato!");
 		return "redirect:/percorsi";
 	}
 	@GetMapping("/editFoto/{id}")
@@ -128,7 +129,7 @@ public class PercorsoController {
 	}
 	
 	@PostMapping("/editFoto/{id}")
-	public String doUpdateFoto(@Valid @ModelAttribute("foto") FotoForm formFoto, @PathVariable("id") Integer id,BindingResult bindingResult, Model model) {
+	public String doUpdateFoto(@Valid @ModelAttribute("foto") FotoForm formFoto, @PathVariable("id") Integer id,BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 	
 
 	try {
@@ -140,6 +141,7 @@ public class PercorsoController {
 	catch(IOException e){
 		
 	}
+	redirectAttributes.addFlashAttribute("successMessage", "Foto Modificata!");
 	return "redirect:/percorsi";
 }
 	

@@ -19,20 +19,20 @@ public class PercorsoForm {
 
 	// PERCORSO
 	@NotNull
-	@NotEmpty(message = "Nome Percorso necessario")
+	@NotEmpty(message = "Inserisci nome del percorso")
 	private String nomePercorso;
 
 	private String descrizione;
 
-	@NotNull
+	@NotNull(message = "Inserisci prezzo del percorso")
 	@Min(value = 0)
 	private BigDecimal prezzo;
 
 	@NotNull
-	@Min(value = 1)
+	@Min(value = 1, message = "Inserisci numero posti massimi maggiore o uguale ad 1")
 	private int postiMax;
 
-	@NotNull
+	@NotNull(message = "Specificare durata del percorso")
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime durata;
 
