@@ -35,16 +35,15 @@ public class Prodotto {
 	@ManyToMany
 	private List<Foto> foto;
 
-	@Formula("(select sum(ap.quantita)\r\n"
+	@Formula("(select coalesce(sum(ap.quantita),0)\r\n"
 			+ "from acquisto_prodotto ap\r\n"
 			+ "where ap.prodotto_id = id)")
 	private Integer quantitaAcquistata;
 	
-	@Formula("(select sum(vp.quantita)\r\n"
+	@Formula("(select coalesce(sum(vp.quantita),0)\r\n"
 			+ "from vendita_prodotto vp\r\n"
 			+ "where vp.prodotto_id = id)")
 	private Integer quantitaVenduta;
-	
 	
 	// getters/setters
 	public Integer getId() {
@@ -90,7 +89,7 @@ public class Prodotto {
 	public void setQuantitaVenduta(Integer quantitaVenduta) {
 		this.quantitaVenduta = quantitaVenduta;
 	}
-	
+
 	
 	
 }
