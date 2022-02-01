@@ -20,9 +20,11 @@ public class DashboardController {
 	private PrenotazioneRepository prenotazioneRepository;
 	
 	@GetMapping
+
 	public String list(Model model) {
 		
 		model.addAttribute("totalePrenotazioni", prenotazioneRepository.getTotalePrenotazioni());
+
 		return "/dashboard/dashboard";
 	}
 	
