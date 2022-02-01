@@ -16,18 +16,18 @@ public class ProdottoForm {
 	private Integer id;
 	
 	@NotNull
-	@NotEmpty(message="Nome obbligatorio")
+	@NotEmpty(message="Inserisci il nome del prodotto")
 	private String nome;
 	
 	private String descrizione;
 	
-	@NotNull
+	@NotNull(message="Inserisci il prezzo di vendita")
 	private BigDecimal prezzoVendita;
 	
 	
 	
 
-	@NotEmpty(message="Titolo necessario")
+	@NotEmpty(message="Inserisci il titolo della foto")
 	private String titolo;
 	
 	private MultipartFile conteuntoProdotto;
