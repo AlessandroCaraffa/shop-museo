@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.apache.tomcat.util.http.parser.MediaType;
 import org.generation.italy.model.Foto;
 import org.generation.italy.model.FotoForm;
+import org.generation.italy.model.Guida;
 import org.generation.italy.model.Prodotto;
 import org.generation.italy.model.ProdottoForm;
 import org.generation.italy.service.FotoService;
@@ -87,11 +88,18 @@ public class ProdottoController {
 		fotoRepo.deleteById(id);
 		return "redirect:/prodotto";
 	}
-	@GetMapping("/deleteFoto/{id}")
-	public String doDeleteFoto(Model model, @PathVariable("id") Integer id) {
+	@GetMapping("/{prodottoId}/deleteFoto/{id}")
+	public String doDeleteFoto(Model model, @PathVariable("id") Integer id,@PathVariable("prodottoId") Integer prodottoId) {
+		Prodotto prodotto=service.getById(prodottoId);
+		Foto foto=fotoRepo.getById(id);
+		prodotto.getFoto().remove(foto);
+		service.update(prodotto);
+		
+		
+		
 		fotoRepo.deleteById(id);
 		
-		return "redirect:/prodotto";
+		return "redirect:/prodotto/editFoto/"+prodottoId;
 	}
 	
 	@GetMapping("/editProdotto/{id}")

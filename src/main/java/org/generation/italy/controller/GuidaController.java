@@ -86,7 +86,6 @@ public class GuidaController {
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id,Model model) {
 		model.addAttribute("edit", true);
-		GuidaForm guida=new GuidaForm();
 		
 		
 		model.addAttribute("guidaForm", new GuidaForm());
