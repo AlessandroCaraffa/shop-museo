@@ -4,12 +4,23 @@ import java.util.List;
 
 import org.generation.italy.model.Visita;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 
-	// TODO work in progress [wip]
 	List<Visita> findByPercorsoId(Integer id);
 
+	@Query(value = "SELECT * FROM visita v\r\n"
+			+ "WHERE v.percorso_id = :id\r\n"
+			+ "AND (`data` = CURDATE()\r\n"
+			+ "AND orario > DATE_ADD(NOW(), INTERVAL 2 HOUR))\r\n"
+			+ "OR v.percorso_id = :id\r\n"
+			+ "AND `data` > CURDATE()\r\n"
+			+ "ORDER BY `data`, orario;",
+			nativeQuery = true)
+	List<Visita> getVisitaNotLessThen2h(@Param("id") Integer id);
+	
 }
