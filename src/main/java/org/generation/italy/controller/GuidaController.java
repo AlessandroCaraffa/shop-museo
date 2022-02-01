@@ -86,9 +86,19 @@ public class GuidaController {
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id,Model model) {
 		model.addAttribute("edit", true);
+		Guida guida=new Guida();
+		GuidaForm guidaForm=new GuidaForm();
+		guida=service.getById(id);
+		guidaForm.setId(guida.getId());
+		guidaForm.setNome(guida.getNome());
+		guidaForm.setCognome(guida.getCognome());
+		guidaForm.setBio(guida.getBio());
+		guidaForm.setTitolo(guida.getFoto().getTitolo());
+		//guidaForm.setContenutoGuida(guida.getFoto().getContenuto()); da sistemare
 		
 		
-		model.addAttribute("guidaForm", new GuidaForm());
+		
+		model.addAttribute("guidaForm", guidaForm);
 		return "guide/edit";
 	}
 	//

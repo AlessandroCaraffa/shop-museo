@@ -34,6 +34,8 @@
 			<div class="col-3">
 				<div class="card">
 					<img th:src="|/percorsi/${item.getId()}/foto|" class="card-img-top">
+					<a class="" th:href="@{|/percorsi/${percorso.id}/deleteFoto/${item.getId()}|}" onclick="return confirm('Are you sure?')"> <i
+								class="fas fa-trash-alt"></i></a>
 				</div>
 
 			</div>
