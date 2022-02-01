@@ -29,6 +29,7 @@
 					<td class=" " th:text="${prodotto.descrizione}"></td>
 					<td class=" " th:text="${prodotto.prezzoVendita}"></td>
 					<td th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+					<td>
 						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
 						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
 						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
