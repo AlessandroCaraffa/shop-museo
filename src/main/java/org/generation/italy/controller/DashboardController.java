@@ -16,7 +16,7 @@ public class DashboardController {
 	
 	@GetMapping
 	public String list(Model model) {				
-		return "/dashboard";
+		return "/dashboard/dashboard";
 	}
 	
 	
