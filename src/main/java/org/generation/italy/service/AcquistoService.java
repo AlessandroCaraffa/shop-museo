@@ -14,6 +14,10 @@ public class AcquistoService {
 	@Autowired
 	private AcquistoRepository repository;
 	
+	public Integer getTotaleAcquisti() {
+		return repository.getTotaleAcquisti();
+	}
+	
 	public List<Acquisto> findAll() {
 		return repository.findAll();
 	}

@@ -16,6 +16,11 @@ public class VenditaService {
 	@Autowired
 	private VenditaRepository repository;
 	
+	public Integer getTotaleVendite() {
+		return repository.getTotaleVendite();
+	}
+		
+	
 	public List<Vendita> findAll(){
 		return repository.findAll();
 	}
