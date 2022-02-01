@@ -60,7 +60,20 @@ public class GuidaService {
 		repository.deleteById(id);
 	}
 	
-	
+	public Guida getByIdForm(Integer id) {
+		Guida guida= getById(id);
+		//Foto foto=fotoService.getById(id);
+		GuidaForm guidaForm=new GuidaForm();
+		guidaForm.setNome(guida.getNome());
+		guidaForm.setCognome(guida.getCognome());
+		guidaForm.setBio(guida.getBio());
+		
+		
+		guidaForm.setTitolo(guida.getFoto().getTitolo());
+		
+		
+		return guida;
+	}
 	
 	public Guida getById(Integer id) {
 		return repository.getById(id);
