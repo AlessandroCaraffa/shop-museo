@@ -86,6 +86,19 @@ public class PercorsoController {
 		service.deleteById(id);
 		return "redirect:/percorsi";
 	}
+	@GetMapping("/{percorsoId}/deleteFoto/{id}")
+	public String doDeleteFoto(Model model, @PathVariable("id") Integer id,@PathVariable("percorsoId") Integer percorsoId) {
+		Percorso percorso=service.getById(percorsoId);
+		Foto foto=fotoService.getById(id);
+		percorso.getFoto().remove(foto);
+		service.update(percorso);
+		
+		
+		
+		fotoService.deleteById(id);
+		
+		return "redirect:/percorsi/editFoto/"+percorsoId;
+	}
 	
 	@GetMapping("/editPercorso/{id}")
 	public String editPercorso (@PathVariable("id") Integer id, Model model) {
