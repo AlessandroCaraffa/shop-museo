@@ -23,12 +23,12 @@
 				
 			</thead>
 			<tbody>
-				<tr th:each="prodotto : ${prodotti}">
+				<tr class = " " th:classappend= "(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')" th:each="prodotto : ${prodotti}">
 					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
 					<td class=" " th:text="${prodotto.nome}"></td>
 					<td class=" " th:text="${prodotto.descrizione}"></td>
 					<td class=" " th:text="${prodotto.prezzoVendita}"></td>
-					<td th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+					<td class=" " th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
 					<td>
 						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
 						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
