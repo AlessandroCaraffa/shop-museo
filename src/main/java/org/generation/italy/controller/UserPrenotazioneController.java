@@ -82,13 +82,13 @@ public class UserPrenotazioneController {
 	}
 	
 	@PostMapping("/{idPer}/visite/{idVis}/prenotazioni/create")
-	public String doCreate(Model model, BindingResult bindingResult,
-			@Valid @ModelAttribute("prenotazione") Prenotazione formPrenotazione,
+	public String doCreate(@Valid @ModelAttribute("prenotazione") Prenotazione formPrenotazione,
+			BindingResult bindingResult, Model model,
 			@PathVariable("idPer") Integer idPer,
 			@PathVariable("idVis") Integer idVis) {
 		if(bindingResult.hasErrors()) {
-//			model.addAttribute("percorso", percorsoService.getById(idPer));
-//			model.addAttribute("visita", visitaService.getById(idVis));
+			model.addAttribute("percorso", percorsoService.getById(idPer)); // per ricostruire url
+			model.addAttribute("visita", visitaService.getById(idVis)); // per ricostruire url
 			return "/user/prenotazioni/edit";
 		}
 		prenotazioneService.save(formPrenotazione);
