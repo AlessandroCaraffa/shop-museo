@@ -41,7 +41,7 @@ public class DashboardController {
 		model.addAttribute("top5", venditaProdottoService.top(5));
 
 		
-		model.addAttribute("VisiteProssimoMese", visitaService.getVisiteNextMonth());
+		model.addAttribute("VisiteProssimoMese", visitaService.getVisiteNextWeek());
 
 		return "/dashboard/dashboard";
 	}
