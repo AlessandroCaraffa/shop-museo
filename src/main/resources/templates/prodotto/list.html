@@ -24,8 +24,8 @@
 				<tr>
 					<th class="text-secondary  fs-3 " scope="col">Nome</th>
 					<th class="text-secondary ms-2 fs-3" scope="col">Descrizione</th>
-					<th class="text-secondary  fs-3" scope="col">Prezzo</th>
-					<th class="text-secondary  fs-3" scope="col">Quantità disponibile</th>
+					<th class="text-secondary  fs-3 text-center" scope="col">Prezzo</th>
+					<th class="text-secondary  fs-3 text-center" scope="col">Quantità</th>
 					<th></th>
 
 
@@ -41,9 +41,9 @@
 					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
 					<td class=" " th:text="${prodotto.nome}"></td>
 					<td class=" " th:text="${prodotto.descrizione}"></td>
-					<td class=" " th:text="${prodotto.prezzoVendita}"></td>
-					<td class=" " th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
-					<td>
+					<td class="text-center" th:text="${prodotto.prezzoVendita}"></td>
+					<td class="text-center" th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+					<td class="d-flex justify-content-between">
 						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
 
 						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
@@ -51,7 +51,7 @@
 						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}" onclick="return confirm('Are you sure?')"><i
 								class="fas fa-trash-alt"></i></a>
 
-					</td>
+					</td >
 				</tr>
 
 			</tbody>
