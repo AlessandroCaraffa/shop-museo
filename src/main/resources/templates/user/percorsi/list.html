@@ -18,23 +18,23 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Nome percorso</th>
-						<th>Prezzo</th>
-						<th>Posti max</th>
-						<th>Durata</th>
+						<th class="text-secondary  fs-3 ">Nome percorso</th >
+						<th class="text-secondary  fs-3 text-center">Prezzo</th >
+						<th class="text-secondary  fs-3 text-center">Posti max</th >
+						<th class="text-secondary  fs-3 text-center">Durata</th >
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="item : ${percorsi}">
 						<td th:text="${item.nomePercorso}"></td>
-						<td th:text="|${item.prezzo}€|"></td>
-						<td th:text="${item.postiMax}"></td>
-						<td th:text="${#temporals.format(item.durata, 'H:mm')}"></td>
-						<td>
+						<td class="text-center" th:text="|${item.prezzo}€|"></td>
+						<td class="text-center" th:text="${item.postiMax}"></td>
+						<td class="text-center" th:text="${#temporals.format(item.durata, 'H:mm')}"></td>
+						<td class="d-flex justify-content-evenly">
 							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/detail|}"><i class="fas fa-info"></i></a>
 							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/visite|}"><i class="far fa-calendar-alt"></i> Prenota</a>
-						</td>
+						</td >
 					</tr>
 				</tbody>
 			</table>

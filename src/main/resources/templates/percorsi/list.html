@@ -26,26 +26,26 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Nome percorso</th>
-					<th>Prezzo</th>
-					<th>Posti max</th>
-					<th>Durata</th>
+					<th class="text-secondary  fs-3 ">Percorso</th >
+					<th class="text-secondary  fs-3 text-center">Prezzo</th >
+					<th class="text-secondary  fs-3 text-center">Posti max</th >
+					<th class="text-secondary  fs-3 text-center">Durata</th >
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="item : ${percorsi}">
 					<td th:text="${item.nomePercorso}"></td>
-					<td th:text="|${item.prezzo}€|"></td>
-					<td th:text="${item.postiMax}"></td>
-					<td th:text="${#temporals.format(item.durata, 'H:mm')}"></td> <!-- formattazione personalizzata -->
-					<td>
+					<td class="text-center" th:text="|${item.prezzo}€|"></td>
+					<td class="text-center" th:text="${item.postiMax}"></td>
+					<td class="text-center" th:text="${#temporals.format(item.durata, 'H:mm')}"></td> <!-- formattazione personalizzata -->
+					<td class="d-flex justify-content-between">
 						<a class="me-2" th:href="@{|/percorsi/detail/${item.id}|}"><i class="fas fa-info"></i></a>
 						<a class="me-1" th:href="@{|/percorsi/editPercorso/${item.id}|}"><i class="fas fa-edit"></i></a>
 						<a class="me-1" th:href="@{|/percorsi/editFoto/${item.id}|}"><i class="fas fa-images"></i></a>
 						<a class="me-2" th:href="@{|/percorsi/delete/${item.id}|}"
 							onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
-					</td>
+					</td >
 				</tr>
 			</tbody>
 		</table>
