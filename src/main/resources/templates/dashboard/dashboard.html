@@ -1,70 +1,147 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
+
+<head>
 	<div th:replace="fragments/utility :: headTags"></div>
-		<title>Dashboard</title>
-	</head>
-	<body>
+	<title>Dashboard</title>
+</head>
+
+<body>
 	<nav th:replace="fragments/navbar :: navbar"></nav>
 	<div class="container">
-		<h2>Classifica dei prodotti più venduti dal nostro Shop</h2>
+	
+	
+	
+	
+		<h2 th:if="${inEsaurimento}">Prodotti in esaurimento</h2>
+		<table class="table table-sm" th:if="${inEsaurimento}">
+			<thead>
+				<tr>
+					<th class="text-secondary  fs-3 " scope="col">Nome</th>
+					<th class="text-secondary  fs-3 text-center" scope="col">Prezzo</th>
+					<th class="text-secondary  fs-3 text-center" scope="col">Quantità</th>
+					<th></th>
+
+
+				</tr>
+
+			</thead>
+			<tbody>
+
+				<tr 
+					th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
+					th:each="prodotto : ${prodotti}" th:if="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta} < 10">
+
+					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
+					<td class=" " th:text="${prodotto.nome}"></td>
+					<td class="text-center" th:text="${prodotto.prezzoVendita}"></td>
+					<td class="text-center" th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+					<td class="d-flex justify-content-between">
+						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
+
+						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
+						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i class="fas fa-images"></i></a>
+						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}" onclick="return confirm('Are you sure?')"><i
+								class="fas fa-trash-alt"></i></a>
+
+					</td >
+				</tr>
+
+			</tbody>
+		</table>
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<h2>Classifica dei 5 prodotti più venduti nell'ultimo mese'</h2>
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th scope="col">Prodotto</th>
+					<th scope="col">Quantità venduta</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="prodotto : ${top5}">
+					<td th:text="${prodotto.prodotto.nome}"></td>
+					<td th:text="${prodotto.numeroVendite}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
 		<h2>Lista delle visite guidate programmate per la prossima settimana</h2>
-		
-		
-		
+			<table class="table table-sm">
+			<thead>
+				<tr>
+					<!--<th scope="col">Id Visita</th>-->
+					<th scope="col">Percorso</th>
+					<th scope="col">Guida</th>
+					<th scope="col">Data</th>
+					<th scope="col">Ora</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${VisiteProssimoMese}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.percorso.nomePercorso}"></td>
+					<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
+					<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td>
+					<!-- formattazione personalizzata -->
+					<td th:text="${item.orario}"></td>
+					<td>
+						<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+						<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+						<a class="me-2" th:href="@{|/visite/delete/${item.id}|}"
+							onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
 		<h2>Riepilogo degli incassi dell'ultimo mese</h2>
 		<table class="table table-sm">
-		  <thead>
-		    <tr>
-		      <th scope="col"></th>
-		      <th scope="col">Spese Rifornimenti</th>
-		      <th scope="col">Ricavi</th>
-		      <th scope="col">Riepilogo</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr>
-		      <th scope="row"></th>
-		      <td><span th:text="${totaleAcquisti}"></span></td></td>
-		      <td><span th:text="${totaleVendite}"></span></td></td>
-		      <td><span th:text="${totalePrenotazioni}"></span></td>
-		    </tr>
-		  </tbody>
+			<thead>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Spese Rifornimenti</th>
+					<th scope="col">Entrate Shop</th>
+					<th scope="col">Entrate Visite</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row"></th>
+					<td><span th:text="'-' + ${totaleAcquisti} + ' &#x20AC'"></span></td>
+					</td>
+					<td><span th:text="'+' + ${totaleVendite}+ ' &#x20AC'"></span></td>
+					</td>
+					<td><span th:text="'+' + ${totalePrenotazioni}+ ' &#x20AC'"></span></td>
+				</tr>
+			</tbody>
 		</table>
-		<table class="table table-sm">
-		  <thead>
-		    <tr>
-		      <th scope="col">Prodotto</th>
-		      <th scope="col">Quantità venduta</th>
-		      <th scope="col">Ricavi</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr th:each="item : ${VisiteProssimoMese}">
-						<td th:text="${item.id}"></td>
-						<td th:text="${item.percorso.nomePercorso}"></td>
-						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
-						<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td> <!-- formattazione personalizzata -->
-						<td th:text="${item.orario}"></td>
-						<td>
-							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
-							<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
-							<a class="me-2" th:href="@{|/visite/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
-						</td>
-					</tr>
-		  </tbody>
-		</table>
+		
+	
+		
 
-	
-	
-	
-	
+
+
+
+
 	</div>
-				
+
 
 	<div th:replace="fragments/utility :: scripts"></div>
-	</body>
+</body>
 
 </html>

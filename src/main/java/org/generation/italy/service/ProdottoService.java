@@ -23,7 +23,14 @@ public class ProdottoService {
 	private FotoRepository fotoRepo;
 	
 	
-	
+	public boolean inEsaurimento() {
+		for(Prodotto prodotto : findAllSortedByNome()) {
+			if (prodotto.getQuantitaAcquistata() - prodotto.getQuantitaVenduta() < 10) {
+				return true;
+				
+			}
+		}return false;
+	}
 	
 	public List<Prodotto> findAllSortedByNome(){
 		return repository.findAll();
