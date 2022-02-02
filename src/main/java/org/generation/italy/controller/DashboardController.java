@@ -4,6 +4,7 @@ import org.generation.italy.service.AcquistoService;
 import org.generation.italy.service.DashboardService;
 import org.generation.italy.service.PrenotazioneService;
 import org.generation.italy.service.VenditaService;
+import org.generation.italy.service.VisitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class DashboardController {
 	
 	@Autowired
 	private AcquistoService acquistoService;
+	
+	@Autowired
+	private VisitaService visitaService;
 	
 	@GetMapping
 
