@@ -23,6 +23,8 @@ public class ProdottoService {
 	private FotoRepository fotoRepo;
 	
 	
+	
+	
 	public List<Prodotto> findAllSortedByNome(){
 		return repository.findAll();
 	}
