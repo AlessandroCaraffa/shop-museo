@@ -1,5 +1,7 @@
 package org.generation.italy.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.generation.italy.model.Visita;
@@ -13,6 +15,28 @@ public class VisitaService {
 	
 	@Autowired
 	private VisitaRepository repository;
+	
+	public List<Visita> getVisiteNextMonth(){
+		List <Visita> visiteNextmonth = new ArrayList<>();
+		List<Visita> visiteTotali = repository.findAll();
+		for( Visita visita : visiteTotali) {
+			 int i = visita.getData().compareTo(LocalDate.now().plusWeeks(1));
+			if(i < 0 ) {
+				visiteNextmonth.add(visita);
+			}else if( i == 0 ) {
+				visiteNextmonth.add(visita);
+				
+			}else {
+				
+			}
+		}
+		
+		
+		
+		
+		
+		return visiteNextmonth;
+	}
 	
 	public List<Visita> findAll() {
 		return repository.findAll();

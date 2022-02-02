@@ -3,6 +3,7 @@ import org.generation.italy.repository.DashboardRepository;
 import org.generation.italy.service.AcquistoService;
 import org.generation.italy.service.DashboardService;
 import org.generation.italy.service.PrenotazioneService;
+import org.generation.italy.service.VenditaProdottoService;
 import org.generation.italy.service.VenditaService;
 import org.generation.italy.service.VisitaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class DashboardController {
 	@Autowired
 	private VisitaService visitaService;
 	
+	@Autowired
+	private VenditaProdottoService venditaProdottoService;
+	
 	@GetMapping
 
 	public String list(Model model) {
@@ -34,6 +38,10 @@ public class DashboardController {
 		model.addAttribute("totalePrenotazioni", prenotazioneService.getTotalePrenotazioni());
 		model.addAttribute("totaleVendite", venditaService.getTotaleVendite());
 		model.addAttribute("totaleAcquisti", acquistoService.getTotaleAcquisti());
+//		model.addAttribute("top5", venditaProdottoService.getTop5());
+
+		System.out.println(visitaService.getVisiteNextMonth());
+		model.addAttribute("VisiteProssimoMese", visitaService.getVisiteNextMonth());
 
 		return "/dashboard/dashboard";
 	}
