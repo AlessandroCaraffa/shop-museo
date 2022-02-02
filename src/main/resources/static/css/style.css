@@ -1,0 +1,12 @@
+:root {
+	--Black: #131313;
+	--Pink: #ff6b64;
+	--Blue: #9ec0d5;
+	--Grey: #d9d9d8;
+	--White: #f4f0eb;
+}
+
+img {
+	width: 350px;
+	height: 375px;
+}

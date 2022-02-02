@@ -58,6 +58,7 @@ public class ProdottoController {
 	public String doCreate(@Valid @ModelAttribute("prodottoForm") ProdottoForm formProdotto,BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
+
 			model.addAttribute("edit", false);
 			return "/prodotto/edit";
 		}
@@ -111,12 +112,13 @@ public class ProdottoController {
 	}
 	
 	@PostMapping("/editProdotto/{id}")
-	public String doUpdateProdotto(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, Model model) {
+	public String doUpdateProdotto(@Valid @ModelAttribute("prodotto") Prodotto formProdotto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			
 			return "/prodotto/editProdotto";
 		}
 		service.update(formProdotto);
+		redirectAttributes.addFlashAttribute("successMessage", "Prodotto Modificato!");
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/editFoto/{id}")
@@ -141,6 +143,7 @@ public class ProdottoController {
 		catch(IOException e){
 			
 		}
+		redirectAttributes.addFlashAttribute("successMessage", "Foto Modificata!");
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/detail/{id}")

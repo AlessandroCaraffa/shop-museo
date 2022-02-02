@@ -50,17 +50,17 @@
 		</div>
 	</div>
 	<div class="container">
-	<div th:each="item : ${prodotto.getFoto()}" class="row mt-5">
-	<div class="col-3">
-	<div class="card">
-	<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top" >
-	</div >
-	
-	</div >
-		
+		<div th:each="item : ${prodotto.getFoto()}" class="row mt-5">
+			<div class="col-3">
+				<div class="card">
+					<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top">
+				</div>
 
+			</div>
+
+
+		</div>
 	</div>
-	</div >
 
 
 

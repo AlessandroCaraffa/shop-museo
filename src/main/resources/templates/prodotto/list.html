@@ -1,53 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
+
+<head>
 	<div th:replace="fragments/utility :: headTags"></div>
-		<title>magazzino</title>
-	</head>
-	<body>
+	<title>magazzino</title>
+</head>
+
+<body>
 	<nav th:replace="fragments/navbar :: navbar"></nav>
 	<div class="container">
-		
-		
+		<th:block th:if="${successMessage != null}">
+			<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
+		</th:block>
+
 		<table class="table">
 			<thead>
 				<tr>
-					<th class ="text-secondary  fs-3 "scope="col">Nome</th >
-					<th class ="text-secondary ms-2 fs-3"scope="col">Descrizione</th >
-					<th class ="text-secondary  fs-3"scope="col">Prezzo</th >
-					<th class ="text-secondary  fs-3"scope="col">Quantità disponibile</th >
+					<th class="text-secondary  fs-3 " scope="col">Nome</th>
+					<th class="text-secondary ms-2 fs-3" scope="col">Descrizione</th>
+					<th class="text-secondary  fs-3" scope="col">Prezzo</th>
+					<th class="text-secondary  fs-3" scope="col">Quantità disponibile</th>
 					<th></th>
-					
-					
+
+
 				</tr>
-				
+
 			</thead>
 			<tbody>
-				<tr th:each="prodotto : ${prodotti}">
+				<tr class=" "
+					th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
+					th:each="prodotto : ${prodotti}">
 					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
 					<td class=" " th:text="${prodotto.nome}"></td>
 					<td class=" " th:text="${prodotto.descrizione}"></td>
 					<td class=" " th:text="${prodotto.prezzoVendita}"></td>
-					<td th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+					<td class=" " th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
 					<td>
 						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
-						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
-						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
-						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}" onclick="return confirm('Are you sure?')"><i
-								class="fas fa-trash-alt"></i></a>
+						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i
+								class="fas fa-edit"></i></a>
+						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i
+								class="fas fa-images"></i></a>
+						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}"
+							onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
 					</td>
 				</tr>
-				
-				</tbody>
+
+			</tbody>
 		</table>
-		
-	
+
+
 		<div class="col-3 ms-auto text-end">
-			<a class="btn btn-primary"  th:href ="@{/prodotto/create}"><i class="fas fa-plus me-2"></i>Nuovo prodotto</a>
+			<a class="btn btn-primary" th:href="@{/prodotto/create}"><i class="fas fa-plus me-2"></i>Nuovo prodotto</a>
 		</div>
 	</div>
-	
+
 	<div th:replace="fragments/utility :: scripts"></div>
-	</body>
+</body>
 
 </html>
