@@ -63,7 +63,7 @@ public class ProdottoController {
 			return "/prodotto/edit";
 		}
 		if(formProdotto.getConteuntoProdotto() == null || formProdotto.getConteuntoProdotto().isEmpty()) {
-			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
+			bindingResult.addError(new ObjectError("content", "Inserire la foto"));
 			return "/prodotto/edit";
 		}
 		try {
@@ -118,7 +118,7 @@ public class ProdottoController {
 			return "/prodotto/editProdotto";
 		}
 		service.update(formProdotto);
-		redirectAttributes.addFlashAttribute("successMessage", "Prodotto Modificato!");
+		redirectAttributes.addFlashAttribute("successMessage", "Prodotto Aggiornato!");
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/editFoto/{id}")
@@ -143,7 +143,7 @@ public class ProdottoController {
 		catch(IOException e){
 			
 		}
-		redirectAttributes.addFlashAttribute("successMessage", "Foto Modificata!");
+		redirectAttributes.addFlashAttribute("successMessage", "Foto Aggiornata!");
 		return "redirect:/prodotto";
 	}
 	@GetMapping("/detail/{id}")

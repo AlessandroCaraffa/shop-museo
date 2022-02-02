@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragments/utility :: head"></div>
+		<title>Foto</title>
+	</head>
+	<body>
+	
+		<div class="container">
+			<div th:if="${successMessage != null}">
+				<div th:replace="fragments/utility :: alertMessage(${successMessage}, 'success')"></div>
+			</div>
+			<div th:if="${errorMessage != null}">
+				<div th:replace="fragments/utility :: alertMessage(${errorMessage}, 'error')"></div>
+			</div>
+			<h1 class="text-center">Foto Galleria</h1>
+			<hr/>
+			<!-- form per aggiungerere una foto -->
+			<div class="row">
+				<form
+					id="foto-form"
+					th:action="${'/galleria/create'}"
+					method="post"
+					th:object="${foto}"
+					enctype="multipart/form-data"
+				>
+				<ul>
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
+				</ul>
+				<div class="mt-3">
+					<label for="titolo" class="form-label">Titolo</label>
+					<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
+				</div>
+				<div class="mt-3">
+					<label for="contenuto" class="form-label">Foto</label>
+					<input id="contenuto" type="file" class="form-control" th:field="*{contenuto}">
+				</div>
+				<div class="mt-3">
+					<button type="submit" class="btn btn-primary">Add Foto</button>
+				</div>
+				</form>
+			</div>
+			<!-- galleria delle foto -->
+			<div class="row mt-5" th:if="${fotoList.size() > 0}">
+				<div th:each="item : ${fotoList}" class="col-3">
+					<div class="card">
+						<img th:src="|/galleria/${item.id}/foto|" class="card-img-top" th:alt="${item.titolo}">
+						<div class="card-body">
+							<div class="h5 card-title" th:text="${item.titolo}"></div>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div th:unless="${fotoList.size() > 0}">
+				<div class="alert alert-info">The galleria is empty</div>
+			</div>
+		</div>
+	<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

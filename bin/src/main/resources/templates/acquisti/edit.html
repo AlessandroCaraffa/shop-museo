@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title th:text="${edit} ? 'Modifica acquisto' : 'Inserisci nuovo acquisto'"></title>
+	</head>
+	<body>
+	<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		<!-- container -->
+		<div class="container">
+		
+		<!-- title V2 -->
+			<h1><a th:href="@{/acquisti}"><i class="fas fa-arrow-circle-left"></i></a>
+			<span th:text="${edit} ? 'Modifica acquisto' : 'Inserisci nuovo acquisto'"></span></h1>
+			<hr/>
+	
+			<!-- form -->
+			<form id="acquisto-form" th:object="${acquisto}" th:action="${edit} ? @{/acquisti/edit/{id}(id=${acquisto.id})} : @{/acquisti/create}" method="POST">
+				
+				<!-- campi form -->
+				<div class="row">
+				
+					<!-- colonna sx -->
+					<div class="col-6">
+						<div class="row gy-2">
+							<div class="col-6">
+								<label class="form-label" for="nomeFornitore">Nome fornitore</label>
+								<input type="text" class="form-control" id="nomeFornitore" th:field="*{nomeFornitore}">
+							</div>
+							
+							<!-- buttons -->
+							<div class="col-12">
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
+								<a class="btn btn-primary" th:href="@{/acquisti}"><i class="fas fa-times"></i> Cancel</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

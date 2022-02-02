@@ -41,7 +41,7 @@
 						<dt>N° posti</dt>
 						<dd th:text="*{quantita}"></dd>
 						<dt>Data e ora</dt>
-						<dd th:text="|${#temporals.format(prenotazione.visita.data, 'dd/MM/yyyy')} - *{visita.orario}"></dd>
+						<dd th:text="|${#temporals.format(prenotazione.visita.data, 'dd/MM/yy')} - *{visita.orario}"></dd>
 					</dl>
 				</div>
 

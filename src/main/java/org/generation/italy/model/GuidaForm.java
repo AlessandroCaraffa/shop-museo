@@ -10,16 +10,16 @@ public class GuidaForm {
 	public Integer id;
 
 	@NotNull
-	@NotEmpty(message="Nome necessario")
+	@NotEmpty(message="Inserisci nome della guida")
 	private String nome;
 	
 	@NotNull
-	@NotEmpty(message="Cognome necessario")
+	@NotEmpty(message="Inserisci cognome della guida")
 	private String cognome;
 	
 	@Lob
 	private String bio;
-	@NotEmpty(message="Titolo necessario")
+	@NotEmpty(message="Inserisci titolo della foto")
 	private String titolo;
 	
 	private MultipartFile contenutoGuida;

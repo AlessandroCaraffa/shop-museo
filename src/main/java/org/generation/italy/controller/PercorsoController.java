@@ -64,7 +64,7 @@ public class PercorsoController {
 			return "/percorsi/edit";
 		}
 		if(formPercorso.getContenutoPercorso() == null || formPercorso.getContenutoPercorso().isEmpty()) {
-			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
+			bindingResult.addError(new ObjectError("content", "Inserire la foto"));
 			return "/percorsi/edit";
 		}
 		try {
@@ -115,7 +115,7 @@ public class PercorsoController {
 			return "/percorsi/editPercorso";
 		}
 		service.update(formPercorso);
-		redirectAttributes.addFlashAttribute("successMessage", "Percorso Modificato!");
+		redirectAttributes.addFlashAttribute("successMessage", "Percorso Aggiornato!");
 		return "redirect:/percorsi";
 	}
 	@GetMapping("/editFoto/{id}")
@@ -141,7 +141,7 @@ public class PercorsoController {
 	catch(IOException e){
 		
 	}
-	redirectAttributes.addFlashAttribute("successMessage", "Foto Modificata!");
+	redirectAttributes.addFlashAttribute("successMessage", "Foto Aggiornata!");
 	return "redirect:/percorsi";
 }
 	
