@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title>Prenotazioni</title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+		<div class="container">
+			<h1>Prenotazioni</h1>
+						
+			<!-- add button -->
+			<div>
+				<a class="btn btn-primary" th:href="@{/prenotazioni/create}"><i class="fas fa-plus"></i> Nuova prenotazione</a>
+			</div>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome e cognome</th>
+						<th>N° posti</th>
+						<th>Percorso</th>
+						<th>Data</th>
+						<th>Orario</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${list}">
+						<td th:text="${item.id}"></td>
+						<td th:text="|${item.nome} ${item.cognome}|"></td>
+						<td th:text="${item.quantita}"></td>
+						<td th:text="${item.visita.percorso.nomePercorso}"></td>
+						<td th:text="${#temporals.format(item.visita.data, 'dd/MM/yyyy')}"></td> <!-- formattazione personalizzata -->
+						<td th:text="${item.visita.orario}"></td>
+						<td>
+							<a class="me-2" th:href="@{|/prenotazioni/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/prenotazioni/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-2" th:href="@{|/prenotazioni/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html >

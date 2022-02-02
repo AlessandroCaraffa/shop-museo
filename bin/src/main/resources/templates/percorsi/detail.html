@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/utility :: headTags"></div>
+	<title th:text="${percorso.nomePercorso}"></title>
+</head>
+
+<body>
+	<!-- navbar -->
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+
+	<!-- general container -->
+	<div class="container" th:object="${percorso}">
+		<!-- definire l'oggetto nel contenitore ti permette di richiamarlo con * (non è necessario, solo più breve) -->
+
+		<!-- title V2 -->
+		<div class="row">
+			<div class="col-auto me-auto">
+				<h1><a th:href="@{/percorsi}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="*{nomePercorso}"></span>
+				</h1>
+			</div>
+			<div class="col-auto d-flex algn-items-end">
+				<a class="me-1" th:href="@{|/percorsi/edit/${percorso.id}|}"><i class="fas fa-edit"></i></a>
+				<a class="me-2" th:href="@{|/percorsi/delete/${percorso.id}|}"
+					onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+			</div>
+		</div>
+		<hr />
+
+		<!-- container -->
+		<div class="row">
+
+			<!-- main details -->
+			<div class="col-8">
+				<dl>
+					<dt>Posti max</dt>
+					<dd th:text="*{postiMax}"></dd>
+					<dt>Prezzo</dt>
+					<dd th:text="*{prezzo}"></dd>
+
+					<th:block th:unless=${#strings.isEmpty(percorso.descrizione)}>
+						<!-- mostra solo se non vuoto -->
+						<dt>Descrizione</dt>
+						<dd th:text="*{descrizione}"></dd>
+					</th:block>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div th:each="item : ${percorso.getFoto()}" class="row mt-5">
+			<div class="col-3">
+				<div class="card">
+					<img th:src="|/percorsi/${item.getId()}/foto|" class="card-img-top">
+				</div>
+
+			</div>
+
+
+
+
+
+			<!-- scripts -->
+			<div th:replace="fragments/utility :: scripts"></div>
+</body>
+
+</html>

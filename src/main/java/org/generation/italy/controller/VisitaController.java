@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/visite")
@@ -52,7 +53,7 @@ public class VisitaController {
 	
 	@PostMapping("/create")
 	public String doCreate(@Valid @ModelAttribute("visita") Visita formVisita,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 			model.addAttribute("guideList", guiService.findAllSortByCognome());
@@ -60,6 +61,7 @@ public class VisitaController {
 			return "/visite/edit";
 		}
 		service.save(formVisita);
+		redirectAttributes.addFlashAttribute("successMessage", "Visita Aggiunta!");
 		return "redirect:/visite";
 	}
 	
@@ -74,7 +76,7 @@ public class VisitaController {
 	
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("visita") Visita formVisita,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
 			model.addAttribute("guideList", guiService.findAllSortByCognome());
@@ -82,6 +84,7 @@ public class VisitaController {
 			return "/visite/edit";
 		}
 		service.save(formVisita);
+		redirectAttributes.addFlashAttribute("successMessage", "Visita Modificata!");
 		return "redirect:/visite";
 	}
 	

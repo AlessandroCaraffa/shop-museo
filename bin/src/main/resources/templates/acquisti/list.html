@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragments/utility :: headTags"></div>
+		<title>Rifornimenti</title>
+	</head>
+	<body>
+	
+		<div class="container">
+			<h1>Rifornimenti</h1>
+						
+			<!-- add button -->
+			<div>
+				<a class="btn btn-primary" th:href="@{/acquisti/create}"><i class="fas fa-plus"></i> Nuovo acquisto</a>
+			</div>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Data</th>
+						<th>Fornitore</th>
+						<th>Totale</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="acquisto : ${acquisti}">
+						<td th:text="${acquisto.dataAcquisto}"></td> 
+						<td th:text="${acquisto.nomeFornitore}"></td>
+						<!--<td th:text="${acquisto.totaleAcquisto}"></td> da aggiungere totale calcolato,fare metodo findByAcquistoId su service e repository di Acquisto e poi fare una query sum(prezzoAcquisto)-->
+						<td>
+							<a class="me-2" th:href="@{|/acquisti/detail/${acquisto.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/acquisti/edit/${acquisto.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-2" th:href="@{|/acquisti/delete/${acquisto.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					 </tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

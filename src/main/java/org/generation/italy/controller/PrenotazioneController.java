@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/prenotazioni")
@@ -47,13 +48,14 @@ public class PrenotazioneController {
 	
 	@PostMapping("/create")
 	public String doCreate(@Valid @ModelAttribute("prenotazione") Prenotazione formPrenotazione,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 			model.addAttribute("visiteList", visitaService.findAll()); // TODO selez. non tutte ma a partire da percorso
 			return "/prenotazioni/edit";
 		}
 		service.save(formPrenotazione);
+		redirectAttributes.addFlashAttribute("successMessage", "Prenotazione Aggiunta!");
 		return "redirect:/prenotazioni";
 	}
 	
@@ -67,13 +69,14 @@ public class PrenotazioneController {
 	
 	@PostMapping("/edit/{id}")
 	public String doUpdate(@Valid @ModelAttribute("percorso") Prenotazione formPrenotazione,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
 			model.addAttribute("visiteList", visitaService.findAll()); // TODO selez. non tutte ma a partire da percorso
 			return "/prenotazioni/edit";
 		}
 		service.update(formPrenotazione);
+		redirectAttributes.addFlashAttribute("successMessage", "Prenotazione Aggiornata!");
 		return "redirect:/prenotazioni";
 	}
 	

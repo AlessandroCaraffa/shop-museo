@@ -21,11 +21,11 @@ public class Visita {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull
+	@NotNull(message = "Inserire giorno della visita")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	
-	@NotNull
+	@NotNull(message = "Inserire orario della visita")
 	@DateTimeFormat(pattern = "HH:mm")
 	private LocalTime orario;
 	

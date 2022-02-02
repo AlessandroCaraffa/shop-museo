@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title th:text="${edit} ? 'Aggiorna percorso' : 'Inserisci nuovo percorso'"></title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		
+		<!-- container -->
+		<div class="container">
+		
+			<!-- title V2 -->
+			<h1><a th:href="@{/percorsi}"><i class="fas fa-arrow-circle-left"></i></a>
+			<span th:text="${edit} ? 'Aggiorna percorso' : 'Inserisci nuovo percorso'"></span></h1>
+			<hr/>
+			
+			<!-- form -->
+			<form id="percorso-form"
+				th:object="${percorso}"
+				th:action="@{/percorsi/editPercorso/{id}(id=${percorso.id})}"
+				method="POST"
+				enctype="multipart/form-data">
+				
+				<!-- validazione -->
+				<!--<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
+					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
+					<ul class="mb-1">
+						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+					</ul>
+				</div>-->
+				
+				<!-- campi form -->
+				<div class="row">
+				
+					<!-- colonna sx -->
+					<div class="col-6">
+						<div class="row gy-2">
+							<div class="col-8">
+								<label class="form-label" for="nomePercorso">Nome Percorso</label>
+								<input type="text" class="form-control" id="nomePercorso" th:field="*{nomePercorso}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('nomePercorso')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('nomePercorso')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="prezzo">Prezzo</label>
+								<input type="text" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="postiMax">Posti max</label>
+								<input type="text" class="form-control" id="postiMax" th:field="*{postiMax}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('postiMax')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('postiMax')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-10">
+								<label class="form-label" for="descrizione">Descrizione</label>
+								<textarea class="form-control" id="descrizione" th:field="*{descrizione}" rows="6"></textarea>
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="durata">Durata</label>
+								<input type="time" class="form-control" id="durata" th:field="*{durata}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('durata')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('durata')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							
+							
+
+							<!-- buttons -->
+							<div class="col-12">
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
+								<a class="btn btn-primary" th:href="@{/percorsi}"><i class="fas fa-times"></i> Cancel</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

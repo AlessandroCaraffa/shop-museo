@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title>Percorsi</title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+		<!-- LISTA PERCORSI USER -->
+	
+		<div class="container">
+			<h1>Percorsi di visita</h1>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome percorso</th>
+						<th>Prezzo</th>
+						<th>Posti max</th>
+						<th>Durata</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${percorsi}">
+						<td th:text="${item.nomePercorso}"></td>
+						<td th:text="|${item.prezzo}€|"></td>
+						<td th:text="${item.postiMax}"></td>
+						<td th:text="${#temporals.format(item.durata, 'H:mm')}"></td>
+						<td>
+							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/detail|}"><i class="fas fa-info"></i></a>
+							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/visite|}"><i class="far fa-calendar-alt"></i> Prenota</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>
