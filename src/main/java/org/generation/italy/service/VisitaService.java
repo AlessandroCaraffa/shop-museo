@@ -16,19 +16,21 @@ public class VisitaService {
 	@Autowired
 	private VisitaRepository repository;
 	
-	public List<Visita> getVisiteNextMonth(){
-		List <Visita> visiteNextmonth = new ArrayList<>();
+	public List<Visita> getVisiteNextWeek() {
+		List<Visita> visiteNextmonth = new ArrayList<>();
 		List<Visita> visiteTotali = repository.findAll();
-		for( Visita visita : visiteTotali) {
-			 int i = visita.getData().compareTo(LocalDate.now().plusWeeks(1));
+		for(Visita visita : visiteTotali) {
+			int i = visita.getData().compareTo(LocalDate.now().plusWeeks(1));
 			if(i < 0 ) {
 				visiteNextmonth.add(visita);
+
 			}else if( i == 0 ) {
 				visiteNextmonth.add(visita);
 				
 			}
 		}
 		
+
 		return visiteNextmonth;
 	}
 	
@@ -58,6 +60,10 @@ public class VisitaService {
 	
 	public List<Visita> getVisitaNotLessThen2h(@Param("id") Integer id) {
 		return repository.getVisitaNotLessThen2h(id);
+	}
+	
+	public List<Visita> findAllNotPastOrderByDataOrario() {
+		return repository.findAllNotPastOrderByDataOrario();
 	}
 	
 }

@@ -24,7 +24,7 @@
 			
 
 			<div class="row gy-2">
-				<div class="col-2">
+				<div class="col-8">
 					<label class="form-label" for="nome">Nome</label>
 					<input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
 					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
@@ -34,7 +34,7 @@
 									</ul>
 								</div>
 				</div>
-				<div class="col-2">
+				<div class="col-4">
 					<label class="form-label" for="prezzoVendita">Prezzo</label>
 					<input type="text" class="form-control" id="prezzoVendita" th:field="*{prezzoVendita}" th:errorClass="is-invalid">
 					<div th:if="${#fields.hasErrors('prezzoVendita')}" class="invalid-feedback">
@@ -44,7 +44,7 @@
 								</div>
 				</div>
 				
-				<div class="col-6">
+				<div class="col-12">
 					<label class="form-label" for="descrizione">Descrizione</label>
 					<input type="text" class="form-control" id="descrizione" th:field="*{descrizione}" th:errorClass="is-invalid">
 					<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
@@ -55,20 +55,12 @@
 
 				</div>
 
-				<div class="col-3">
-					<label for="titolo" class="form-label">Title</label>
-					<input id="titolo" type="text" class="form-control" th:field="*{titolo}" th:errorClass="is-invalid">
-					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
-
-						<ul>
-							<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-3" id="display_image">
+				
+				<div class="col-6 position-relative" id="display_image">
 					<label class="form-label" for="contenuto">Foto</label>
 					<div class="card">
-					<div id=cancel-btn class="text-end"><i class="fas fa-times"></i></div>
+					<div class="position-absolute top-0 end-0 fs-3 text-white"><i class="fas fa-square"></i></div >
+					<div id=cancel-btn class="position-absolute top-0 end-0 fs-3"><i class="fas fa-times"></i></div>
 						<img src="" class="card-img-top" alt="">
 						
 
@@ -82,6 +74,16 @@
 						</ul>
 					</div>
 
+				</div>
+				<div class="col-6">
+					<label for="titolo" class="form-label">Title</label>
+					<input id="titolo" type="text" class="form-control" th:field="*{titolo}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+
+						<ul>
+							<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+						</ul>
+					</div>
 				</div>
 
 				<div class="col-12" >

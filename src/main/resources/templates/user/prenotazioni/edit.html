@@ -56,6 +56,7 @@
 									</ul>
 								</div>
 							</div>
+							<!-- posti non dropdown
 							<div class="col-6">
 								<label class="form-label" for="quantita">N° posti</label>
 								<input type="number" class="form-control" id="quantita" th:field="*{quantita}" th:errorClass="is-invalid">
@@ -64,6 +65,15 @@
 										<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}"></li>
 									</ul>
 								</div>
+							</div> -->
+							
+							<!-- dropdown posti -->
+							<div class="col-6">
+								<label class="form-label" for="">Posti da prenotare</label>
+								<select name="quantita" class="form-select">
+									<option selected>Seleziona n° posti</option> starting, ending, increment
+									<option th:each="item : ${postiDisponibili}" th:value="${item}" th:text="${item}"></option>
+								</select>
 							</div>
 	
 							<!-- input type="hidden" ti permette di restituire un dato nella form (precompilato) per non perderlo -->
