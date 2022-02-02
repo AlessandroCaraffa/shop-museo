@@ -26,14 +26,8 @@ public class VisitaService {
 			}else if( i == 0 ) {
 				visiteNextmonth.add(visita);
 				
-			}else {
-				
 			}
 		}
-		
-		
-		
-		
 		
 		return visiteNextmonth;
 	}

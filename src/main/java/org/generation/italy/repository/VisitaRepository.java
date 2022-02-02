@@ -23,4 +23,12 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 			nativeQuery = true)
 	public List<Visita> getVisitaNotLessThen2h(@Param("id") Integer id);
 	
+	
+	
+
+	
+	
+	
+	
+	
 }
