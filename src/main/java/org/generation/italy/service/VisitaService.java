@@ -58,4 +58,8 @@ public class VisitaService {
 		return repository.getVisitaNotLessThen2h(id);
 	}
 	
+	public List<Visita> findAllNotPastOrderByDataOrario() {
+		return repository.findAllNotPastOrderByDataOrario();
+	}
+	
 }

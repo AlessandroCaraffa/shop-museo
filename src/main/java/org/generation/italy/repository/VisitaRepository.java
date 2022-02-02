@@ -23,4 +23,12 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 			nativeQuery = true)
 	public List<Visita> getVisitaNotLessThen2h(@Param("id") Integer id);
 	
+	@Query(value = "SELECT * FROM visita\r\n"
+			+ "WHERE `data` = CURDATE()\r\n"
+			+ "AND orario > NOW()\r\n"
+			+ "OR `data` > CURDATE()\r\n"
+			+ "ORDER BY `data`, orario;",
+			nativeQuery = true)
+	public List<Visita> findAllNotPastOrderByDataOrario();
+	
 }
