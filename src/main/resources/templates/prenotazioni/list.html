@@ -41,7 +41,7 @@
 						<td th:text="|${item.nome} ${item.cognome}|"></td>
 						<td th:text="${item.quantita}"></td>
 						<td th:text="${item.visita.percorso.nomePercorso}"></td>
-						<td th:text="${#temporals.format(item.visita.data, 'dd/MM/yyyy')}"></td> <!-- formattazione personalizzata -->
+						<td th:text="${#temporals.format(item.visita.data, 'dd/MM/yy')}"></td> <!-- formattazione personalizzata -->
 						<td th:text="${item.visita.orario}"></td>
 						<td>
 							<a class="me-2" th:href="@{|/prenotazioni/detail/${item.id}|}"><i class="fas fa-info"></i></a>

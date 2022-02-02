@@ -39,7 +39,7 @@
 						<td th:text="${item.id}"></td>
 						<td th:text="${item.percorso.nomePercorso}"></td>
 						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
-						<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td> <!-- formattazione personalizzata -->
+						<td th:text="${#temporals.format(item.data, 'dd/MM/yy')}"></td> <!-- formattazione personalizzata -->
 						<td th:text="${item.orario}"></td>
 						<td>
 							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>

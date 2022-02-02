@@ -65,13 +65,13 @@
 							</div>
 							
 							<!-- dropdown select -->
-							<!-- SOLUZIONE TEMP., RIPROPONI PATTERN USER:
-							PERCORSI > VISITE > PRENOTAZIONE -->
 							<div class="col-12">
 								<label class="form-label" for="">Visita</label>
 								<select name="visita" class="form-select">
 									<option selected>Selezionare visita</option>
-									<option th:each="item : ${visiteList}" th:value="${item.id}" th:field="*{visita}" th:text="${item.id}"></option>
+									<option th:each="item : ${visiteList}" th:value="${item.id}" th:field="*{visita}"
+										th:text="|${#temporals.format(item.data, 'dd/MM/yy')} - ${item.orario} - ${item.percorso.nomePercorso}|">
+									</option>
 								</select>
 							</div>
 							
