@@ -38,10 +38,10 @@ public class DashboardController {
 		model.addAttribute("totalePrenotazioni", prenotazioneService.getTotalePrenotazioni());
 		model.addAttribute("totaleVendite", venditaService.getTotaleVendite());
 		model.addAttribute("totaleAcquisti", acquistoService.getTotaleAcquisti());
-//		model.addAttribute("top5", venditaProdottoService.getTop5());
+		model.addAttribute("top5", venditaProdottoService.top(5));
 
-		System.out.println(visitaService.getVisiteNextMonth());
-		model.addAttribute("VisiteProssimoMese", visitaService.getVisiteNextMonth());
+		
+		model.addAttribute("VisiteProssimoMese", visitaService.getVisiteNextWeek());
 
 		return "/dashboard/dashboard";
 	}
