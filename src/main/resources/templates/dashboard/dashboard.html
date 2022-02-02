@@ -27,13 +27,36 @@
 		  <tbody>
 		    <tr>
 		      <th scope="row"></th>
-		      <td></td>
-		      <td></td>
+		      <td><span th:text="${totaleAcquisti}"></span></td></td>
+		      <td><span th:text="${totaleVendite}"></span></td></td>
 		      <td><span th:text="${totalePrenotazioni}"></span></td>
 		    </tr>
 		  </tbody>
 		</table>
-		<!--<span th:text="${totalePrenotazioni}"></span>-->
+		<table class="table table-sm">
+		  <thead>
+		    <tr>
+		      <th scope="col">Prodotto</th>
+		      <th scope="col">Quantità venduta</th>
+		      <th scope="col">Ricavi</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="item : ${VisiteProssimoMese}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.percorso.nomePercorso}"></td>
+						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
+						<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td> <!-- formattazione personalizzata -->
+						<td th:text="${item.orario}"></td>
+						<td>
+							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-2" th:href="@{|/visite/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					</tr>
+		  </tbody>
+		</table>
+
 	
 	
 	
