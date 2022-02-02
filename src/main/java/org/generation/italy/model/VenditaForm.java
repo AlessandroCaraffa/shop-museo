@@ -6,6 +6,8 @@ public class VenditaForm {
 	private Integer id;
 	
 	private LocalDate dataVendita;
+	
+	
 	private Integer totaleVendita;
 
 	public Integer getTotaleVendita() {
