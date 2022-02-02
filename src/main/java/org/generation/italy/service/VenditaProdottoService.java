@@ -39,15 +39,15 @@ public class VenditaProdottoService {
  	  		Integer prodottoId = vendita.getProdotto().getId();
  	  		int q = vendita.getQuantita();
  	  		
- 	  		LocalDate oneWeekAgo = LocalDate.now().minusMonths(1);
- 	  		int compareTo = vendita.getVendita().getDataVendita().compareTo(oneWeekAgo);
+ 	  		LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+ 	  		int compareTo = vendita.getVendita().getDataVendita().compareTo(oneMonthAgo);
  	  		
  	  		if (compareTo < 0) {
  	  			continue;
  	  		}
  	  		
  	  		
-	// 	  		if(vendita.getVendita().getDataVendita() >= LocalDate.now() && vendita.getVendita().getDataVendita() <= LocalDate.now()plusWeeks(1))
+	
 	 	  	if (!conteggioVendite.containsKey(prodottoId)) {
 	 	  		conteggioVendite.put(prodottoId, 0);
 	 	  	}
@@ -109,8 +109,8 @@ public class VenditaProdottoService {
 		repository.deleteById(id);
 	}
 	
-	public List<VenditaProdotto> findByProdottoId(Integer id) {
-		return repository.findByProdottoId(id);
-	}
+//	public List<VenditaProdotto> findByProdottoId(Integer id) {
+//		return repository.findByProdottoId(id);
+//	}
 
 }

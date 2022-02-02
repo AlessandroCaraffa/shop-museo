@@ -14,7 +14,7 @@ public interface VenditaProdottoRepository extends JpaRepository<VenditaProdotto
 
 	List<VenditaProdotto> findByVenditaId(Integer id);
 	
-	List<VenditaProdotto> findByProdottoId(Integer id);
+//	List<VenditaProdotto> findByProdottoId(Integer id);
 	
 //	@Query(value ="select sum(vp.quantita),vp.prodotto_id\r\n"
 //			+ "from vendita_prodotto vp \r\n"
