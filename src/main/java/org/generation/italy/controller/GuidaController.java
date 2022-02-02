@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -88,18 +89,41 @@ public class GuidaController {
 		model.addAttribute("edit", true);
 		Guida guida=new Guida();
 		GuidaForm guidaForm=new GuidaForm();
+		
 		guida=service.getById(id);
 		guidaForm.setId(guida.getId());
 		guidaForm.setNome(guida.getNome());
 		guidaForm.setCognome(guida.getCognome());
 		guidaForm.setBio(guida.getBio());
 		guidaForm.setTitolo(guida.getFoto().getTitolo());
-		//guidaForm.setContenutoGuida(guida.getFoto().getContenuto()); da sistemare
-		
+		byte[] fotoByte = guida.getFoto().getContenuto(); 
+		//MultipartFile foto=fotoByte.
 		
 		
 		model.addAttribute("guidaForm", guidaForm);
 		return "guide/edit";
+	}
+	@PostMapping("/edit/{id}")
+	public String doUpdate(@Valid @ModelAttribute("guidaForm") GuidaForm formGuida,BindingResult bindingResult,
+			RedirectAttributes redirectAttributes, Model model) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("edit", false);
+			return "/guide/edit";
+		}
+		if(formGuida.getContenutoGuida() == null || formGuida.getContenutoGuida().isEmpty()) {
+			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
+			return "/guide/edit";
+		}
+		try {
+			
+			service.createGuidaForm(formGuida);
+			redirectAttributes.addFlashAttribute("successMessage", "Dati della Guida Aggiornati!");
+		} catch (IOException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare!");
+			e.printStackTrace();
+		}
+		
+		return "redirect:/guide";
 	}
 	//
 	@GetMapping("/editGuida/{id}")
