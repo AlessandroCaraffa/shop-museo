@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<div th:replace="fragments/utility :: headTags"></div>
+		<title>magazzino</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+	<div class="container">
+		
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th class ="text-secondary  fs-3 "scope="col">Prodotto</th >
+					<th class ="text-secondary ms-2 fs-3"scope="col">Quantità</th >
+					<th class ="text-secondary  fs-3"scope="col">Totale</th >
+					<th class ="text-secondary  fs-3"scope="col">Data</th >
+					<th></th>
+					
+					
+				</tr >
+				
+			</thead>
+			<tbody>
+							
+				<tr th:each="venditaProdotto : ${venditaProdotti}">
+					<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
+					<td class=" " th:text="${venditaProdotto.quantita}"></td>
+					<td class=" " th:text="${venditaProdotto.prodotto.prezzoVendita}*${venditaProdotto.quantita} + ' &#x20AC'" ></td>
+					<td class=" " th:text="${venditaProdotto.vendita.dataVendita}"></td>
+					
+				</tr>
+				
+				</tbody>
+		</table>
+		
+	
+		<div class="col-3 ms-auto text-end">
+			<a class="btn btn-primary"  th:href ="@{/vendite/create}"><i class="fas fa-plus me-2"></i>Nuova Vendita</a>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

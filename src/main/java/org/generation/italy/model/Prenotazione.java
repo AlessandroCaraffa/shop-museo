@@ -18,15 +18,15 @@ public class Prenotazione {
 	private Integer id;
 	
 	@NotNull
-	@NotEmpty(message="Nome necessario")
+	@NotEmpty(message="Inserire nome della prenotazione")
 	private String nome;
 	
 	@NotNull
-	@NotEmpty(message="Cognome necessario")
+	@NotEmpty(message="Inserire cognome della prenotazione")
 	private String cognome;
 	
 	@NotNull
-	@Min(value=1)
+	@Min(value=1, message="Bisogna prenotare almeno un posto")
 	private int quantita;
 	
 	@ManyToOne

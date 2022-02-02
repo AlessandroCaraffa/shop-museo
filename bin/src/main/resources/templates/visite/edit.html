@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title th:text="${edit} ? 'Aggiorna visita' : 'Inserisci nuova visita'"></title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		
+		<!-- container -->
+		<div class="container">
+		
+			<!-- title V2 -->
+			<h1><a th:href="@{/visite}"><i class="fas fa-arrow-circle-left"></i></a>
+			<span th:text="${edit} ? 'Aggiorna visita' : 'Inserisci nuova visita'"></span></h1>
+			<hr/>
+			
+			<!-- form -->
+			<form id="visita-form"
+				th:object="${visita}"
+				th:action="${edit} ? @{/visite/edit/{id}(id=${visita.id})} : @{/visite/create}"
+				method="POST">
+				
+				<!-- validazione -->
+				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
+					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
+					<ul class="mb-1">
+						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+					</ul>
+				</div>
+				
+				<!-- campi form -->
+				<div class="row">
+				
+					<!-- colonna sx -->
+					<div class="col-3">
+						<div class="row gy-2">
+							<div class="col-12">
+								<label class="form-label" for="data">Data</label>
+								<input type="date" class="form-control" id="data" th:field="*{data}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('data')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-12">
+								<label class="form-label" for="orario">Orario</label>
+								<input type="time" class="form-control" id="orario" th:field="*{orario}" th:errorClass="is-invalid" step="300">
+								<div th:if="${#fields.hasErrors('orario')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('orario')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							
+							<!-- dropdown select -->
+							<div class="col-12">
+								<label class="form-label" for="">Percorso</label>
+								<select name="percorso" class="form-select">
+									<option selected>Selezionare guida</option>
+									<option th:each="item : ${percorsiList}" th:value="${item.id}" th:field="*{percorso}" th:text="${item.nomePercorso}"></option>
+								</select>
+							</div>
+							<div class="col-12">
+								<label class="form-label" for="">Guida</label>
+								<select name="guida" class="form-select">
+									<option selected>Selezionare guida</option>
+									<option th:each="item : ${guideList}" th:value="${item.id}" th:field="*{guida}" th:text="|${item.nome} ${item.cognome}|"></option>
+								</select>
+							</div>
+							
+							<!-- buttons -->
+							<div class="col-12">
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
+								<a class="btn btn-primary" th:href="@{/visite}"><i class="fas fa-times"></i> Cancel</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div> 
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

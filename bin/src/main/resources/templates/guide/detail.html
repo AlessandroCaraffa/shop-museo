@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+		<title th:text="${guida.nome}"></title> 
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+		
+		<!-- general container -->
+		<div class="container" th:object="${guida}"> <!-- definire l'oggetto nel contenitore ti permette di richiamarlo con * (non è necessario, solo più breve) -->
+			
+			<!-- title V2 -->
+			<div class="row">
+				<div class="col-auto me-auto">
+					<h1><a th:href="@{/guide}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="|*{nome} *{cognome}|"></span></h1>
+				</div>
+				<div class="col-auto d-flex algn-items-end">
+					<a class="me-1" th:href="@{|/guide/edit/*{id}|}"><i class="fas fa-edit"></i></a>
+					<a class="me-2" th:href="@{|/guide/delete/*{id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+				</div>
+			</div>
+			<hr/>
+			
+			<!-- container -->
+			<div class="row">
+				<!-- main details -->
+				<div class="col-8">
+					<!-- bio -->
+					<th:block th:unless=${#strings.isEmpty(guida.bio)}> <!-- mostra solo se non vuoto -->
+						<dt>Bio</dt>
+						<dd th:text="*{bio}"></dd>
+					</th:block>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+		<div th:each="item : ${guida.getFoto()}" class="row mt-5">
+			<div class="col-3">
+				<div class="card">
+					<img th:src="|/guide/${item.getId()}/foto|" class="card-img-top">
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

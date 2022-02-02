@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+		<title>Acquisto prodotto</title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+			
+			
+			
+			
+			<div class="container">
+			<!-- title V2 -->
+			<h1><a th:href="@{/acquisti}"><i class="fas fa-arrow-circle-left"></i></a>
+			<span th:text="'Acquisto prodotto'"></span></h1>
+			<hr/>
+			<form 
+				id="aProdotto-form"
+				th:action="@{|/acquisti/${id}|}"
+				method="post"
+				th:object="${aProdotto}"
+			>
+
+			<!-- validazione -->
+				
+				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
+					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
+					<ul class="mb-1">
+						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+					</ul>
+				</div>
+				
+				<!-- campi form -->
+				<div class="row">
+				
+
+					<div class="col-9">
+						<div class="row gy-2">
+							<div class="col-6">
+								<label class="form-label" for="prodotto">Selezionare prodotto</label >
+								<select class="form-select" id="prodottoId" name="prodottoId" form="aProdotto-form" th:field="*{prodottoId}" th:errorClass="is-invalid">
+								  <option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}" th:text="${prodotto.nome}"></option >
+								  
+								</select >								
+								<div th:if="${#fields.hasErrors('prodottoId')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('prodottoId')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="quantita">Quantità</label>
+								<input type="number" class="form-control" id="quantita" th:field="*{quantita}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-2">
+								<label class="form-label" for="prezzoAcquisto">Prezzo di acquisto</label>
+								<input type="number" class="form-control" id="prezzoAcquisto" th:field="*{prezzoAcquisto}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('prezzoAcquisto')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('prezzoAcquisto')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							
+							
+							<!-- buttons -->
+							<div class="col-12">
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
+								<a class="btn btn-primary" th:href="@{/acquisti}"><i class="fas fa-times"></i> Cancel</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<table class="table" th:if="${acquistoProdotti.size() > 0}">
+			<thead>
+				<tr>
+					<th class ="text-secondary  fs-3 "scope="col">Prodotto</th >
+					<th class ="text-secondary  fs-3"scope="col">Quantità</th >	
+					<th class ="text-secondary  fs-3"scope="col">Prezzo</th >				
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="acquistoProdotto : ${acquistoProdotti}">
+					<td class=" " th:text="${acquistoProdotto.prodotto.nome}"></td>
+					<td class=" " th:text="${acquistoProdotto.quantita}"></td>
+					<td class=" " th:text="${acquistoProdotto.prezzoAcquisto}"></td>
+					<td>
+						<a class="me-2" th:href="@{/}"><i class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/utility :: headTags"></div>
+	<title>Edit Prodotto</title>
+</head>
+
+<body>
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+	<div class="container">
+		<h1>Prodotto</h1>
+		<form id="form-foto" th:object="${foto}" th:action="@{/prodotto/editFoto/{id}(id=${foto.id})}" method="post"
+			enctype="multipart/form-data">
+			<div class="row gy-2">
+
+				<div class="col-3">
+					<label for="titolo" class="form-label">Title</label>
+					<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
+				</div>
+				<div class="col-3">
+					<label class="form-label" for="contenuto">Foto</label>
+					<input type="file" class="form-control" id="contenuto" th:field="*{contenuto}">
+				</div>
+
+				<div class="col-12">
+					<button class="btn btn-primary" type="submit">Save</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+	<div class="container">
+		<div th:each="item : ${prodotto.getFoto()}" class="row mt-5">
+			<div class="col-3">
+				<div class="card">
+					<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top">
+				</div>
+				<a class="" th:href="@{|/prodotto/deleteFoto/${item.getId()}|}" onclick="return confirm('Are you sure?')"> <i
+								class="fas fa-trash-alt"></i></a>
+
+			</div>
+
+
+		</div>
+	</div>
+	<div th:replace="fragments/utility :: scripts"></div>
+</body>
+
+</html>

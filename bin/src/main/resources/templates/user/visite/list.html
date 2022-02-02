@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/utility :: head"></div>
+		<title th:text="|Visite percorso ${percorso.nomePercorso}|"></title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+		<!-- LISTA VISITE USER -->
+	
+		<div class="container">
+		
+			<!-- title -->
+			<div>
+				<h1><a th:href="@{|/user/percorsi|}"><i class="fas fa-arrow-circle-left"></i></a>
+				<span th:text="|Visite percorso ${percorso.nomePercorso}|"></span></h1>
+			</div>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Percorso</th>
+						<th>Guida</th>
+						<th>Data</th>
+						<th>Orario</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${visite}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.percorso.nomePercorso}"></td>
+						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
+						<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td>
+						<td th:text="${item.orario}"></td>
+						<td>
+							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.percorso.id}/visite/${item.id}/detail|}"><i class="fas fa-info"></i></a>
+							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.percorso.id}/visite/${item.id}/prenotazioni/create|}"><i class="far fa-calendar-alt"></i> Prenota</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
+</html >

@@ -63,13 +63,13 @@ public class GuidaController {
 			return "/guide/edit";
 		}
 		if(formGuida.getContenutoGuida() == null || formGuida.getContenutoGuida().isEmpty()) {
-			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
+			bindingResult.addError(new ObjectError("content", "Inserire la foto"));
 			return "/guide/edit";
 		}
 		try {
 			
 			service.createGuidaForm(formGuida);
-			redirectAttributes.addFlashAttribute("successMessage", "Dati della Guida Aggiunto!");
+			redirectAttributes.addFlashAttribute("successMessage", "Dati della Guida Aggiunti!");
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare!");
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class GuidaController {
 			return "/guide/edit";
 		}
 		if(formGuida.getContenutoGuida() == null || formGuida.getContenutoGuida().isEmpty()) {
-			bindingResult.addError(new ObjectError("content", "The Photo File is mandatory"));
+			bindingResult.addError(new ObjectError("content", "Inserire la foto"));
 			return "/guide/edit";
 		}
 		try {
@@ -123,6 +123,7 @@ public class GuidaController {
 			e.printStackTrace();
 		}
 		
+		redirectAttributes.addFlashAttribute("successMessage", "Dati della Guida Aggiornati!");
 		return "redirect:/guide";
 	}
 	//
@@ -160,6 +161,7 @@ if(bindingResult.hasErrors()) {
 			return "/guide/editGuida";
 		}
 		fotoService.update(formFoto);
+		redirectAttributes.addFlashAttribute("successMessage", "Foto Aggiornata!");
 		return "redirect:/guide";
 	}
 	
