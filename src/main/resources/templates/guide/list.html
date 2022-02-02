@@ -9,6 +9,9 @@
 		<nav th:replace="fragments/navbar :: navbar"></nav>
 	
 		<div class="container">
+		<th:block th:if="${successMessage != null}">
+			<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
+		</th:block>
 			<h1>Le nostre guide</h1>
 						
 			<!-- add button -->

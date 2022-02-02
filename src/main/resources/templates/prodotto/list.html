@@ -13,8 +13,12 @@
 
 				<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
 			</th:block>
+			<h1>Prodotti</h1>
 		
-
+	<div>
+			<a class="btn btn-primary" th:href="@{/prodotto/create}"><i class="fas fa-plus me-2"></i>Nuovo prodotto</a>
+		</div>
+		<hr />
 		<table class="table">
 			<thead>
 				<tr>
@@ -54,9 +58,7 @@
 		</table>
 
 
-		<div class="col-3 ms-auto text-end">
-			<a class="btn btn-primary" th:href="@{/prodotto/create}"><i class="fas fa-plus me-2"></i>Nuovo prodotto</a>
-		</div>
+	
 	</div>
 
 	<div th:replace="fragments/utility :: scripts"></div>
