@@ -27,7 +27,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="acquisto : ${acquisti}">
-						<td th:text="${acquisto.dataAcquisto}"></td> 
+						<td th:text="${#temporals.format(acquisto.dataAcquisto, 'dd/MM/yy')}"></td> 
 						<td th:text="${acquisto.nomeFornitore}"></td>
 						<!--<td th:text="${acquisto.totaleAcquisto}"></td> da aggiungere totale calcolato,fare metodo findByAcquistoId su service e repository di Acquisto e poi fare una query sum(prezzoAcquisto)-->
 						<td>
