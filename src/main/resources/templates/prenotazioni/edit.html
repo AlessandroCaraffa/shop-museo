@@ -55,7 +55,7 @@
 								</div>
 							</div>
 							<div class="col-6">
-								<label class="form-label" for="quantita">N° posti</label>
+								<label class="form-label" for="quantita">Posti da prenotare</label>
 								<input type="number" class="form-control" id="quantita" th:field="*{quantita}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
 									<ul>
@@ -64,7 +64,16 @@
 								</div>
 							</div>
 							
-							<!-- dropdown select -->
+							<!-- dropdown posti
+							<div class="col-6">
+								<label class="form-label" for="">Posti da prenotare</label>
+								<select name="quantita" class="form-select">
+									<option selected>Seleziona n° posti</option> starting, ending, increment
+									<option th:each="item : ${#numbers.sequence( 1, 10, 1)}" th:value="${item}" th:text="${item}"></option>
+								</select>
+							</div> -->
+							
+							<!-- dropdown visite -->
 							<div class="col-12">
 								<label class="form-label" for="">Visita</label>
 								<select name="visita" class="form-select">

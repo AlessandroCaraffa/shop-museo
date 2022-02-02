@@ -2,7 +2,9 @@ package org.generation.italy.controller;
 
 import javax.validation.Valid;
 
+import org.generation.italy.model.Percorso;
 import org.generation.italy.model.Prenotazione;
+import org.generation.italy.model.Visita;
 import org.generation.italy.service.PercorsoService;
 import org.generation.italy.service.PrenotazioneService;
 import org.generation.italy.service.VisitaService;
@@ -76,8 +78,25 @@ public class UserPrenotazioneController {
 		Prenotazione p = new Prenotazione(); // nuovo oggetto
 		p.setVisita(visitaService.getById(idVis)); // precarico id visita
 		model.addAttribute("prenotazione", p); // passa al model
+		Percorso percorso = percorsoService.getById(idPer); // per postiDisponibili
 		model.addAttribute("percorso", percorsoService.getById(idPer)); // agg. per titolo, non centra col resto
+		Visita visita = visitaService.getById(idVis); // per postiDisponibili
 		model.addAttribute("visita", visitaService.getById(idVis)); // agg. per link action
+		
+		// per il dropdown
+		int[] postiDisponibili;
+		int size = 0;
+		if(percorso.getPostiMax() - visita.getPostiPrenotati() > 10) {
+			size = 10;
+		} else {
+			size = percorso.getPostiMax() - visita.getPostiPrenotati();
+		}
+		postiDisponibili = new int[size];
+		for(int i = 0; i < size; i++) {
+			postiDisponibili[i] = i+1;
+		}
+		model.addAttribute("postiDisponibili", postiDisponibili);
+		
 		return "/user/prenotazioni/edit";
 	}
 	
