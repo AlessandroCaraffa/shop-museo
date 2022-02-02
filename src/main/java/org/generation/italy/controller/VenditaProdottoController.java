@@ -56,7 +56,10 @@ public class VenditaProdottoController {
 			@PathVariable("id") Integer venditaId
 			) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
+			model.addAttribute("edit", true);
+			model.addAttribute("venditaProdotti", service.findByVenditaId(venditaId));
+			model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
+			model.addAttribute("venditaId", venditaId);
 			return "/vendite/edit";
 		}
 		
