@@ -5,6 +5,7 @@ import java.util.List;
 import org.generation.italy.model.Prenotazione;
 import org.generation.italy.repository.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,5 +33,13 @@ public class PrenotazioneService {
 	public Prenotazione update(Prenotazione prenotazione) {
 		return repository.save(prenotazione);
 	}
+	
+	public Integer getTotalePrenotazioni() {
+		return repository.getTotalePrenotazioni();
+	}
+	
+//	public List<Prenotazione> getTotalePrenotazioniById(@Param("id") Integer id) {
+//		return repository.getTotalePrenotazioniById(id);
+//	}
 
 }

@@ -10,9 +10,15 @@
 	<nav th:replace="fragments/navbar :: navbar"></nav>
 	<div class="container">
 		<th:block th:if="${successMessage != null}">
+<<<<<<< HEAD
 			<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
 		</th:block>
 
+=======
+				<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
+			</th:block>
+		
+>>>>>>> 5f0f7a9907a0a715bad73df49f1eb26c6bcfb092
 		<table class="table">
 			<thead>
 				<tr>
@@ -27,9 +33,13 @@
 
 			</thead>
 			<tbody>
+<<<<<<< HEAD
 				<tr class=" "
 					th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
 					th:each="prodotto : ${prodotti}">
+=======
+				<tr class = " " th:classappend= "(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')" th:each="prodotto : ${prodotti}">
+>>>>>>> 5f0f7a9907a0a715bad73df49f1eb26c6bcfb092
 					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
 					<td class=" " th:text="${prodotto.nome}"></td>
 					<td class=" " th:text="${prodotto.descrizione}"></td>
@@ -37,12 +47,19 @@
 					<td class=" " th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
 					<td>
 						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
+<<<<<<< HEAD
 						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i
 								class="fas fa-edit"></i></a>
 						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i
 								class="fas fa-images"></i></a>
 						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}"
 							onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+=======
+						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
+						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i class="fas fa-images"></i></a>
+						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}" onclick="return confirm('Are you sure?')"><i
+								class="fas fa-trash-alt"></i></a>
+>>>>>>> 5f0f7a9907a0a715bad73df49f1eb26c6bcfb092
 					</td>
 				</tr>
 

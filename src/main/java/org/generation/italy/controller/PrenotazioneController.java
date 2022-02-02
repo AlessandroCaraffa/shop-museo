@@ -45,8 +45,8 @@ public class PrenotazioneController {
 		return "/prenotazioni/edit";
 	}
 	
-	@PostMapping("/create") // TODO COSA CI FA ACQUISTO QUI??!
-	public String doCreate(@Valid @ModelAttribute("acquisto") Prenotazione formPrenotazione,
+	@PostMapping("/create")
+	public String doCreate(@Valid @ModelAttribute("prenotazione") Prenotazione formPrenotazione,
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);

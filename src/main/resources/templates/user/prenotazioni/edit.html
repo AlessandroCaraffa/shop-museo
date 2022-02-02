@@ -22,7 +22,8 @@
 			<form id="prenotazione-form"
 				th:object="${prenotazione}"
 				th:action="@{/prenotazioni/create}"
-				method="POST"> <!-- ^PROBLEMA QUI??^ -->
+				method="POST"> <!-- @{/prenotazioni/create} -->
+				<!-- @{|/user/percorsi/${percorso.id}/visite/${visita.id}/prenotazioni/create|} -->
 			
 				<!-- validazione -->
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
