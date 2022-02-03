@@ -1,7 +1,5 @@
 package org.generation.italy.controller;
-import org.generation.italy.repository.DashboardRepository;
 import org.generation.italy.service.AcquistoService;
-import org.generation.italy.service.DashboardService;
 import org.generation.italy.service.PrenotazioneService;
 import org.generation.italy.service.ProdottoService;
 import org.generation.italy.service.VenditaProdottoService;
@@ -36,27 +34,15 @@ public class DashboardController {
 	private ProdottoService prodottoService;
 	
 	@GetMapping
-
 	public String list(Model model) {
-		
 		model.addAttribute("totalePrenotazioni", prenotazioneService.getTotalePrenotazioni());
 		model.addAttribute("totaleVendite", venditaService.getTotaleVendite());
 		model.addAttribute("totaleAcquisti", acquistoService.getTotaleAcquisti());
 		model.addAttribute("top5", venditaProdottoService.top(5));
 		model.addAttribute("inEsaurimento", prodottoService.inEsaurimento());
 		model.addAttribute("prodotti", prodottoService.findAllSortedByNome());
-
-		
-		model.addAttribute("VisiteProssimoMese", visitaService.getVisiteNextWeek());
-
+		model.addAttribute("visiteNextWeek", visitaService.getVisiteNextWeek());
 		return "/dashboard/dashboard";
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -93,7 +93,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="item : ${VisiteProssimoMese}">
+					<tr th:each="item : ${visiteNextWeek}">
 						<td th:text="${item.id}"></td>
 						<td th:text="${item.percorso.nomePercorso}"></td>
 						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>

@@ -32,6 +32,11 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 //	public List<Visita> findAllNotPastOrderByDataOrario();
 	
 	@Query(value = "SELECT * FROM visita\r\n"
+			+ "ORDER BY `data`, orario;",
+			nativeQuery = true)
+	public List<Visita> findAllOrderByDataOrario();
+	
+	@Query(value = "SELECT * FROM visita\r\n"
 			+ "ORDER BY `data` DESC, orario DESC;",
 			nativeQuery = true)
 	public List<Visita> findAllOrderByDataOrarioBothDesc();
