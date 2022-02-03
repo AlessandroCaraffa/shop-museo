@@ -5,32 +5,32 @@
 		<title>Visite</title>
 	</head>
 	<body>
+		<!-- LISTA VISITE ADMIN -->
+	
 		<!-- navbar -->
 		<nav th:replace="fragments/navbar :: navbar"></nav>
 	
 		<div class="container">
-		<div class="container">
-		<th:block th:if="${successMessage != null}">
-
+			
+			<!-- scuccess message -->
+			<th:block th:if="${successMessage != null}">
 				<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
 			</th:block>
-			<h1>Visite</h1>
-						
-			<!-- add button -->
-			<div>
-				<a class="btn btn-primary" th:href="@{/visite/create}"><i class="fas fa-plus"></i> Nuova visita</a>
-			</div>
+			
+			<!-- title V2 -->
+			<h1><a th:href="@{/visite/create}"><i class="fas fa-plus-circle"></i></a>
+			Visite</h1>
 			<hr/>
 			
 			<!-- table -->
 			<table class="table">
 				<thead>
-					<tr>
-						<th class="text-secondary  fs-3 ">ID</th >
-						<th class="text-secondary  fs-3 ">Percorso</th >
-						<th class="text-secondary  fs-3 ">Guida</th >
-						<th class="text-secondary  fs-3 ">Data</th >
-						<th class="text-secondary  fs-3 ">Orario</th >
+					<tr class="text-secondary fs-3">
+						<th>ID</th>
+						<th>Percorso</th>
+						<th>Guida</th>
+						<th>Data</th>
+						<th>Orario</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -54,4 +54,4 @@
 		<!-- scripts -->
 		<div th:replace="fragments/utility :: scripts"></div>
 	</body>
-</html >
+</html>
