@@ -10,8 +10,10 @@ import org.generation.italy.model.Percorso;
 import org.generation.italy.model.PercorsoForm;
 import org.generation.italy.model.Prodotto;
 import org.generation.italy.model.ProdottoForm;
+import org.generation.italy.model.Visita;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.PercorsoService;
+import org.generation.italy.service.VisitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,8 @@ public class PercorsoController {
 	private PercorsoService service;
 	@Autowired
 	private FotoService fotoService;
+	@Autowired 
+	private VisitaService visitaService;
 
 	@GetMapping
 	public String list(Model model) {
@@ -82,10 +86,20 @@ public class PercorsoController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String doDelete(Model model, @PathVariable("id") Integer id) {
+	public String doDelete(Model model, @PathVariable("id") Integer id,BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		Visita visita= visitaService.getById(id);
+		if(visita.getPercorso()!=null) {
+			
+			redirectAttributes.addFlashAttribute("errorMessage", "Il Percorso non può essere Eliminato!");
+			return "redirect:/percorsi";
+		}
 		service.deleteById(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Il Percorso é stato Eliminato!");
 		return "redirect:/percorsi";
 	}
+	
+	
 	@GetMapping("/{percorsoId}/deleteFoto/{id}")
 	public String doDeleteFoto(Model model, @PathVariable("id") Integer id,@PathVariable("percorsoId") Integer percorsoId) {
 		Percorso percorso=service.getById(percorsoId);
@@ -122,15 +136,20 @@ public class PercorsoController {
 	public String editFoto (@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("percorso", service.getById(id));
-		model.addAttribute("foto", fotoService.getById(id));
-		model.addAttribute("fotoList", fotoService.findAllById(id));
+		model.addAttribute("foto", new FotoForm());
+		
 		
 		return "/percorsi/editFoto";
 	}
 	
 	@PostMapping("/editFoto/{id}")
 	public String doUpdateFoto(@Valid @ModelAttribute("foto") FotoForm formFoto, @PathVariable("id") Integer id,BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-	
+		if(bindingResult.hasErrors() && formFoto.getContenuto() == null || formFoto.getContenuto().isEmpty()) {
+			
+			//redirectAttributes.addFlashAttribute("errorMessage", "Inserire la Foto!");
+			bindingResult.addError(new ObjectError("content", "Inserire la foto"));
+			return "redirect:/prodotto/editFoto/" + id;
+			}
 
 	try {
 	Foto addFoto= fotoService.create(formFoto);
@@ -139,7 +158,8 @@ public class PercorsoController {
 	service.update(percorso);
 	}
 	catch(IOException e){
-		
+		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Prodotto!");
+		e.printStackTrace();
 	}
 	redirectAttributes.addFlashAttribute("successMessage", "Foto Aggiornata!");
 	return "redirect:/percorsi";

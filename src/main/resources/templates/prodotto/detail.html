@@ -49,17 +49,21 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<div th:each="item : ${prodotto.getFoto()}" class="row mt-5">
-			<div class="col-3">
+		<div class="container">
+		<div class="row">
+		<div th:each="item : ${prodotto.getFoto()}" class="col-3">
+		
 				<div class="card">
-					<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top">
+					<img th:src="|/prodotto/${item.getId()}/foto|" class="card-img-top" style="width: 100%">
 				</div>
+				<a class="mt-2" th:href="@{|/prodotto/${prodotto.id}/deleteFoto/${item.getId()}|}" onclick="return confirm('Are you sure?')"> <i
+								class="fas fa-trash-alt"></i></a>
 
-			</div>
+	
 
 
 		</div>
+		</div >
 	</div>
 
 

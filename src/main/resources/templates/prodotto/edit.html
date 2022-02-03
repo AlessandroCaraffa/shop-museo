@@ -21,6 +21,7 @@
 						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
 					</ul>
 				</div>
+					
 			
 
 			<div class="row gy-2">
@@ -65,8 +66,7 @@
 						
 
 					</div>
-					<input type="file" class="form-control" id="default-btn" th:field="*{conteuntoProdotto}"
-						th:errorClass="is-invalid">
+					<input type="file" class="form-control" id="default-btn" th:field="*{conteuntoProdotto}" th:errorClass="is-invalid">
 
 					<div th:if="${#fields.hasErrors('conteuntoProdotto')}" class="invalid-feedback">
 						<ul>
