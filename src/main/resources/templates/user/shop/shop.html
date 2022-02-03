@@ -9,7 +9,7 @@
 <body>
 	<nav th:replace="fragments/navbar :: navbar"></nav>
 
-<!--<div class="container">
+<div class="container">
 	
 	<div class="row pt-5">
 	<div class="col-3" th:each="item : ${prodotti}">
@@ -30,29 +30,7 @@
 	</div >
 	</div >
 		
-</div>-->
-<div class="container">
-	<div class="row">
-		<div th:each="item : ${prodotti}" class="col">
-			<div class="card">
-					<h5 th:text="${item.nome}" class="card-title text-center"></h5 >
-                    <div class="position-relative" style="width: 18rem;" th:each="foto: ${item.getFoto}">
-					<img th:src="|/prodotto/${foto.getId()}/foto|" class="card-img-top position-absolute bottom-0 start-50 translate-middle-x">
-				</div >				
-                    <div class="card-body container">
-                        
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-info mx-1">Preview</a>
-                            <a href="#" class="btn btn-outline-info">Visit site</a>
-                        </div>
-                    </div>
-                </div>
-		</div >
-	</div>
 </div>
-
-
-
 
 	
 
