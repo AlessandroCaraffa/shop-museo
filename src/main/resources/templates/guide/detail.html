@@ -24,30 +24,27 @@
 			</div>
 			<hr/>
 			
-			<!-- container -->
+			<!-- row -->
 			<div class="row">
-				<!-- main details -->
-				<div class="col-8">
+				
+				<!-- foto -->
+				<div th:each="item : ${guida.getFoto()}" class="row mt-5">
+					<div class="col-3">
+						<div class="card">
+							<img th:src="|/foto/${item.getId()}/foto|" class="card-img">
+						</div>
+					</div>
+					
 					<!-- bio -->
-					<th:block th:unless=${#strings.isEmpty(guida.bio)}> <!-- mostra solo se non vuoto -->
-						<dt>Bio</dt>
-						<dd th:text="*{bio}"></dd>
-					</th:block>
+					<div class="col-8">
+						<th:block th:unless=${#strings.isEmpty(guida.bio)}> <!-- mostra solo se non vuoto -->
+							<dt>Bio</dt>
+							<dd th:text="*{bio}"></dd>
+						</th:block>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container">
-		<div th:each="item : ${guida.getFoto()}" class="row mt-5">
-			<div class="col-3">
-				<div class="card">
-					<img th:src="|/foto/${item.getId()}/foto|" class="card-img-top">
-				</div>
-
-			</div>
-
-
-		</div>
-	</div>
 
 		<!-- scripts -->
 		<div th:replace="fragments/utility :: scripts"></div>
