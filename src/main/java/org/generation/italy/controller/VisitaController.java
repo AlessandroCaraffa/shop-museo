@@ -33,7 +33,7 @@ public class VisitaController {
 	@GetMapping
 	public String list(Model model) {
 		System.out.println(service.findAll()); // CHEAT
-		model.addAttribute("list", service.findAllNotPastOrderByDataOrario());
+		model.addAttribute("list", service.findAllOrderByDataOrarioBothDesc());
 		return "/visite/list";
 	}
 	
