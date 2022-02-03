@@ -27,6 +27,13 @@
 							<div class="col-6">
 								<label class="form-label" for="nomeFornitore">Nome fornitore</label>
 								<input type="text" class="form-control" id="nomeFornitore" th:field="*{nomeFornitore}">
+								<div th:if="${#fields.hasErrors('nomeFornitore')}" class="invalid-feedback">
+
+									<ul>
+										<li th:each="err : ${#fields.errors('nomeFornitore')}" th:text="${err}"></li>
+									</ul>
+								</div>
+				</div>
 							</div>
 							
 							<!-- buttons -->

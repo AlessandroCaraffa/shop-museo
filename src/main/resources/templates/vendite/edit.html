@@ -40,11 +40,18 @@
 					<div class="col-6">
 						<div class="row gy-2">
 							<div class="col-8">
-								<label class="form-label" for="prodotto">Selezionare prodotto</label >
-								<select class="form-select" id="prodotto" name="prodotto" form="vendita-prodotto" th:field="*{prodottoId}" th:errorClass="is-invalid">
-								  <option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}" th:text="${prodotto.nome}"></option >
-								  
-								</select >								
+								<label class="form-label" for="">Selezionare Prodotto</label>
+								<select name="guida" class="form-select">
+									<option selected>Selezionare Prodotto</option>
+									<option th:each="prodotto : ${prodotti}" th:value="${prodotto.id}" th:field="*{prodottoId}" th:text="${prodotto.nome}"></option>
+								</select>							
+							
+							
+							
+							
+								
+								
+															
 								<div th:if="${#fields.hasErrors('prodottoId')}" class="invalid-feedback">
 									<ul>
 										<li th:each="err : ${#fields.errors('prodottoId')}" th:text="${err}"></li>
