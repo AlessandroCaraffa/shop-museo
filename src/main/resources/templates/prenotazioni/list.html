@@ -28,7 +28,8 @@
 					<tr class="text-secondary fs-3">
 						<th>ID</th>
 						<th>Nome e cognome</th>
-						<th>N° posti</th>
+						<th>Posti prenotati</th>
+						<th>ID visita</th>
 						<th>Percorso</th>
 						<th>Data</th>
 						<th>Orario</th>
@@ -40,6 +41,7 @@
 						<td th:text="${item.id}"></td>
 						<td th:text="|${item.nome} ${item.cognome}|"></td>
 						<td th:text="${item.quantita}"></td>
+						<td th:text="${item.visita.id}"></td>
 						<td th:text="${item.visita.percorso.nomePercorso}"></td>
 						<td th:text="${#temporals.format(item.visita.data, 'dd/MM/yy')}"></td> <!-- formattazione personalizzata -->
 						<td th:text="${item.visita.orario}"></td>

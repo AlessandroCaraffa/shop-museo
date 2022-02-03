@@ -71,8 +71,8 @@
 							<div class="col-6">
 								<label class="form-label" for="">Posti da prenotare</label>
 								<select name="quantita" class="form-select">
-									<option selected>Seleziona n° posti</option> starting, ending, increment
-									<option th:each="item : ${postiDisponibili}" th:value="${item}" th:text="${item}"></option>
+									<option selected>Seleziona n° posti</option>
+									<option th:each="item : ${postiDisponibiliList}" th:value="${item}" th:text="${item}"></option>
 								</select>
 							</div>
 	
