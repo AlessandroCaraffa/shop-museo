@@ -22,14 +22,12 @@ public class ProdottoService {
 	@Autowired
 	private FotoRepository fotoRepo;
 	
-	
 	public boolean inEsaurimento() {
 		for(Prodotto prodotto : findAllSortedByNome()) {
 			if (prodotto.getQuantitaAcquistata() - prodotto.getQuantitaVenduta() < 10) {
 				return true;
-				
 			}
-		}return false;
+		} return false;
 	}
 	
 	public List<Prodotto> findAllSortedByNome(){
@@ -39,21 +37,17 @@ public class ProdottoService {
 	public Prodotto create(Prodotto prodotto) {
 		return repository.save(prodotto);
 	}
+	
 	public Prodotto createProdottoForm(ProdottoForm prodotto) throws IOException {
 		Prodotto newProdotto=new Prodotto();
-		
 		Foto newFotoProdotto= createFoto(prodotto); 
-		
 		//1-crea una lista vuoto di Foto
 		List<Foto> listaFoto=new ArrayList<>();
 		//2-aggiungo la mia newFoto alla lista
 		listaFoto.add(newFotoProdotto);
-		
 		//3-set quest lista coem attributo foto del prodotto
-		newProdotto.setFoto(listaFoto);;
-		//4-proseguo a slavare prodotto
-		
-		
+		newProdotto.setFoto(listaFoto);
+		//4-proseguo a salvare prodotto
 		newProdotto.setQuantitaAcquistata(0);
 		newProdotto.setQuantitaVenduta(0);
 		newProdotto.setNome(prodotto.getNome());
@@ -61,38 +55,29 @@ public class ProdottoService {
 		newProdotto.setDescrizione(prodotto.getDescrizione());
 		Prodotto prodottoSave=repository.save(newProdotto);
 		
-		
-		
-		
 		return prodottoSave;
 	}
-	
-
 	
 	public void deleteById(Integer id) {
 		repository.deleteById(id);
 	}
 	
-	
 	public Prodotto getByIdProdottoForm(Integer id) {
 		fotoRepo.getById(id);
-		
-		
 		return repository.getById(id);
 	}
 	
 	public Foto getByIdFoto(Integer id) {
 		return fotoRepo.getById(id);
 	}
+	
 	public Prodotto getById(Integer id) {
 		return repository.getById(id);
 	}
 	
-	
 	public Prodotto update(Prodotto prodotto) {
 		return repository.save(prodotto);
 	}
-	
 	
 	public Foto createFoto(ProdottoForm newFoto) throws IOException{
 
@@ -102,17 +87,11 @@ public class ProdottoService {
 			byte[] contentSerialized = newFoto.getConteuntoProdotto().getBytes();
 			foto.setContenuto(contentSerialized);
 		}
-		
 		return fotoRepo.save(foto);
-	};
+	}
 	
 	public List<Foto> findAll(){
 		return fotoRepo.findAll();
 	}
-	
-
-
-	
-
 	
 }
