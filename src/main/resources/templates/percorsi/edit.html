@@ -39,7 +39,7 @@
 					<!-- colonna sx -->
 					<div class="col-6">
 						<div class="row gy-2">
-							<div class="col-8">
+							<div class="col-12">
 								<label class="form-label" for="nomePercorso">Nome Percorso</label>
 								<input type="text" class="form-control" id="nomePercorso" th:field="*{nomePercorso}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('nomePercorso')}" class="invalid-feedback">
@@ -48,7 +48,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-2">
+							<div class="col-4">
 								<label class="form-label" for="prezzo">Prezzo</label>
 								<input type="text" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
@@ -57,7 +57,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-2">
+							<div class="col-4">
 								<label class="form-label" for="postiMax">Posti max</label>
 								<input type="text" class="form-control" id="postiMax" th:field="*{postiMax}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('postiMax')}" class="invalid-feedback">
@@ -66,11 +66,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-10">
-								<label class="form-label" for="descrizione">Descrizione</label>
-								<textarea class="form-control" id="descrizione" th:field="*{descrizione}" rows="6"></textarea>
-							</div>
-							<div class="col-2">
+							<div class="col-4">
 								<label class="form-label" for="durata">Durata</label>
 								<input type="time" class="form-control" id="durata" th:field="*{durata}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('durata')}" class="invalid-feedback">
@@ -79,8 +75,13 @@
 									</ul>
 								</div>
 							</div>
+							<div class="col-12">
+								<label class="form-label" for="descrizione">Descrizione</label>
+								<textarea class="form-control" id="descrizione" th:field="*{descrizione}" rows="6"></textarea>
+							</div>
+							
 							<!-- inserimento foto -->
-							<div class="col-3"> 
+							<div class="col-6"> 
 								<label for="titolo" class="form-label">Titolo</label>
 								<input id="titolo" type="text" class="form-control" th:field="*{titolo}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
@@ -89,7 +90,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-3">
+							<div class="col-6">
 								<label class="form-label" for="contenuto">Foto</label>
 								<input type="file" class="form-control" id="contenuto" th:field="*{contenutoPercorso}">
 								<div th:if="${#fields.hasErrors('contenutoPercorso')}" class="invalid-feedback">
