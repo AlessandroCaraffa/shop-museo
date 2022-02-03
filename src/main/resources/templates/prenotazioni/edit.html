@@ -79,7 +79,7 @@
 								<select name="visita" class="form-select">
 									<option selected>Selezionare visita</option>
 									<option th:each="item : ${visiteList}" th:value="${item.id}" th:field="*{visita}"
-										th:text="|${#temporals.format(item.data, 'dd/MM/yy')} - ${item.orario} - ${item.percorso.nomePercorso}|">
+										th:text="|[ID: ${item.id}] ${#temporals.format(item.data, 'dd/MM/yy')} - ${item.orario} - ${item.percorso.nomePercorso}|">
 									</option>
 								</select>
 							</div>
