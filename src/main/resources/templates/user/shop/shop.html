@@ -16,7 +16,7 @@
 	<div class="card" style="width: 18rem;">
 		<div>
 			<h5 class="card-title text-center my-3" th:text="${item.nome}"></h5>
-				<div class="position-relative" th:each="foto: ${item.getFoto}">
+				<div class="position-relative" th:each="foto: ${item.getFoto()}">
 					<img th:src="|/prodotto/${foto.getId()}/foto|" style="width: 100%;" >
 				</div >								
 			<div class="card-body">
