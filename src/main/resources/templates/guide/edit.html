@@ -24,12 +24,14 @@
 				enctype="multipart/form-data">
 			
 				<!-- validazione -->
+				<!--
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
 					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
 					<ul class="mb-1">
 						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
 					</ul>
 				</div>
+				-->
 				
 				<!-- campi form -->
 				<div class="row">
@@ -61,8 +63,13 @@
 							</div>
 							
 							<div class="col-3"> 
-					<label for="titolo" class="form-label">Title</label>
-					<input id="titolo" type="text" class="form-control" th:field="*{titolo}">
+					<label for="titolo" class="form-label">Titolo</label>
+					<input id="titolo" type="text" class="form-control" th:field="*{titolo}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+									</ul>
+								</div>
 				</div>
 				<div class="col-3">
 							<label class="form-label" for="contenuto">Foto</label>
@@ -71,8 +78,8 @@
 							
 							<!-- buttons -->
 							<div class="col-12">
-								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
-								<a class="btn btn-primary" th:href="@{/guide}"><i class="fas fa-times"></i> Cancel</a>
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Salva</button>
+								<a class="btn btn-primary" th:href="@{/guide}"><i class="fas fa-times"></i> Cancella</a>
 							</div>
 						</div>
 					</div>

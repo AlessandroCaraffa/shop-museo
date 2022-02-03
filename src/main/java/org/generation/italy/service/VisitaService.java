@@ -17,8 +17,9 @@ public class VisitaService {
 	private VisitaRepository repository;
 	
 	public List<Visita> getVisiteNextWeek() {
+		System.out.println(repository.findAll()); // CHEAT
 		List<Visita> visiteNextmonth = new ArrayList<>();
-		List<Visita> visiteTotali = repository.findAll();
+		List<Visita> visiteTotali = repository.findAllOrderByDataOrario();
 		for(Visita visita : visiteTotali) {
 			int i = visita.getData().compareTo(LocalDate.now().plusWeeks(1));
 			if(i < 0) {
@@ -61,6 +62,10 @@ public class VisitaService {
 //	public List<Visita> findAllNotPastOrderByDataOrario() {
 //		return repository.findAllNotPastOrderByDataOrario();
 //	}
+	
+	public List<Visita> findAllOrderByDataOrario() {
+		return repository.findAllOrderByDataOrario();
+	}
 	
 	public List<Visita> findAllOrderByDataOrarioBothDesc() {
 		return repository.findAllOrderByDataOrarioBothDesc();

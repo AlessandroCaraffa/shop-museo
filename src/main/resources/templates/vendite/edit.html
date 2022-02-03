@@ -26,12 +26,14 @@
 				
 				<!-- validazione -->
 				
+				<!--
 				<div th:if="${#fields.allErrors().size() > 0}" class="col-3 alert alert-danger" role="alert">
 					<span class="fw-bold ms-2"><i class="fas fa-exclamation-triangle"></i> Error list:</span>
 					<ul class="mb-1">
 						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
 					</ul>
 				</div>
+				-->
 				
 				<!-- campi form -->
 				<div class="row">
@@ -71,8 +73,8 @@
 							
 							<!-- buttons -->
 							<div class="col-12">
-								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
-								<a class="btn btn-primary" th:href="@{/vendite}"><i class="fas fa-times"></i> Cancel</a>
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Salva</button>
+								<a class="btn btn-primary" th:href="@{/vendite}"><i class="fas fa-times"></i> Cancella</a>
 							</div>
 						</div>
 					</div>

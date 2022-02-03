@@ -1,144 +1,116 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<div th:replace="fragments/utility :: headTags"></div>
-	<title>Dashboard</title>
-</head>
-
-<body>
-	<nav th:replace="fragments/navbar :: navbar"></nav>
-	<div class="container">
-	
-	
-	
-	
-		<h2 th:if="${inEsaurimento}" class="font-weight-bold fs-1" >Prodotti in esaurimento</h2>
-		<table class="table table-sm mb-5" th:if="${inEsaurimento}">
-			<thead>
-				<tr>
-					<th class="text-secondary  fs-3 " scope="col">Nome</th>
-					<th class="text-secondary  fs-3 " scope="col">Prezzo</th>
-					<th class="text-secondary  fs-3 " scope="col">Quantità</th>
-					<th></th>
-
-
-				</tr>
-
-			</thead>
-			<tbody>
-
-				<tr 
-					th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta >= 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
-					th:each="prodotto : ${prodotti}" th:if="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta} < 10">
-
-					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
-					<td class=" " th:text="${prodotto.nome}"></td>
-					<td class="" th:text="${prodotto.prezzoVendita}"></td>
-					<td class="" th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
-					<td class="d-flex justify-content-between">
-						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
-
-						<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
-						<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i class="fas fa-images"></i></a>
-						<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}" onclick="return confirm('Are you sure?')"><i
-								class="fas fa-trash-alt"></i></a>
-
-					</td >
-				</tr>
-
-			</tbody>
-		</table>
+	<head>
+		<div th:replace="fragments/utility :: headTags"></div>
+		<title>Dashboard</title>
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
 		
+		<!-- DASHBOARD -->
 		
+		<div class="container">
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<h2 class="fs-1">Classifica dei 5 prodotti più venduti nell'ultimo mese</h2 >
-		<table class="table table-sm mb-5">
-			<thead>
-				<tr>
-					<th class="text-secondary  fs-3"scope="col">Prodotto</th>
-					<th class="text-secondary  fs-3" scope="col">Quantità venduta</th >
-				</tr>
-			</thead>
-			<tbody>
-			<tr th:each="prodotto : ${top5}">
-					<td th:text="${prodotto.prodotto.nome}"></td>
-					<td th:text="${prodotto.numeroVendite}"></td>
-				</tr>
-			</tbody>
-		</table>
-		
-		
-		<h2 class="fs-1">Riepilogo degli incassi dell'ultimo mese</h2 >
-		<table class="table table-sm mb-5">
-			<thead>
-				<tr>
-					<th class="text-secondary  fs-3" scope="col">Spese Rifornimenti</th >
-					<th class="text-secondary  fs-3" scope="col">Entrate Shop</th >
-					<th class="text-secondary  fs-3" scope="col">Entrate Visite</th >
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class=" fw-bold text-danger" th:text="'-' + ${totaleAcquisti} + ' &#x20AC'"></td  >
-					<td  class="fw-bold text-success"th:text="'+' + ${totaleVendite}+ ' &#x20AC'"></td >
-					<td class="fw-bold text-success" th:text="'+' + ${totalePrenotazioni}+ ' &#x20AC'"></td  >
-				</tr>
-			</tbody>
-		</table>
-
-
-		<h2 class="fs-1">Lista delle visite guidate programmate per la prossima settimana</h2 >
+			<!-- PRODOTTI IN ESAURIMENTO -->
+			<h2 th:if="${inEsaurimento}" class="font-weight-bold fs-1" >Prodotti in esaurimento</h2>
+			<table class="table table-sm mb-5" th:if="${inEsaurimento}">
+				<thead>
+					<tr class="text-secondary fs-3">
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Prezzo</th>
+						<th>Quantità disponibile</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta >= 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
+						th:each="prodotto : ${prodotti}" th:if="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta} < 10">
+						<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
+						<td class="" th:text="${prodotto.id}"></td>
+						<td class="" th:text="${prodotto.nome}"></td>
+						<td class="" th:text="${prodotto.prezzoVendita}"></td>
+						<td class="" th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+						<td>
+							<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/prodotto/editProdotto/${prodotto.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-1" th:href="@{|/prodotto/editFoto/${prodotto.id}|}"><i class="fas fa-images"></i></a>
+							<a class="me-2" th:href="@{|/prodotto/delete/${prodotto.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- TOP 5 PRODOTTI -->
+			<h2 class="fs-1">Classifica dei 5 prodotti più venduti nell'ultimo mese</h2 >
 			<table class="table table-sm mb-5">
-			<thead>
-				<tr>
-					<!--<th scope="col">Id Visita</th>-->
-					<th class="text-secondary  fs-3" scope="col">Percorso</th >
-					<th class="text-secondary  fs-3" scope="col">Guida</th>
-					<th class="text-secondary  fs-3" scope="col">Data</th >
-					<th class="text-secondary  fs-3" scope="col">Ora</th >
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="item : ${VisiteProssimoMese}">
-					<td th:text="${item.percorso.nomePercorso}"></td>
-					<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
-					<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td>
-					<!-- formattazione personalizzata -->
-					<td th:text="${item.orario}"></td>
-					<td>
-						<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
-						<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
-						<a class="me-2" th:href="@{|/visite/delete/${item.id}|}"
-							onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-
-		
+				<thead>
+					<tr class="text-secondary fs-3">
+						<th>ID</th>
+						<th>Prodotto</th>
+						<th>Quantità venduta</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="prodotto : ${top5}">
+						<td th:text="${prodotto.prodotto.id}"></td>
+						<td th:text="${prodotto.prodotto.nome}"></td>
+						<td th:text="${prodotto.numeroVendite}"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- INCASSI MESE -->
+			<h2 class="fs-1">Riepilogo degli incassi dell'ultimo mese</h2 >
+			<table class="table table-sm mb-5">
+				<thead>
+					<tr class="text-secondary fs-3">
+						<th>Spese Rifornimenti</th>
+						<th>Entrate Shop</th>
+						<th>Entrate Visite</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="fw-bold text-danger" th:text="'-' + ${totaleAcquisti} + ' &#x20AC'"></td  >
+						<td class="fw-bold text-success"th:text="'+' + ${totaleVendite}+ ' &#x20AC'"></td >
+						<td class="fw-bold text-success" th:text="'+' + ${totalePrenotazioni}+ ' &#x20AC'"></td  >
+					</tr>
+				</tbody>
+			</table>
 	
-		
-
-
-
-
-
-	</div>
-
-
-	<div th:replace="fragments/utility :: scripts"></div>
-</body>
+			<!-- LISTA VISITE GUIDATE -->
+			<h2 class="fs-1">Lista delle visite guidate programmate per la prossima settimana</h2>
+				<table class="table table-sm mb-5">
+				<thead>
+					<tr class="text-secondary fs-3">
+						<th>ID</th>
+						<th>Percorso</th>
+						<th>Guida</th>
+						<th>Data</th>
+						<th>Orario</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${visiteNextWeek}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.percorso.nomePercorso}"></td>
+						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
+						<td th:text="${#temporals.format(item.data, 'dd/MM/yy')}"></td> <!-- formattazione personalizzata -->
+						<td th:text="${item.orario}"></td>
+						<td>
+							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+							<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+							<a class="me-2" th:href="@{|/visite/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
+	</body>
 
 </html>

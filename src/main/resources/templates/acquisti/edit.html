@@ -26,20 +26,18 @@
 						<div class="row gy-2">
 							<div class="col-6">
 								<label class="form-label" for="nomeFornitore">Nome fornitore</label>
-								<input type="text" class="form-control" id="nomeFornitore" th:field="*{nomeFornitore}">
+								<input type="text" class="form-control" id="nomeFornitore" th:field="*{nomeFornitore}" th:errorClass="is-invalid">
 								<div th:if="${#fields.hasErrors('nomeFornitore')}" class="invalid-feedback">
-
 									<ul>
 										<li th:each="err : ${#fields.errors('nomeFornitore')}" th:text="${err}"></li>
 									</ul>
 								</div>
-				</div>
 							</div>
 							
 							<!-- buttons -->
 							<div class="col-12">
-								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
-								<a class="btn btn-primary" th:href="@{/acquisti}"><i class="fas fa-times"></i> Cancel</a>
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Salva</button>
+								<a class="btn btn-primary" th:href="@{/acquisti}"><i class="fas fa-times"></i> Cancella</a>
 							</div>
 						</div>
 					</div>
