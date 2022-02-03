@@ -37,7 +37,7 @@ public class Visita {
 	@ManyToOne
 	private Guida guida;
 	
-	@Formula("(SELECT SUM(p.quantita)\r\n"
+	@Formula("(SELECT COALESCE(SUM(p.quantita), 0)\r\n"
 			+ "FROM prenotazione p\r\n"
 			+ "WHERE p.visita_id = id)")
 	private Integer postiPrenotati;
