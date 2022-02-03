@@ -84,18 +84,18 @@ public class UserPrenotazioneController {
 		model.addAttribute("visita", visitaService.getById(idVis)); // agg. per link action
 		
 		// per il dropdown
-		int[] postiDisponibili;
+		int[] postiDisponibiliList;
 		int size = 0;
-		if(percorso.getPostiMax() - visita.getPostiPrenotati() > 10) {
+		if(percorso.getPostiMax() - visita.getPostiPrenotati() >= 10) {
 			size = 10;
 		} else {
 			size = percorso.getPostiMax() - visita.getPostiPrenotati();
 		}
-		postiDisponibili = new int[size];
+		postiDisponibiliList = new int[size];
 		for(int i = 0; i < size; i++) {
-			postiDisponibili[i] = i+1;
+			postiDisponibiliList[i] = i+1;
 		}
-		model.addAttribute("postiDisponibili", postiDisponibili);
+		model.addAttribute("postiDisponibiliList", postiDisponibiliList);
 		
 		return "/user/prenotazioni/edit";
 	}
@@ -106,8 +106,25 @@ public class UserPrenotazioneController {
 			@PathVariable("idPer") Integer idPer,
 			@PathVariable("idVis") Integer idVis) {
 		if(bindingResult.hasErrors()) {
+			Percorso percorso = percorsoService.getById(idPer); // per postiDisponibili
 			model.addAttribute("percorso", percorsoService.getById(idPer)); // per ricostruire url
+			Visita visita = visitaService.getById(idVis); // per postiDisponibili
 			model.addAttribute("visita", visitaService.getById(idVis)); // per ricostruire url
+			
+			// per il dropdown
+			int[] postiDisponibiliList;
+			int size = 0;
+			if(percorso.getPostiMax() - visita.getPostiPrenotati() >= 10) {
+				size = 10;
+			} else {
+				size = percorso.getPostiMax() - visita.getPostiPrenotati();
+			}
+			postiDisponibiliList = new int[size];
+			for(int i = 0; i < size; i++) {
+				postiDisponibiliList[i] = i+1;
+			}
+			model.addAttribute("postiDisponibiliList", postiDisponibiliList);
+			
 			return "/user/prenotazioni/edit";
 		}
 		prenotazioneService.save(formPrenotazione);
