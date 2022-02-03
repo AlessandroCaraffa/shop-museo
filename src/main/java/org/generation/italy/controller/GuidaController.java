@@ -10,8 +10,10 @@ import org.generation.italy.model.Guida;
 import org.generation.italy.model.GuidaForm;
 import org.generation.italy.model.Prodotto;
 import org.generation.italy.model.ProdottoForm;
+import org.generation.italy.service.AcquistoService;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.GuidaService;
+import org.generation.italy.service.VenditaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,7 @@ public class GuidaController {
 	private GuidaService service;
 	@Autowired
 	private FotoService fotoService;
+
 
 	@GetMapping
 	public String list(Model model) {
@@ -80,6 +83,8 @@ public class GuidaController {
 	
 	@GetMapping("/delete/{id}")
 	public String doDelete(Model model, @PathVariable("id") Integer id) {
+		
+		fotoService.deleteById(id);
 		service.deleteById(id);
 		return "redirect:/guide";
 	}

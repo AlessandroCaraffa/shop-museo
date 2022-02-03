@@ -45,6 +45,8 @@ public class Prodotto {
 			+ "where vp.prodotto_id = id)")
 	private Integer quantitaVenduta;
 	
+
+	
 	// getters/setters
 	public Integer getId() {
 		return id;
@@ -89,7 +91,7 @@ public class Prodotto {
 	public void setQuantitaVenduta(Integer quantitaVenduta) {
 		this.quantitaVenduta = quantitaVenduta;
 	}
-
+	
 	
 	
 }

@@ -108,6 +108,10 @@ public class VenditaProdottoService {
 		// TODO Auto-generated method stub
 		repository.deleteById(id);
 	}
+	public VenditaProdotto getById(Integer id) {
+		// TODO Auto-generated method stub
+		return repository.getById(id);
+	}
 	
 //	public List<VenditaProdotto> findByProdottoId(Integer id) {
 //		return repository.findByProdottoId(id);

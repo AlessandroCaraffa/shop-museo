@@ -13,6 +13,10 @@
 
 				<div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
 			</th:block>
+				<th:block th:if="${errorMessage != null}">
+
+				<div th:replace="fragments/successMessage :: errorMessage(${errorMessage})"></div>
+			</th:block>
 			<h1>Prodotti</h1>
 		
 	<div>
