@@ -2,45 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<div th:replace="fragments/utility :: headTags"></div>
-		<title>magazzino</title>
+		<title>Vendite</title>
 	</head>
 	<body>
-	<nav th:replace="fragments/navbar :: navbar"></nav>
-	<div class="container">
+		<!-- LISTA VENDITE ADMIN -->
+	
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
 		
+		<div class="container">
 		
-		<table class="table">
-			<thead>
-				<tr>
-					<th class ="text-secondary  fs-3 "scope="col">Prodotto</th >
-					<th class ="text-secondary ms-2 fs-3"scope="col">Quantità</th >
-					<th class ="text-secondary  fs-3"scope="col">Totale</th >
-					<th class ="text-secondary  fs-3"scope="col">Data</th >
-					<th></th>
-					
-					
-				</tr >
-				
-			</thead>
-			<tbody>
-							
-				<tr th:each="venditaProdotto : ${venditaProdotti}">
-					<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
-					<td class=" " th:text="${venditaProdotto.quantita}"></td>
-					<td class=" " th:text="${venditaProdotto.prodotto.prezzoVendita}*${venditaProdotto.quantita} + ' &#x20AC'" ></td>
-					<td class=" " th:text="${#temporals.format(venditaProdotto.vendita.dataVendita, 'dd/MM/yy')}"></td>
-					
-				</tr>
-				
+			<!-- title V2 -->
+			<h1><a th:href="@{/vendite/create}"><i class="fas fa-plus-circle"></i></a>
+			Vendite</h1>
+			<hr/>
+			
+			<!-- table -->
+			<table class="table">
+				<thead>
+					<tr class="text-secondary fs-3">
+						<th>Prodotto</th>
+						<th>Quantità</th>
+						<th>Totale</th>
+						<th>Data</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>		
+					<tr th:each="venditaProdotto : ${venditaProdotti}">
+						<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
+						<td class=" " th:text="${venditaProdotto.quantita}"></td>
+						<td class=" " th:text="${venditaProdotto.prodotto.prezzoVendita}*${venditaProdotto.quantita} + ' &#x20AC'" ></td>
+						<td class=" " th:text="${#temporals.format(venditaProdotto.vendita.dataVendita, 'dd/MM/yy')}"></td>
+					</tr>
 				</tbody>
-		</table>
-		
-	
-		<div class="col-3 ms-auto text-end">
-			<a class="btn btn-primary"  th:href ="@{/vendite/create}"><i class="fas fa-plus me-2"></i>Nuova Vendita</a>
+			</table>
 		</div>
-	</div>
-	
-	<div th:replace="fragments/utility :: scripts"></div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/utility :: scripts"></div>
 	</body>
 </html>

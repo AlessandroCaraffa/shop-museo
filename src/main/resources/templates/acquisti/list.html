@@ -2,24 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<div th:replace="fragments/utility :: headTags"></div>
-		<title>Rifornimenti</title>
+		<title>Acquisti</title>
 	</head>
 	<body>
-	<nav th:replace="fragments/navbar :: navbar"></nav>
+		<!-- LISTA ACQUISTI ADMIN -->
+	
+		<!-- navbar -->
+		<nav th:replace="fragments/navbar :: navbar"></nav>
 	
 		<div class="container">
-			<h1>Rifornimenti</h1>
-						
-			<!-- add button -->
-			<div>
-				<a class="btn btn-primary" th:href="@{/acquisti/create}"><i class="fas fa-plus"></i> Nuovo acquisto</a>
-			</div>
+			
+			<!-- title V2 -->
+			<h1><a th:href="@{/acquisti/create}"><i class="fas fa-plus-circle"></i></a>
+			Acquisti</h1>
 			<hr/>
 			
 			<!-- table -->
 			<table class="table">
 				<thead>
-					<tr>
+					<tr class="text-secondary fs-3">
 						<th>Data</th>
 						<th>Fornitore</th>
 						<th>Totale</th>
