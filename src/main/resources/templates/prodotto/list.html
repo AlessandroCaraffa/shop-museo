@@ -29,6 +29,7 @@
 			<table class="table">
 				<thead>
 					<tr class="text-secondary fs-3">
+						<th>ID</th>
 						<th>Nome</th>
 						<th>Descrizione</th>
 						<th>Prezzo</th>
@@ -37,11 +38,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class=" "
-						th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
+					<tr th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
 						th:each="prodotto : ${prodotti}">
-	
 						<!-- th:classappend="(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
+						<td th:text="${prodotto.id}"></td>
 						<td th:text="${prodotto.nome}"></td>
 						<td th:text="${prodotto.descrizione}"></td>
 						<td th:text="${prodotto.prezzoVendita}"></td>
