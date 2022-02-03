@@ -93,7 +93,7 @@
 					<td class=" " th:text="${acquistoProdotto.quantita}"></td>
 					<td class=" " th:text="${acquistoProdotto.prezzoAcquisto}"></td>
 					<td>
-						<a class="me-2" th:href="@{/}"><i class="fas fa-trash-alt"></i></a>
+						<a class="me-2" th:href="@{|/acquisti/delete/${id}/${acquistoProdotto.id}|}"><i class="fas fa-trash-alt"></i></a>
 					</td>
 				</tr>
 			</tbody>
