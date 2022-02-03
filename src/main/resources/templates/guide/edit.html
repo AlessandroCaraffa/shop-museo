@@ -62,7 +62,7 @@
 								<textarea class="form-control" id="bio" th:field="*{bio}" rows="6"></textarea>
 							</div>
 							
-							<div class="col-3"> 
+							<div class="col-6"> 
 					<label for="titolo" class="form-label">Titolo</label>
 					<input id="titolo" type="text" class="form-control" th:field="*{titolo}" th:errorClass="is-invalid">
 					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
@@ -71,7 +71,7 @@
 									</ul>
 								</div>
 				</div>
-				<div class="col-3">
+				<div class="col-6">
 							<label class="form-label" for="contenuto">Foto</label>
 							<input type="file" class="form-control" id="contenuto" th:field="*{contenutoGuida}">
 				</div>
