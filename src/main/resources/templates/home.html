@@ -2,20 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<div th:replace="fragments/utility :: headTags"></div>
+		 <link rel="stylesheet" th:href="@{/css/home.css}">
 		<title>Home</title>
 	</head>
 	<body>
 	<nav th:replace="fragments/nabarUser :: navbar"></nav>
+	<div id="backgroundImg" class="mt-0 pt-0">
+	<div class="container" id="image">
+	  <img th:src="@{/img/statua-sfondo.png}" style="width: 100%; height: 75vh;">
+	   <div class="textHeader">
+                        Il museo <span id="citation"> è uno dei<br> luoghi che danno l’idea <br> più elevata
+                            dell’uomo</span>
+                        <br><span id="title">museo <i class="fas fa-university"></i></span>
+                    </div>
+	</div >
+	</div >
+	<section class="container mt-5">
+<div class="row">
+	<div th:each="item : ${percorsi}" class="col-3" id="card">
+	<div class="card shadow mb-5 bg-body rounded">
+	<div th:text="${item.nomePercorso}" class="text-center my-2 text-secondary  fs-3 "></div >
+	<div class="" th:each="foto: ${item.getFoto()}" id="imgPercorso">
+					<img th:src="|/percorsi/${foto.getId()}/foto|" id="slide">
+	</div >	
+	<div id="card-info">
+	<div class="text-center py-1" th:text="${item.descrizione}"></div >
+	<div class="text-center py-1" th:text="${item.prezzo}"></div >
+	</div >
 	
-	<h1>Test home</h1>
-	
-	
-	
+	</div >
+</div >
+	</section >
 	
 	
 	
 	
 		<div th:replace="fragments/utility :: scripts"></div>
+		<script>
+		
+		
+		
+	
+		
+		
+		</script>
+		
 	</body>
 
 </html>
