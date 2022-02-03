@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AcquistoRepository extends JpaRepository<Acquisto, Integer> {
-	@Query(value ="select sum(ap.quantita* ap.prezzo_acquisto)\r\n"
+	@Query(value ="select coalesce(sum(ap.quantita* ap.prezzo_acquisto),0)\r\n"
 			+ "from acquisto_prodotto ap \r\n"
 			+ "join acquisto a \r\n"
 			+ "on ap.acquisto_id = a.id \r\n"
-			+ "where MONTH(a.data_acquisto) = MONTH(now())  and YEAR(a.data_acquisto) = YEAR(now())", 
+			+ "where a.data_acquisto > date_sub(CURDATE() ,interval 1 month)", 
 			  nativeQuery = true)
 	public  Integer getTotaleAcquisti();
 

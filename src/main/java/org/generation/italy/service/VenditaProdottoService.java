@@ -72,8 +72,7 @@ public class VenditaProdottoService {
  	  		
  	  		return 0;
  	  	});
- 	  	
- 	  	System.out.println(arrayList);
+
  	  	
  	  	int max = Math.min(n, arrayList.size());
  	  	for (int i = 0; i < max; i++) {

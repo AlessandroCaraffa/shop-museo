@@ -76,8 +76,5 @@ public class Visita {
 	public Integer getPostiPrenotati() {
 		return postiPrenotati;
 	}
-	public void setPostiPrenotati(Integer postiPrenotati) {
-		this.postiPrenotati = postiPrenotati;
-	}
 	
 }

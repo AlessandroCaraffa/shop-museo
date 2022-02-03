@@ -81,17 +81,14 @@ public class Prodotto {
 	public Integer getQuantitaAcquistata() {
 		return quantitaAcquistata;
 	}
-	
-	public Integer getQuantitaVenduta() {
-		return quantitaVenduta;
-	}
 	public void setQuantitaAcquistata(Integer quantitaAcquistata) {
 		this.quantitaAcquistata = quantitaAcquistata;
+	}
+	public Integer getQuantitaVenduta() {
+		return quantitaVenduta;
 	}
 	public void setQuantitaVenduta(Integer quantitaVenduta) {
 		this.quantitaVenduta = quantitaVenduta;
 	}
-	
-	
 	
 }
