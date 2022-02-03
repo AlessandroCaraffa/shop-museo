@@ -29,7 +29,7 @@
 						<th>Guida</th>
 						<th>Data</th>
 						<th>Orario</th>
-						<!-- <th>Posti disponibili</th> -->
+						<th>Posti disponibili</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -40,7 +40,7 @@
 						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
 						<td th:text="${#temporals.format(item.data, 'dd/MM/yy')}"></td>
 						<td th:text="${item.orario}"></td>
-						<!-- <td th:text="${item.percorso.postiMax - item.postiPrenotati}"></td> -->
+						<td th:text="|${item.percorso.postiMax - item.postiPrenotati}/${item.percorso.postiMax}|"></td>
 						<td>
 							<a class="btn" th:href="@{|/user/percorsi/${item.percorso.id}/visite/${item.id}/detail|}" th:classAppend="${item.postiPrenotati >= item.percorso.postiMax} ? 'disabled btn-secondary' : 'btn-primary'"><i class="fas fa-info"></i></a>
 							<a class="btn" th:href="@{|/user/percorsi/${item.percorso.id}/visite/${item.id}/prenotazioni/create|}" th:classAppend="${item.postiPrenotati >= item.percorso.postiMax} ? 'disabled btn-secondary' : 'btn-primary'"><i class="far fa-calendar-alt"></i> Prenota</a>

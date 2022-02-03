@@ -5,10 +5,10 @@
 		<title>Visite</title>
 	</head>
 	<body>
-		<!-- LISTA VISITE ADMIN -->
-	
 		<!-- navbar -->
 		<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+		<!-- LISTA VISITE ADMIN -->
 	
 		<div class="container">
 			
@@ -31,7 +31,7 @@
 						<th>Guida</th>
 						<th>Data</th>
 						<th>Orario</th>
-						<th></th>
+						<th>Posti prenotati</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,6 +41,7 @@
 						<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
 						<td th:text="${#temporals.format(item.data, 'dd/MM/yy')}"></td> <!-- formattazione personalizzata -->
 						<td th:text="${item.orario}"></td>
+						<td th:text="|${item.postiPrenotati}/${item.percorso.postiMax}|"></td>
 						<td>
 							<a class="me-2" th:href="@{|/visite/detail/${item.id}|}"><i class="fas fa-info"></i></a>
 							<a class="me-1" th:href="@{|/visite/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
