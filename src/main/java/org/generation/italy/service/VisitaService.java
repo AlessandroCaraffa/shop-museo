@@ -21,16 +21,12 @@ public class VisitaService {
 		List<Visita> visiteTotali = repository.findAll();
 		for(Visita visita : visiteTotali) {
 			int i = visita.getData().compareTo(LocalDate.now().plusWeeks(1));
-			if(i < 0 ) {
+			if(i < 0) {
 				visiteNextmonth.add(visita);
-
-			}else if( i == 0 ) {
+			} else if(i == 0) {
 				visiteNextmonth.add(visita);
-				
 			}
 		}
-		
-
 		return visiteNextmonth;
 	}
 	
@@ -62,8 +58,12 @@ public class VisitaService {
 		return repository.getVisitaNotLessThen2h(id);
 	}
 	
-	public List<Visita> findAllNotPastOrderByDataOrario() {
-		return repository.findAllNotPastOrderByDataOrario();
+//	public List<Visita> findAllNotPastOrderByDataOrario() {
+//		return repository.findAllNotPastOrderByDataOrario();
+//	}
+	
+	public List<Visita> findAllOrderByDataOrarioBothDesc() {
+		return repository.findAllOrderByDataOrarioBothDesc();
 	}
 	
 }

@@ -121,8 +121,8 @@ public class ProdottoController {
 
 			return "redirect:/prodotto";
 		}
-		if((prodotto.getQuantitaAcquistata()-prodotto.getQuantitaVenduta())==0) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Il prodotto non può essere eliminato eliminato! Esistono delle registrazioni di vendita nella sezione VENDITA");
+		if((prodotto.getQuantitaAcquistata()-prodotto.getQuantitaVenduta())==0 && prodotto.getQuantitaAcquistata()>0) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Il prodotto non può essere eliminato! Esistono delle registrazioni di vendita nella sezione VENDITA");
 
 			return "redirect:/prodotto";
 		}
@@ -178,9 +178,10 @@ public class ProdottoController {
 	@GetMapping("/editFoto/{id}")
 	public String editFoto(@PathVariable("id") Integer id, Model model) {
 		// model.addAttribute("edit", true);
+	
 		model.addAttribute("prodotto", service.getById(id));
-		model.addAttribute("foto", fotoRepo.getById(id));
-		model.addAttribute("fotoList", fotoRepo.findAllById(id));
+		model.addAttribute("foto", new FotoForm());
+		
 
 		return "/prodotto/editFoto";
 	}
@@ -188,6 +189,12 @@ public class ProdottoController {
 	@PostMapping("/editFoto/{id}")
 	public String doUpdateFoto(@Valid @ModelAttribute("foto") FotoForm formFoto, @PathVariable("id") Integer id,
 			BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+	if(bindingResult.hasErrors() && formFoto.getContenuto() == null || formFoto.getContenuto().isEmpty()) {
+			
+		//redirectAttributes.addFlashAttribute("errorMessage", "Inserire la Foto!");
+		bindingResult.addError(new ObjectError("content", "Inserire la foto"));
+		return "redirect:/prodotto/editFoto/" + id;
+		}
 
 		try {
 			Foto addFoto = fotoRepo.create(formFoto);
@@ -195,7 +202,8 @@ public class ProdottoController {
 			prodotto.getFoto().add(addFoto);
 			service.update(prodotto);
 		} catch (IOException e) {
-
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il Prodotto!");
+			e.printStackTrace();
 		}
 		redirectAttributes.addFlashAttribute("successMessage", "Foto Aggiornata!");
 		return "redirect:/prodotto";
