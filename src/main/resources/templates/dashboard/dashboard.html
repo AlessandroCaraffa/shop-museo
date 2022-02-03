@@ -29,7 +29,7 @@
 			<tbody>
 
 				<tr 
-					th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta > 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
+					th:classappend="(${prodotto.quantitaAcquistata - prodotto.quantitaVenduta <= 10 and prodotto.quantitaAcquistata - prodotto.quantitaVenduta >= 5} ? 'table-warning ' : '') + (${prodotto.quantitaAcquistata - prodotto.quantitaVenduta < 5} ? 'table-danger' : '')"
 					th:each="prodotto : ${prodotti}" th:if="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta} < 10">
 
 					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
