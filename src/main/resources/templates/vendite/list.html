@@ -21,6 +21,7 @@
 			<table class="table">
 				<thead>
 					<tr class="text-secondary fs-3">
+						<th>ID</th>
 						<th>Prodotto</th>
 						<th>Quantità</th>
 						<th>Totale</th>
@@ -30,10 +31,11 @@
 				</thead>
 				<tbody>		
 					<tr th:each="venditaProdotto : ${venditaProdotti}">
-						<td class=" " th:text="${venditaProdotto.prodotto.nome}"></td>
-						<td class=" " th:text="${venditaProdotto.quantita}"></td>
-						<td class=" " th:text="${venditaProdotto.prodotto.prezzoVendita}*${venditaProdotto.quantita} + ' &#x20AC'" ></td>
-						<td class=" " th:text="${#temporals.format(venditaProdotto.vendita.dataVendita, 'dd/MM/yy')}"></td>
+						<td th:text="${venditaProdotto.id}"></td>
+						<td th:text="${venditaProdotto.prodotto.nome}"></td>
+						<td th:text="${venditaProdotto.quantita}"></td>
+						<td th:text="${venditaProdotto.prodotto.prezzoVendita}*${venditaProdotto.quantita} + ' &#x20AC'" ></td>
+						<td th:text="${#temporals.format(venditaProdotto.vendita.dataVendita, 'dd/MM/yy')}"></td>
 					</tr>
 				</tbody>
 			</table>

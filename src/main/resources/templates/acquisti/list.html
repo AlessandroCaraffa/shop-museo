@@ -21,6 +21,7 @@
 			<table class="table">
 				<thead>
 					<tr class="text-secondary fs-3">
+						<th>ID</th>
 						<th>Data</th>
 						<th>Fornitore</th>
 						<th>Totale</th>
@@ -29,6 +30,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="acquisto : ${acquisti}">
+						<td th:text="${acquisto.id}"></td>
 						<td th:text="${#temporals.format(acquisto.dataAcquisto, 'dd/MM/yy')}"></td> 
 						<td th:text="${acquisto.nomeFornitore}"></td>
 						<!--<td th:text="${acquisto.totaleAcquisto}"></td> da aggiungere totale calcolato,fare metodo findByAcquistoId su service e repository di Acquisto e poi fare una query sum(prezzoAcquisto)-->

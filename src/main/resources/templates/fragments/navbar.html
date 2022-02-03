@@ -51,7 +51,7 @@
 								USER
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" th:href="@{/home}">Home</a></li> 
+								<li><a class="dropdown-item" th:href="@{/}">Home</a></li> 
 								<li><a class="dropdown-item" th:href="@{/shop}">Shop prodotti</a></li> 
 								<li><a class="dropdown-item" th:href="@{/user/percorsi/}">Visite guidate</a></li>
 							</ul>
@@ -59,10 +59,10 @@
 					</ul>
 					
 					<!-- pulsanti acquisto/vendite -->
-					<form class="ms-auto" th:action="@{/vendite/create}" method="POST">
+					<form class="me-2" th:action="@{/vendite/create}" method="POST">
 						<button class="btn btn-primary" type="submit"><i class="fas fa-plus me-2"></i>Nuova Vendita</button>
 					</form>
-					<form class="ms-auto" th:action="@{/acquisti/create}" method="POST">
+					<form class="" th:action="@{/acquisti/create}" method="POST">
 						<button class="btn btn-primary" type="submit"><i class="fas fa-plus me-2"></i>Nuovo Acquisto</button>
 					</form>
 				</div>

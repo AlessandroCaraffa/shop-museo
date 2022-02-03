@@ -35,7 +35,7 @@ public class Percorso {
 	
 	@NotNull
 	@Min(value=1)
-	private int postiMax;
+	private Integer postiMax;
 	
 	@NotNull
 	@DateTimeFormat(pattern = "HH:mm")
@@ -72,10 +72,10 @@ public class Percorso {
 	public void setPrezzo(BigDecimal prezzo) {
 		this.prezzo = prezzo;
 	}
-	public int getPostiMax() {
+	public Integer getPostiMax() {
 		return postiMax;
 	}
-	public void setPostiMax(int postiMax) {
+	public void setPostiMax(Integer postiMax) {
 		this.postiMax = postiMax;
 	}
 	public LocalTime getDurata() {
