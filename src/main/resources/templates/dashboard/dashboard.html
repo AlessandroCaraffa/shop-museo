@@ -13,13 +13,13 @@
 	
 	
 	
-		<h2 th:if="${inEsaurimento}">Prodotti in esaurimento</h2>
-		<table class="table table-sm" th:if="${inEsaurimento}">
+		<h2 th:if="${inEsaurimento}" class="font-weight-bold fs-1" >Prodotti in esaurimento</h2>
+		<table class="table table-sm mb-5" th:if="${inEsaurimento}">
 			<thead>
 				<tr>
 					<th class="text-secondary  fs-3 " scope="col">Nome</th>
-					<th class="text-secondary  fs-3 text-center" scope="col">Prezzo</th>
-					<th class="text-secondary  fs-3 text-center" scope="col">Quantità</th>
+					<th class="text-secondary  fs-3 " scope="col">Prezzo</th>
+					<th class="text-secondary  fs-3 " scope="col">Quantità</th>
 					<th></th>
 
 
@@ -34,8 +34,8 @@
 
 					<!-- th:classappend= "(${prodotto.prezzoVendita <= 10 and prodotto.prezzoVendita >7} ? 'table-danger ' : '') + (${prodotto.prezzoVendita <= 7} ? table-warning : '')" -->
 					<td class=" " th:text="${prodotto.nome}"></td>
-					<td class="text-center" th:text="${prodotto.prezzoVendita}"></td>
-					<td class="text-center" th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
+					<td class="" th:text="${prodotto.prezzoVendita}"></td>
+					<td class="" th:text="${prodotto.quantitaAcquistata - prodotto.quantitaVenduta}"></td>
 					<td class="d-flex justify-content-between">
 						<a class="me-2" th:href="@{|/prodotto/detail/${prodotto.id}|}"><i class="fas fa-info"></i></a>
 
@@ -62,12 +62,12 @@
 		
 		
 		
-		<h2>Classifica dei 5 prodotti più venduti nell'ultimo mese</h2>
-		<table class="table table-sm">
+		<h2 class="fs-1">Classifica dei 5 prodotti più venduti nell'ultimo mese</h2 >
+		<table class="table table-sm mb-5">
 			<thead>
 				<tr>
-					<th scope="col">Prodotto</th>
-					<th scope="col">Quantità venduta</th>
+					<th class="text-secondary  fs-3"scope="col">Prodotto</th>
+					<th class="text-secondary  fs-3" scope="col">Quantità venduta</th >
 				</tr>
 			</thead>
 			<tbody>
@@ -77,22 +77,40 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		
+		<h2 class="fs-1">Riepilogo degli incassi dell'ultimo mese</h2 >
+		<table class="table table-sm mb-5">
+			<thead>
+				<tr>
+					<th class="text-secondary  fs-3" scope="col">Spese Rifornimenti</th >
+					<th class="text-secondary  fs-3" scope="col">Entrate Shop</th >
+					<th class="text-secondary  fs-3" scope="col">Entrate Visite</th >
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class=" fw-bold text-danger" th:text="'-' + ${totaleAcquisti} + ' &#x20AC'"></td  >
+					<td  class="fw-bold text-success"th:text="'+' + ${totaleVendite}+ ' &#x20AC'"></td >
+					<td class="fw-bold text-success" th:text="'+' + ${totalePrenotazioni}+ ' &#x20AC'"></td  >
+				</tr>
+			</tbody>
+		</table>
 
 
-		<h2>Lista delle visite guidate programmate per la prossima settimana</h2>
-			<table class="table table-sm">
+		<h2 class="fs-1">Lista delle visite guidate programmate per la prossima settimana</h2 >
+			<table class="table table-sm mb-5">
 			<thead>
 				<tr>
 					<!--<th scope="col">Id Visita</th>-->
-					<th scope="col">Percorso</th>
-					<th scope="col">Guida</th>
-					<th scope="col">Data</th>
-					<th scope="col">Ora</th>
+					<th class="text-secondary  fs-3" scope="col">Percorso</th >
+					<th class="text-secondary  fs-3" scope="col">Guida</th>
+					<th class="text-secondary  fs-3" scope="col">Data</th >
+					<th class="text-secondary  fs-3" scope="col">Ora</th >
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="item : ${VisiteProssimoMese}">
-					<td th:text="${item.id}"></td>
 					<td th:text="${item.percorso.nomePercorso}"></td>
 					<td th:text="|${item.guida.nome} ${item.guida.cognome}|"></td>
 					<td th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></td>
@@ -109,27 +127,6 @@
 		</table>
 
 
-		<h2>Riepilogo degli incassi dell'ultimo mese</h2>
-		<table class="table table-sm">
-			<thead>
-				<tr>
-					<th scope="col"></th>
-					<th scope="col">Spese Rifornimenti</th>
-					<th scope="col">Entrate Shop</th>
-					<th scope="col">Entrate Visite</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row"></th>
-					<td><span th:text="'-' + ${totaleAcquisti} + ' &#x20AC'"></span></td>
-					</td>
-					<td><span th:text="'+' + ${totaleVendite}+ ' &#x20AC'"></span></td>
-					</td>
-					<td><span th:text="'+' + ${totalePrenotazioni}+ ' &#x20AC'"></span></td>
-				</tr>
-			</tbody>
-		</table>
 		
 	
 		
