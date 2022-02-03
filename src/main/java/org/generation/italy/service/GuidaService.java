@@ -55,6 +55,32 @@ public class GuidaService {
 		return guidaSave;
 	}
 	
+	public Guida updateGuidaForm(GuidaForm guida,Integer guidaId) throws IOException {
+		Guida newGuida= repository.getById(guidaId);
+
+		Foto newFotoGuida= createFoto(guida); 
+		
+		//1-crea una lista vuoto di Foto
+		List<Foto> listaFoto=new ArrayList<>();
+		//2-aggiungo la mia newFoto alla lista
+		listaFoto.add(newFotoGuida);
+		
+		//3-set quest lista coem attributo foto del prodotto
+		newGuida.setFoto(newFotoGuida);;
+		//4-proseguo a slavare prodotto
+		
+		
+		
+		newGuida.setNome(guida.getNome());
+		newGuida.setCognome(guida.getCognome());
+		newGuida.setBio(guida.getBio());
+		Guida guidaSave=repository.save(newGuida);
+		
+		
+		
+		return guidaSave;
+	}
+	
 	
 	public void deleteById(Integer id) {
 		repository.deleteById(id);

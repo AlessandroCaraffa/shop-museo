@@ -109,7 +109,7 @@ public class GuidaController {
 		return "guide/edit";
 	}
 	@PostMapping("/edit/{id}")
-	public String doUpdate(@Valid @ModelAttribute("guidaForm") GuidaForm formGuida,BindingResult bindingResult,
+	public String doUpdate(@PathVariable("id") Integer id,@Valid @ModelAttribute("guidaForm") GuidaForm formGuida,BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
@@ -121,7 +121,7 @@ public class GuidaController {
 		}
 		try {
 			
-			service.createGuidaForm(formGuida);
+			service.updateGuidaForm(formGuida,id);
 			redirectAttributes.addFlashAttribute("successMessage", "Dati della Guida Aggiornati!");
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare!");
