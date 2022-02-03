@@ -6,6 +6,7 @@ import java.util.List;
 import org.generation.italy.model.Acquisto;
 import org.generation.italy.repository.AcquistoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,7 @@ public class AcquistoService {
 	}
 	
 	public List<Acquisto> findAll() {
-		return repository.findAll();
+		return repository.findAll(Sort.by(Sort.Direction.DESC,"id"));
 	}
 	
 	public Acquisto save(Acquisto acquisto) {
