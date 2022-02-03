@@ -13,15 +13,22 @@
 	
 	<div class="row pt-5">
 	<div class="col-3" th:each="item : ${prodotti}">
-	<div class="card" style="width: 18rem;">
+	<div class="card mb-5" style="width: 18rem;">
 		<div>
-			<h5 class="card-title text-center my-3" th:text="${item.nome}"></h5>
-				<div class="position-relative" th:each="foto: ${item.getFoto}">
-					<img th:src="|/prodotto/${foto.getId()}/foto|" style="width: 100%;" >
-				</div >								
+			
+				<div class="position-relative">
+				<!--<input type="image" alt="img"
+     			th:src="|/prodotto/${item.getFoto.get(0).getId()}/foto|" style="width: 100%;" th:ref="@{|prodotto/user/detail/${item.id}|}">-->
+
+					<img th:src="|/prodotto/${item.getFoto.get(0).getId()}/foto|"  th:ref="@{|prodotto/user/detail/${item.id}|}" style="width: 100%;">
+				</div >		
+				<h5 class="card-title text-center my-3" th:text="${item.nome}"></h5>						
 			<div class="card-body">
-					<p class="card-text" th:text="${item.descrizione}"></p>
-					<p class="card-text text-center" th:text="|${item.prezzoVendita}&euro;|"></p>
+					<div class="row">
+					<p class="card-text text-center mx-auto" th:text="|${item.prezzoVendita}&euro;|"></p>
+					<div class="col-2 ms-auto">					<a class="btn btn-primary  " th:href="@{|prodotto/user/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+					</div>
+					</div>
 			</div>
 			</div>
 		

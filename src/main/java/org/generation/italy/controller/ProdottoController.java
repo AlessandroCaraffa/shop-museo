@@ -228,5 +228,11 @@ public class ProdottoController {
 		headers.setContentType(org.springframework.http.MediaType.IMAGE_JPEG);
 		return new ResponseEntity<byte[]>(photoContent, headers, HttpStatus.OK);
 	}
+	@GetMapping("/user/detail/{id}")
+	public String userDetail(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("prodotto", service.getById(id));
+
+		return "/user/shop/detail";
+	}
 
 }

@@ -3,7 +3,7 @@
 
 <head>
 	<div th:replace="fragments/utility :: headTags"></div>
-	<title th:text="${percorso.nomePercorso}"></title>
+	<title th:text="${prodotto.nome}"></title>
 </head>
 
 <body>
@@ -13,13 +13,13 @@
 	<!-- DETTAGLIO PERCORSO USER -->
 
 	<!-- general container -->
-	<div class="container" th:object="${percorso}">
+	<div class="container" th:object="${prodotto}">
 
 		<!-- title V2 -->
 		<div class="row">
 			<div class="col-auto me-auto">
 				<h1><a th:href="@{/user/percorsi}"><i class="fas fa-arrow-circle-left"></i></a>
-					<span th:text="*{nomePercorso}"></span>
+					<span th:text="*{nome}"></span>
 				</h1>
 			</div>
 		</div>
@@ -41,15 +41,12 @@
 					<dl>
 
 						<dt>Prezzo</dt>
-						<dd th:text="|*{prezzo}€|"></dd>
-						<dt>Durata</dt>
-						<dd th:text="*{durata}"></dd>
-						<dt>Posti max</dt>
-						<dd th:text="*{postiMax}"></dd>
+						<dd th:text="|*{prezzoVendita}€|"></dd>
+						
 
 
 						<!-- mostra solo se non vuoto -->
-						<th:block th:unless=${#strings.isEmpty(percorso.descrizione)}>
+						<th:block th:unless=${#strings.isEmpty(prodotto.descrizione)}>
 							<dt>Descrizione</dt>
 							<dd th:text="*{descrizione}"></dd>
 						</th:block>

@@ -1,46 +1,87 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<div th:replace="fragments/utility :: head"></div>
-		<title>Percorsi</title>
-	</head>
-	<body>
-		<!-- navbar -->
-		<nav th:replace="fragments/nabarUser :: navbar"></nav>
-	
-		<!-- LISTA PERCORSI USER -->
-	
+
+<head>
+	<div th:replace="fragments/utility :: head"></div>
+	<title>Percorsi</title>
+</head>
+
+<body>
+	<!-- navbar -->
+	<nav th:replace="fragments/nabarUser :: navbar"></nav>
+
+	<!-- LISTA PERCORSI USER -->
+
+	<div class="container">
+		<h1>Percorsi di visita</h1>
+		<hr />
+
+		<!-- table -->
 		<div class="container">
-			<h1>Percorsi di visita</h1>
-			<hr/>
-			
-			<!-- table -->
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="text-secondary  fs-3 ">Nome percorso</th >
-						<th class="text-secondary  fs-3 text-center">Prezzo</th >
-						<th class="text-secondary  fs-3 text-center">Posti max</th >
-						<th class="text-secondary  fs-3 text-center">Durata</th >
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="item : ${percorsi}">
-						<td th:text="${item.nomePercorso}"></td>
-						<td class="text-center" th:text="|${item.prezzo}€|"></td>
-						<td class="text-center" th:text="${item.postiMax}"></td>
-						<td class="text-center" th:text="${#temporals.format(item.durata, 'H:mm')}"></td>
-						<td class="d-flex justify-content-evenly">
-							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/detail|}"><i class="fas fa-info"></i></a>
-							<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/visite|}"><i class="far fa-calendar-alt"></i> Prenota</a>
-						</td >
-					</tr>
-				</tbody>
-			</table>
+
+			<div class="row pt-5">
+				<div class="col-3" th:each="item : ${percorsi}">
+					<div class="card mb-4" style="width: 18rem;">
+						<div>
+							
+							<div class="position-relative">
+								<img th:src="|/percorsi/${item.getFoto().get(0).getId()}/foto|" class="card-img-top">
+							</div>
+							<h5 class="card-title text-center my-3" th:text="${item.nomePercorso}"></h5>
+							<div class="card-body text-center">
+								<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/detail|}"><i
+								class="fas fa-info"></i></a>
+								<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/visite|}"><i
+								class="far fa-calendar-alt"></i> Prenota</a>
+								
+								<p class="card-text text-center mt-2" th:text="|${item.prezzo}&euro;|"></p>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
 		</div>
-		
-		<!-- scripts -->
-		<div th:replace="fragments/utility :: scripts"></div>
-	</body>
+
+
+
+
+
+
+
+
+
+		<!--<table class="table">
+			<thead>
+				<tr>
+					<th class="text-secondary  fs-3 ">Nome percorso</th>
+					<th class="text-secondary  fs-3 text-center">Prezzo</th>
+					<th class="text-secondary  fs-3 text-center">Posti max</th>
+					<th class="text-secondary  fs-3 text-center">Durata</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${percorsi}">
+					<td th:text="${item.nomePercorso}"></td>
+					<td class="text-center" th:text="|${item.prezzo}€|"></td>
+					<td class="text-center" th:text="${item.postiMax}"></td>
+					<td class="text-center" th:text="${#temporals.format(item.durata, 'H:mm')}"></td>
+					<td class="d-flex justify-content-evenly">
+						<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/detail|}"><i
+								class="fas fa-info"></i></a>
+						<a class="btn btn-primary" th:href="@{|/user/percorsi/${item.id}/visite|}"><i
+								class="far fa-calendar-alt"></i> Prenota</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>-->
+
+	<!-- scripts -->
+	<div th:replace="fragments/utility :: scripts"></div>
+</body>
+
 </html>
