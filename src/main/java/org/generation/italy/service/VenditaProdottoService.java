@@ -14,6 +14,7 @@ import org.generation.italy.model.VenditaProdotto;
 import org.generation.italy.model.VenditaProdottoForm;
 import org.generation.italy.repository.VenditaProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,7 +29,7 @@ public class VenditaProdottoService {
 	
 	
 	public List<VenditaProdotto> findAll(){
-		return repository.findAll();
+		return repository.findAll(Sort.by(Sort.Direction.DESC,"id"));
 	}
 	
 	public List<ProdottoConVendite> top(int n) {
