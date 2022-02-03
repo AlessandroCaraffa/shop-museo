@@ -3,6 +3,7 @@
 
 <head>
 	<div th:replace="fragments/utility :: headTags"></div>
+ <link rel="stylesheet" th:href="@{/css/home.css}">
 	<title>Shop User</title>
 </head>
 
@@ -26,7 +27,8 @@
 			<div class="card-body">
 					<div class="row">
 					<p class="card-text text-center mx-auto" th:text="|${item.prezzoVendita}&euro;|"></p>
-					<div class="col-2 ms-auto">					<a class="btn btn-primary  " th:href="@{|prodotto/user/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+					<div class="col-2 ms-auto">
+					<a class="btn btn-primary  " th:href="@{|prodotto/user/detail/${item.id}|}"><i class="fas fa-info"></i></a>
 					</div>
 					</div>
 			</div>
