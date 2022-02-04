@@ -6,6 +6,7 @@
 		<title>Home</title>
 	</head>
 	<body>
+	<div id="blockScroll-1">
 	<nav th:replace="fragments/nabarUser :: navbar"></nav>
 	<div id="backgroundImg" class="mt-0 pt-0">
 	<div class="container" id="image">
@@ -16,13 +17,15 @@
                         <br><span id="title">museo <i class="fas fa-university"></i></span>
                     </div>
 	</div >
+	<div id="overlay"></div >
 	</div >
-	<section class="container mt-5">
+	</div >
+	<section class="container">
 <div class="row">
-	<div th:each="item : ${percorsi}" class="col-3" id="card">
-	<div class="card shadow mb-5 bg-body rounded">
+	<div th:each="item : ${percorsi}" class="scrollEvent" id="card">
+	<div class="mb-5 rounded col-5 px-4" id="pin">
 	<div th:text="${item.nomePercorso}" class="text-center my-2 text-secondary  fs-3 "></div >
-	<div class="" th:each="foto: ${item.getFoto()}" id="imgPercorso">
+	<div class="${item.getFoto().getId()}" th:each="foto: ${item.getFoto()}" id="imgPercorso">
 					<img th:src="|/percorsi/${foto.getId()}/foto|" id="slide">
 	</div >	
 	<div id="card-info">
@@ -31,20 +34,186 @@
 	</div >
 	
 	</div >
+	<div class="col-9 mt-3" id="descrizione">
+<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+ Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+</p>
 </div >
+</div>
+</div >
+
+
+	</section  >
+	<section id="guide">
+					<div id="" class="container">
+					<div id="guide-list" class="row">
+					<div th:each="guida : ${guide}" class="card col-3">
+						
+						<span class="text-center text-secondary  fs-3 " th:text="|*{guida.nome} *{guida.cognome}|"></span></h1>
+						<div th:each="item : ${guida.getFoto()}" class="row mt-5">
+					<div class="">
+						<div class="">
+							<img th:src="|/foto/${item.getId()}/foto|" class="card-img">
+						</div>
+					</div>
+					
+					<!-- bio -->
+					<div class="col-8">
+						<th:block th:unless=${#strings.isEmpty(guida.bio)}> <!-- mostra solo se non vuoto -->
+							<dt>Bio</dt>
+							<dd th:text="*{guida.bio}"></dd>
+						</th:block>
+					</div>
+				</div>
+						
+					 </div>
+					</div >
+				</div >
 	</section >
 	
 	
 	
 	
 		<div th:replace="fragments/utility :: scripts"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
 		<script>
+		const cards=document.querySelectorAll('.scrollEvent');
+		const pin=document.querySelectorAll('#pin');
 		
+		gsap.from(pin[0], {
+	duration: 2,
+	autoAlpha: 0,
+	y: 200,
+	scale: 0.5,
+	scrollTrigger: {
+		trigger: pin[0],
+		markers: false,
+		//Trigger Scroller marker se vuoi spostare lo scroller-start creando una sorta di delay
+		start: 'top 80%', //oppure top bottom-=200
+		end: 'bottom 30%', //muovi l'end
+
+		onEnter: () => console.log('enter'),
+		onLeave: () => console.log('leave'),
+		onEnterBack: () => console.log('enterback'),
+		onLeaveBack: () => console.log('leaveback'),
+
+		toggleActions: 'play pause reverse reset',
+		scrub: true //puoi mettere anche i secondi per lo svolgimento
+	}
+});
+
+
+
+ScrollTrigger.create({
+	trigger: cards[0],
+	pin: true,
+	markers: false,
+	//trigger scrolled
+	end: 'bottom 50%'
+});
 		
+		gsap.from(pin[1], {
+	duration: 2,
+	autoAlpha: 0,
+	y: 200,
+	scale: 0.5,
+	scrollTrigger: {
+		trigger: pin[1],
+		markers: false,
+		//Trigger Scroller marker se vuoi spostare lo scroller-start creando una sorta di delay
+		start: 'top 80%', //oppure top bottom-=200
+		end: 'bottom 30%', //muovi l'end
+
+		onEnter: () => console.log('enter'),
+		onLeave: () => console.log('leave'),
+		onEnterBack: () => console.log('enterback'),
+		onLeaveBack: () => console.log('leaveback'),
+
+		toggleActions: 'play pause reverse reset',
+		scrub: true //puoi mettere anche i secondi per lo svolgimento
+	}
+});
+
+
+
+ScrollTrigger.create({
+	trigger: cards[1],
+	pin: true,
+	markers: false,
+	//trigger scrolled
+	end: 'bottom 50%'
+});
+
 		
-	
+		gsap.from(pin[2], {
+	duration: 2,
+	autoAlpha: 0,
+	y: 200,
+	scale: 0.5,
+	scrollTrigger: {
+		trigger: pin[2],
+		markers: false,
+		//Trigger Scroller marker se vuoi spostare lo scroller-start creando una sorta di delay
+		start: 'top 80%', //oppure top bottom-=200
+		end: 'bottom 30%', //muovi l'end
+
+		onEnter: () => console.log('enter'),
+		onLeave: () => console.log('leave'),
+		onEnterBack: () => console.log('enterback'),
+		onLeaveBack: () => console.log('leaveback'),
+
+		toggleActions: 'play pause reverse reset',
+		scrub: true //puoi mettere anche i secondi per lo svolgimento
+	}
+});
+
+
+
+ScrollTrigger.create({
+	trigger: cards[2],
+	pin: true,
+	markers: false,
+	//trigger scrolled
+	end: 'bottom 50%'
+});
+
 		
-		
+		gsap.from(pin[3], {
+	duration: 2,
+	autoAlpha: 0,
+	y: 200,
+	scale: 0.5,
+	scrollTrigger: {
+		trigger: pin[3],
+		markers: false,
+		//Trigger Scroller marker se vuoi spostare lo scroller-start creando una sorta di delay
+		start: 'top 80%', //oppure top bottom-=200
+		end: 'bottom 30%', //muovi l'end
+
+		onEnter: () => console.log('enter'),
+		onLeave: () => console.log('leave'),
+		onEnterBack: () => console.log('enterback'),
+		onLeaveBack: () => console.log('leaveback'),
+
+		toggleActions: 'play pause reverse reset',
+		scrub: true //puoi mettere anche i secondi per lo svolgimento
+	}
+});
+
+
+
+ScrollTrigger.create({
+	trigger: cards[3],
+	pin: true,
+	markers: false,
+	//trigger scrolled
+	end: 'bottom 50%'
+});
+
+
+
 		</script>
 		
 	</body>
