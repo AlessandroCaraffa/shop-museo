@@ -128,7 +128,15 @@ public class UserPrenotazioneController {
 			return "/user/prenotazioni/edit";
 		}
 		prenotazioneService.save(formPrenotazione);
-		return "redirect:/prenotazioni"; // TODO creare pagina di successo con riepilogo prenotazione appena effettuata
+		// return "redirect:/";
+		return "redirect:/user/percorsi/prenotazioni/success";
+	}
+	
+	// CONFERMA DI PRENOTAZIONE
+	@GetMapping("/prenotazioni/success")
+	public String success(Model model) {
+		model.addAttribute("percorsi", percorsoService.findAll());
+		return "/user/prenotazioni/success";
 	}
 	
 }
