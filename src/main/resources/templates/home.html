@@ -18,20 +18,41 @@
 	</div >
 	</div >
 	<section class="container mt-5">
-<div class="row">
-	<div th:each="item : ${percorsi}" class="col-3" id="card">
+	<div class="row">
+	<div th:each="item : ${percorsi}" class="col-4" id="card">
 	<div class="card shadow mb-5 bg-body rounded">
 	<div th:text="${item.nomePercorso}" class="text-center my-2 text-secondary  fs-3 "></div >
 	<div class="" th:each="foto: ${item.getFoto()}" id="imgPercorso">
 					<img th:src="|/percorsi/${foto.getId()}/foto|" id="slide">
 	</div >	
 	<div id="card-info">
-	<div class="text-center py-1" th:text="${item.descrizione}"></div >
+
 	<div class="text-center py-1" th:text="${item.prezzo}"></div >
 	</div >
 	
 	</div >
 </div >
+	</div>
+	<div class="text-center fs-1 text-secondary" ><h1 th:text="|Le nostre guide|"></h1 ></div>
+	</section >
+	<section class="container mt-5">
+	<div class="row justify-content-between">
+	<div th:each="guida : ${guide}" class="col-2">
+	<div class="">
+	<div th:text="|${guida.nome}|" class="text-center my-2 text-secondary  fs-3 "></div >
+	<div th:text="|${guida.cognome}|" class="text-center my-2 text-secondary  fs-3 "></div >
+	<div class="" th:each="foto: ${guida.getFoto()}" id="imgPercorso">
+					<img class="img-fluid rounded-circle "th:src="|/percorsi/${foto.getId()}/foto|">
+	</div >	
+	<div id="card-info">
+
+	
+	</div >
+	
+	</div >
+</div >
+	</div>
+	
 	</section >
 	
 	
